@@ -23,6 +23,7 @@ set undofile                       "persistent undo
 set undodir=$HOME/.vimundo
 
 call plug#begin()
+
 Plug 'junegunn/vim-easy-align' "{{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -48,35 +49,10 @@ Plug 'scrooloose/nerdtree' "{{{
   let NERDTreeQuitOnOpen=0
   let NERDTreeShowLineNumbers=1
   let g:NERDTreeWinPos='right'
-
   nnoremap <F2> :NERDTreeToggle<CR>
   nnoremap <F3> :NERDTreeFind<CR>
 "}}}
 Plug 'tpope/vim-fugitive'
-" neomake is much faster then syntastic
-if has('nvim')
-  Plug 'neomake/neomake'  "{{{
-  autocmd! BufWritePost * Neomake
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
-  let g:neomake_typescript_enabled_makers = ['tslint']
-  let g:neomake_css_enabled_makers = ['stylelint']
-  let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
-  "}}}
-else
-  Plug 'scrooloose/syntastic' "{{{
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_haskell_checkers=['']
-  let g:syntastic_latex_checkers=['']
-  let g:syntastic_javascript_checkers = ['eslint']
-  "}}}
-endif
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown' "{{{
   let g:vim_markdown_frontmatter = 1
@@ -89,10 +65,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' } "{{{
   let g:jsx_ext_required = 0
 "}}}
-" Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-" Plug 'othree/yajs.vim'
-" Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
@@ -144,23 +117,35 @@ Plug 'kien/ctrlp.vim' "{{{
         \ 'dir': '\v[\/](\.(git|hg|svn|idea)$)|(node_modules)',
         \ 'file': '\v\.DS_Store$'
         \ }
-
   nmap \ [ctrlp]
   nnoremap [ctrlp] <nop>
-
   nnoremap [ctrlp]f :FZF<cr>
   nnoremap [ctrlp]T :CtrlPTag<cr>
   nnoremap [ctrlp]l :CtrlPLine<cr>
   nnoremap [ctrlp]o :CtrlPFunky<cr>
   nnoremap [ctrlp]b :CtrlPBuffer<cr>
 "}}}
-Plug 'mhartington/vim-angular2-snippets'
 Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
-" if !has('nvim')
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
+  let g:deoplete#enable_at_startup = 1
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = '0'
+  "}}}
+  Plug 'neomake/neomake'  "{{{
+  autocmd! BufWritePost * Neomake
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+  let g:neomake_typescript_enabled_makers = ['tslint']
+  let g:neomake_css_enabled_makers = ['stylelint']
+  let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
+  "}}}
+else
   " Plug 'Valloric/YouCompleteMe' "{{{
   " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
   " let g:ycm_autoclose_preview_window_after_completion=0
@@ -169,20 +154,20 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
   " let g:ycm_server_python_interpreter= '/usr/bin/python'
   " nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
   " nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-" endif
-
-if has('nvim')
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
-  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') } " | Plug 'carlitux/deoplete-ternjs'
-  let g:deoplete#enable_at_startup = 1
-  " let g:deoplete#omni_patterns = {}
-  " let g:deoplete#omni_patterns.javascript = '[^. \t]\.\w*'
-  let g:tern_request_timeout = 1
-  let g:tern_show_signature_in_pum = '0'
+  "}}}
+  Plug 'scrooloose/syntastic' "{{{
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 0
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_haskell_checkers=['']
+  let g:syntastic_latex_checkers=['']
+  let g:syntastic_javascript_checkers = ['eslint']
+  "}}}
 endif
-"}}}
 
 call plug#end()
 
@@ -448,32 +433,6 @@ function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort "{{{
         \ contains=@'.group
 endfunction "}}}
 call TextEnableCodeSnip('html','<script.*type=\"text\/x-handlebars-template\">','<\/script>', 'SpecialComment')
-
-function! MakeSession()
-  if g:sessionfile != ""
-    echo "Saving."
-    if (filewritable(g:sessiondir) != 2)
-      exe 'silent !mkdir -p ' g:sessiondir
-      redraw!
-    endif
-    exe "mksession! " . g:sessionfile
-  endif
-endfunction
-
-function! LoadSession()
-  if argc() == 0
-    let g:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-    let g:sessionfile = g:sessiondir . "/session.vim"
-    if (filereadable(g:sessionfile))
-      exe 'source ' g:sessionfile
-    else
-      echo "No session loaded."
-    endif
-  else
-    let g:sessionfile = ""
-    let g:sessiondir = ""
-  endif
-endfunction
 "}}}
 
 " auto command {{{
