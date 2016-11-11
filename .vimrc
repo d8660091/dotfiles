@@ -2,6 +2,7 @@
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  set termguicolors
 endif
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*
@@ -21,9 +22,7 @@ let &shiftwidth=2                  "number of spaces when indenting
 set undofile                       "persistent undo
 set undodir=$HOME/.vimundo
 
-" set the runtime path to include Vundle and initialize
 call plug#begin()
-
 Plug 'junegunn/vim-easy-align' "{{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
