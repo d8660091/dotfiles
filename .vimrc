@@ -124,10 +124,7 @@ Plug 'kien/ctrlp.vim' "{{{
   nnoremap [ctrlp]o :CtrlPFunky<cr>
   nnoremap [ctrlp]b :CtrlPBuffer<cr>
 "}}}
-Plug 'nanotech/jellybeans.vim' "{{{
-let g:jellybeans_overrides = {
-      \ 'background': { 'guibg': '1d1f21' } }
-"}}}
+Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -142,6 +139,7 @@ if has('nvim')
   Plug 'neomake/neomake'  "{{{
   autocmd! BufWritePost * Neomake
   let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_php_enabled_makers = ['php', 'phpmd']
   let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
   let g:neomake_typescript_enabled_makers = ['tslint']
   let g:neomake_css_enabled_makers = ['stylelint']
