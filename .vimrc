@@ -77,7 +77,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter' "{{{
   let g:NERDSpaceDelims = 1
 "}}}
-Plug 'bling/vim-airline' " {{{
+Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
   nmap <leader># :b#<CR>
   nmap <leader>1 <Plug>AirlineSelectTab1
   nmap <leader>2 <Plug>AirlineSelectTab2
@@ -97,7 +97,6 @@ Plug 'bling/vim-airline' " {{{
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " }}}
-Plug 'vim-airline/vim-airline-themes'
 Plug 'coot/atp_vim' " {{{
   let g:atp_folding=1
   let g:tex_flavor='latex'
@@ -125,7 +124,10 @@ Plug 'kien/ctrlp.vim' "{{{
   nnoremap [ctrlp]o :CtrlPFunky<cr>
   nnoremap [ctrlp]b :CtrlPBuffer<cr>
 "}}}
-Plug 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim' "{{{
+let g:jellybeans_overrides = {
+      \ 'background': { 'guibg': '1d1f21' } }
+"}}}
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
