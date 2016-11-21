@@ -139,7 +139,7 @@ if has('nvim')
   Plug 'neomake/neomake'  "{{{
   autocmd! BufWritePost * Neomake
   let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_php_enabled_makers = ['php', 'phpmd']
+  let g:neomake_php_enabled_makers = ['php']
   let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
   let g:neomake_typescript_enabled_makers = ['tslint']
   let g:neomake_css_enabled_makers = ['stylelint']
