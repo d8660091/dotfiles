@@ -37,6 +37,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
   let g:UltiSnipsExpandTrigger = "<tab>"
   let g:UltiSnipsJumpForwardTrigger = "<c-f>"
   let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
+  autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
 "}}}
 Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar' "{{{
@@ -236,11 +237,6 @@ endif
 " mappings {{{
 nmap <space>b :CtrlPBuffer<CR>
 
-" formatting shortcuts
-vmap <leader>bh :call RangeHtmlBeautify()<cr>
-
-
-nmap <leader>fef :call Preserve("normal gg=G")<CR>
 nmap <leader>f$ :call StripTrailingWhitespace()<CR>
 vmap <leader>s :sort<cr>
 
@@ -268,24 +264,6 @@ inoremap <C-h> <left>
 inoremap <C-l> <right>
 
 inoremap <C-u> <C-g>u<C-u>
-
-if mapcheck('<space>/') == ''
-  nnoremap <space>/ :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
-endif
-
-" sane regex {{{
-" nnoremap / /\v
-" vnoremap / /\v
-" nnoremap ? ?\v
-" vnoremap ? ?\v
-" nnoremap :s/ :s/\v
-" }}}
-
-" command-line window {{{
-nnoremap q: q:i
-nnoremap q/ q/i
-nnoremap q? q?i
-" }}}
 
 " folds {{{
 nnoremap zr zr:echo &foldlevel<cr>
@@ -374,24 +352,8 @@ function! Source(begin, end) "{{{
     execute line
   endfor
 endfunction "}}}
-function! Preserve(command) "{{{
-  " preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " do the business:
-  execute a:command
-  " clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction "}}}
 function! StripTrailingWhitespace() "{{{
   call Preserve("%s/\\s\\+$//e")
-endfunction "}}}
-function! EnsureExists(path) "{{{
-  if !isdirectory(expand(a:path))
-    call mkdir(expand(a:path))
-  endif
 endfunction "}}}
 function! CloseWindowOrKillBuffer() "{{{
   let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
@@ -408,34 +370,10 @@ function! CloseWindowOrKillBuffer() "{{{
     bdelete
   endif
 endfunction "}}}
-function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort "{{{
-  let ft=toupper(a:filetype)
-  let group='textGroup'.ft
-  if exists('b:current_syntax')
-    let s:current_syntax=b:current_syntax
-    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
-    " do nothing if b:current_syntax is defined.
-    unlet b:current_syntax
-  endif
-  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
-  try
-    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
-  catch
-  endtry
-  if exists('s:current_syntax')
-    let b:current_syntax=s:current_syntax
-  else
-    unlet b:current_syntax
-  endif
-  execute 'syntax region textSnip'.ft.'
-        \ matchgroup='.a:textSnipHl.'
-        \ start="'.a:start.'" end="'.a:end.'"
-        \ contains=@'.group
-endfunction "}}}
-call TextEnableCodeSnip('html','<script.*type=\"text\/x-handlebars-template\">','<\/script>', 'SpecialComment')
 "}}}
 
-" auto command {{{
+" auto commands {{{
+" Move cursor to last edited position
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
