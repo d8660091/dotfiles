@@ -309,15 +309,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 "}}}
 
-" tab shortcuts
-map <leader>tn :tabnew<CR>
-map <leader>tc :tabclose<CR>
-
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
-
-" hide annoying quit message
-nnoremap <C-c> <C-c>:echo<cr>
 
 " window killer
 nnoremap <silent> <C-q> :call CloseWindowOrKillBuffer()<cr>
