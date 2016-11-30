@@ -35,7 +35,7 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'tpope/vim-repeat',
-Plug 'lumiliet/vim-twig', { 'for': 'twig' }
+Plug 'lumiliet/vim-twig'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
