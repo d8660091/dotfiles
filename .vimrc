@@ -3,6 +3,11 @@
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set termguicolors
+else
+  " True color for vim inside st
+  let &t_8f = "[38;2;%lu;%lu;%lum"
+  let &t_8b = "[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*
@@ -131,43 +136,43 @@ Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
 
+Plug 'neomake/neomake' " {{{
+autocmd! BufWritePost * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_php_enabled_makers = ['php']
+" let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+" let g:neomake_typescript_enabled_makers = ['tslint']
+" let g:neomake_css_enabled_makers = ['stylelint']
+" let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
+" "}}}
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
   let g:deoplete#enable_at_startup = 1
   let g:tern_request_timeout = 1
   let g:tern_show_signature_in_pum = '0'
   "}}}
-  Plug 'neomake/neomake'  "{{{
-  autocmd! BufWritePost * Neomake
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_php_enabled_makers = ['php']
-  let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
-  let g:neomake_typescript_enabled_makers = ['tslint']
-  let g:neomake_css_enabled_makers = ['stylelint']
-  let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
-  "}}}
 else
-  " Plug 'Valloric/YouCompleteMe' "{{{
-  " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  " let g:ycm_autoclose_preview_window_after_completion=0
-  " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  " let g:SuperTabDefaultCompletionType = '<C-n>'
-  " let g:ycm_server_python_interpreter= '/usr/bin/python'
-  " nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-  " nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  Plug 'Valloric/YouCompleteMe' "{{{
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_autoclose_preview_window_after_completion=0
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
+  let g:ycm_server_python_interpreter= '/usr/bin/python'
+  nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+  nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
   "}}}
-  Plug 'scrooloose/syntastic' "{{{
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_haskell_checkers=['']
-  let g:syntastic_latex_checkers=['']
-  let g:syntastic_javascript_checkers = ['eslint']
-  "}}}
+  " Plug 'scrooloose/syntastic' " replaced by neomake {{{
+  " set statusline+=%#warningmsg#
+  " set statusline+=%{SyntasticStatuslineFlag()}
+  " set statusline+=%*
+  " let g:syntastic_always_populate_loc_list = 1
+  " let g:syntastic_auto_loc_list = 0
+  " let g:syntastic_check_on_open = 0
+  " let g:syntastic_check_on_wq = 0
+  " let g:syntastic_haskell_checkers=['']
+  " let g:syntastic_latex_checkers=['']
+  " let g:syntastic_javascript_checkers = ['eslint']
+  " "}}}
 endif
 
 call plug#end()
