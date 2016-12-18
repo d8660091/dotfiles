@@ -10,7 +10,7 @@ else
   set termguicolors
 endif
 
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
 let mapleader = ","
 set clipboard=unnamedplus          "sync with OS clipboard
 set noswapfile
@@ -125,6 +125,7 @@ Plug 'kien/ctrlp.vim' "{{{
   nmap \ [ctrlp]
   nnoremap [ctrlp] <nop>
   nnoremap [ctrlp]f :FZF<cr>
+  nnoremap [ctrlp]r :CtrlPMRU<cr>
   nnoremap [ctrlp]T :CtrlPTag<cr>
   nnoremap [ctrlp]l :CtrlPLine<cr>
   nnoremap [ctrlp]o :CtrlPFunky<cr>
