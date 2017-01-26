@@ -1,8 +1,14 @@
 /*
 !.gitignore
 !.vimrc
+
 !/.config
 /.config/*
 !.config/nvim
 /.config/nvim/*
 !/.config/nvim/UltiSnips
+
+!/projects
+/projects/*
+!/projects/vim-css
+!/projects/vim-twig
