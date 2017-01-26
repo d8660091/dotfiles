@@ -137,7 +137,6 @@ Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
-Plug '~/Documents/vim-twig'
 Plug 'neomake/neomake' " {{{
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']

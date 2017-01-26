@@ -1,0 +1,7 @@
+snippet construct "__construct()" b
+${1/(\w+ )*\$(\w+)(, )*/\n    protected $$2;\n/g}
+public function __construct(${1:$dependencies})
+{${1/(\w+ )*\$(\w+)(, )*/\n        $this->$2 = $$2;/g}
+}
+$0
+endsnippet
