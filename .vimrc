@@ -35,7 +35,7 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'tpope/vim-repeat',
-Plug 'lumiliet/vim-twig'
+Plug '~/projects/vim-twig'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
@@ -67,11 +67,9 @@ Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = "ag --vimgrep"
 "}}}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' } "{{{
-  let g:jsx_ext_required = 0
-"}}}
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'html', 'twig'] }
+Plug 'mxw/vim-jsx'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
@@ -141,7 +139,7 @@ Plug 'neomake/neomake' " {{{
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php']
-" let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+let g:neomake_javascript_eslint_exe = "smart-eslint"
 " let g:neomake_typescript_enabled_makers = ['tslint']
 " let g:neomake_css_enabled_makers = ['stylelint']
 " let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
@@ -387,6 +385,20 @@ function! Preserve(command) "{{{
   let @/=_s
   call cursor(l, c)
 endfunction "}}}
+function! Dump(cmd) "{{{
+  redir => message
+  silent execute a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+    enew
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command Dump call Dump(<q-args>)
+"}}}
 "}}}
 
 " auto commands {{{
@@ -395,4 +407,6 @@ autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+autocmd BufNewFile,BufRead *.css set syntax=scss
 "}}
