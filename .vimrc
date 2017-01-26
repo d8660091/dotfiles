@@ -34,6 +34,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
+Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
 Plug 'tpope/vim-repeat',
 Plug '~/projects/vim-twig'
 Plug 'justinmk/vim-sneak'
@@ -67,8 +68,10 @@ Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = "ag --vimgrep"
 "}}}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'html', 'twig'] }
-Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'twig', 'html'] }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' } "{{{
+  let g:jsx_ext_required = 0
+"}}}
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -134,7 +137,7 @@ Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
-
+Plug '~/Documents/vim-twig'
 Plug 'neomake/neomake' " {{{
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -222,9 +225,6 @@ else
   let g:NERDTreeDirArrows=0
   let &t_SI = "\x1b[\x34 q"
   let &t_EI = "\x1b[\x32 q"
-  if $COLORTERM == 'gnome-terminal'
-    set t_Co=256 "why you no tell me correct colors?!?!
-  endif
   if $TERM_PROGRAM == 'iTerm.app'
     " different cursors for insert vs normal mode
     if exists('$TMUX')
