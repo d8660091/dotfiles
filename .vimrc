@@ -140,6 +140,7 @@ Plug 'kien/ctrlp.vim' "{{{
   nnoremap [ctrlp]b :CtrlPBuffer<cr>
 "}}}
 Plug 'nanotech/jellybeans.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -191,7 +192,7 @@ endif
 
 " ui configuration {{{
 syntax enable
-exec 'colorscheme jellybeans'
+exec 'colorscheme onedark'
 set showmatch                                       "automatically highlight matching braces/brackets/etc.
 set matchtime=2                                     "tens of a second to show matching parentheses
 set number
