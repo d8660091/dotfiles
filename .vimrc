@@ -37,6 +37,7 @@ Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
 Plug 'tpope/vim-repeat',
 Plug '~/projects/vim-twig'
+Plug '~/projects/vim-css'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
