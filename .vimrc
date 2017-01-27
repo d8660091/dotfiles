@@ -69,8 +69,15 @@ Plug 'mileszs/ack.vim' "{{{
 "}}}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'twig', 'html'] }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' } "{{{
+Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
   let g:jsx_ext_required = 0
+  let g:user_emmet_settings = {
+        \  'javascript.jsx': {
+        \    'extends': 'html',
+        \    'attribute_name': {'class': 'className', 'for': 'htmlFor'},
+        \    'empty_element_suffix': ' />',
+        \  },
+        \}
 "}}}
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
 Plug 'mattn/emmet-vim'
