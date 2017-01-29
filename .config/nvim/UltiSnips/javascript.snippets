@@ -1,3 +1,23 @@
 snippet ims "import style"
-import styles from './$1.css'
+import styles from './$1.css';
+endsnippet
+
+snippet cn "className"
+className={styles.$1}$0
+endsnippet
+
+snippet fc "functional component"
+import React from 'react';
+import fp from 'lodash/fp';
+import { compose } from 'recompose';
+
+const enhance = compose(
+);
+
+const $1 = enhance(() => (
+  <div>
+  </div>
+));
+
+export default $1;
 endsnippet

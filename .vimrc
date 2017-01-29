@@ -69,7 +69,7 @@ Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = "ag --vimgrep"
 "}}}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'twig', 'html'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
   let g:jsx_ext_required = 0
   let g:user_emmet_settings = {
@@ -86,6 +86,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
   nnoremap <F1> :Startify<cr>
   let g:startify_change_to_vcs_root = 1
+  let g:startify_bookmarks = [{'projects': '~/projects'}]
 "}}}
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-surround'
