@@ -35,15 +35,17 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
+Plug 'posva/vim-vue', { 'for': 'vue.html.javascript.css'}
 Plug 'tpope/vim-repeat',
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-css'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
-  let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<c-f>"
-  let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
+  let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
+  let g:UltiSnipsExpandTrigger = '<tab>'
+  let g:UltiSnipsJumpForwardTrigger = '<c-f>'
+  let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
   autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
 "}}}
 Plug 'airblade/vim-gitgutter'
@@ -69,7 +71,7 @@ Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = "ag --vimgrep"
 "}}}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue.html.javascript.css'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
   let g:jsx_ext_required = 0
   let g:user_emmet_settings = {

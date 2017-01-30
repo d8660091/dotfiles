@@ -49,7 +49,7 @@ plugins=(git colored-man-pages)
 
 # User configuration
 
-export PATH="/home/xudeng/.gem/ruby/2.3.0/bin:/home/xudeng/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/xudeng/.cabal/bin:/home/xdeng/.xmonad/bin:/home/xdeng/bin:/home/xdeng/.cabal/bin:/home/xdeng/.xmonad/bin:/home/xdeng/bin"
+export PATH="$HOME/scripts:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -95,5 +95,3 @@ function d() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias v="gvim --remote"
-
-eval "$(grunt --completion=zsh)"

@@ -494,10 +494,7 @@ syn region cssAttrRegion start=/:/ end=/\ze\(;\|)\|}\)/ contained contains=css.*
 " 'transition' has Props after ':'.
 syn region cssAttrRegion start=/transition\s*:/ end=/\ze\(;\|)\|}\)/ contained contains=css.*Prop,css.*Attr,cssColor,cssImportant,cssValue,cssFunction,cssString.*,cssURL,cssComment,cssUnicodeEscape,cssVendor,cssError,cssAttrComma,cssNoise
 
-
-if main_syntax == "css"
-  syn sync fromstart
-endif
+syn sync fromstart
 
 " Define the default highlighting.
 command -nargs=+ HiLink hi def link <args>

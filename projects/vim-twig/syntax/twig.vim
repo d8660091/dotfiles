@@ -53,8 +53,8 @@ syntax match twigStatement containedin=twigTagBlock contained /\<with\(out\)\?\s
 syntax cluster twigInJs contains=twigVarBlock,twigTagBlock
 
 syntax cluster jsExpression add=@twigInJs
-syntax region  jsString start=+'+ skip=+\\\('\|$\)+ end=+'\|$+ contains=jsSpecial,@Spell,@twigInJs extend
-syntax region  jsString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+ contains=jsSpecial,@Spell,@twigInJs extend
+syntax region jsString start=+'+ skip=+\\\('\|$\)+ end=+'\|$+ contains=jsSpecial,@Spell,@twigInJs extend
+syntax region jsString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+ contains=jsSpecial,@Spell,@twigInJs extend
 
 syntax sync fromstart
 
