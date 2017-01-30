@@ -504,7 +504,7 @@ syn region cssAttrRegion start=/transition\s*:/ end=/\ze\(;\|)\|}\)/ contained c
 
 
 if main_syntax == "css"
-  syn sync minlines=30
+  syn sync fromstart
 endif
 
 " Define the default highlighting.
