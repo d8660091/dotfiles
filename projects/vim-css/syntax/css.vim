@@ -1,14 +1,6 @@
-if !exists("main_syntax")
-  if exists("b:current_syntax")
-    finish
-  endif
-  let main_syntax = 'css'
-elseif exists("b:current_syntax") && b:current_syntax == "css"
+if exists("b:current_syntax") && b:current_syntax == "css"
   finish
 endif
-
-let s:cpo_save = &cpo
-set cpo&vim
 
 syn case ignore
 
@@ -508,142 +500,126 @@ if main_syntax == "css"
 endif
 
 " Define the default highlighting.
-" For version 5.7 and earlier: only when not done already
-" For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_css_syn_inits")
-  if version < 508
-    let did_css_syn_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
+command -nargs=+ HiLink hi def link <args>
 
-  HiLink cssComment Comment
-  HiLink cssVendor Comment
-  HiLink cssHacks Comment
-  HiLink cssTagName Statement
-  HiLink cssDeprecated Error
-  HiLink cssSelectorOp Special
-  HiLink cssSelectorOp2 Special
-  HiLink cssAttrComma Special
+HiLink cssComment Comment
+HiLink cssVendor Comment
+HiLink cssHacks Comment
+HiLink cssTagName Statement
+HiLink cssDeprecated Error
+HiLink cssSelectorOp Special
+HiLink cssSelectorOp2 Special
+HiLink cssAttrComma Special
 
-  HiLink cssAnimationProp cssProp
-  HiLink cssAuralProp cssProp
-  HiLink cssBackgroundProp cssProp
-  HiLink cssBorderProp cssProp
-  HiLink cssBoxProp cssProp
-  HiLink cssColorProp cssProp
-  HiLink cssContentForPagedMediaProp cssProp
-  HiLink cssDimensionProp cssProp
-  HiLink cssFlexibleBoxProp cssProp
-  HiLink cssFontProp cssProp
-  HiLink cssGeneratedContentProp cssProp
-  HiLink cssGridProp cssProp
-  HiLink cssHyerlinkProp cssProp
-  HiLink cssIEUIProp cssProp
-  HiLink cssInteractProp cssProp
-  HiLink cssLineboxProp cssProp
-  HiLink cssListProp cssProp
-  HiLink cssMarqueeProp cssProp
-  HiLink cssMobileTextProp cssProp
-  HiLink cssMultiColumnProp cssProp
-  HiLink cssPagedMediaProp cssProp
-  HiLink cssPositioningProp cssProp
-  HiLink cssPrintProp cssProp
-  HiLink cssRenderProp cssProp
-  HiLink cssRubyProp cssProp
-  HiLink cssSpeechProp cssProp
-  HiLink cssTableProp cssProp
-  HiLink cssTextProp cssProp
-  HiLink cssTransformProp cssProp
-  HiLink cssTransitionProp cssProp
-  HiLink cssUIProp cssProp
+HiLink cssAnimationProp cssProp
+HiLink cssAuralProp cssProp
+HiLink cssBackgroundProp cssProp
+HiLink cssBorderProp cssProp
+HiLink cssBoxProp cssProp
+HiLink cssColorProp cssProp
+HiLink cssContentForPagedMediaProp cssProp
+HiLink cssDimensionProp cssProp
+HiLink cssFlexibleBoxProp cssProp
+HiLink cssFontProp cssProp
+HiLink cssGeneratedContentProp cssProp
+HiLink cssGridProp cssProp
+HiLink cssHyerlinkProp cssProp
+HiLink cssIEUIProp cssProp
+HiLink cssInteractProp cssProp
+HiLink cssLineboxProp cssProp
+HiLink cssListProp cssProp
+HiLink cssMarqueeProp cssProp
+HiLink cssMobileTextProp cssProp
+HiLink cssMultiColumnProp cssProp
+HiLink cssPagedMediaProp cssProp
+HiLink cssPositioningProp cssProp
+HiLink cssPrintProp cssProp
+HiLink cssRenderProp cssProp
+HiLink cssRubyProp cssProp
+HiLink cssSpeechProp cssProp
+HiLink cssTableProp cssProp
+HiLink cssTextProp cssProp
+HiLink cssTransformProp cssProp
+HiLink cssTransitionProp cssProp
+HiLink cssUIProp cssProp
 
-  HiLink cssAnimationAttr cssAttr
-  HiLink cssAuralAttr cssAttr
-  HiLink cssBackgroundAttr cssAttr
-  HiLink cssBorderAttr cssAttr
-  HiLink cssBoxAttr cssAttr
-  HiLink cssContentForPagedMediaAttr cssAttr
-  HiLink cssCommonAttr cssAttr
-  HiLink cssDimensionAttr cssAttr
-  HiLink cssFlexibleBoxAttr cssAttr
-  HiLink cssFontAttr cssAttr
-  HiLink cssGeneratedContentAttr cssAttr
-  HiLink cssGridAttr cssAttr
-  HiLink cssHyerlinkAttr cssAttr
-  HiLink cssIEUIAttr cssAttr
-  HiLink cssInteractAttr cssAttr
-  HiLink cssLineboxAttr cssAttr
-  HiLink cssListAttr cssAttr
-  HiLink cssMarginAttr cssAttr
-  HiLink cssMarqueeAttr cssAttr
-  HiLink cssMultiColumnAttr cssAttr
-  HiLink cssPaddingAttr cssAttr
-  HiLink cssPagedMediaAttr cssAttr
-  HiLink cssPositioningAttr cssAttr
-  HiLink cssGradientAttr cssAttr
-  HiLink cssPrintAttr cssAttr
-  HiLink cssRenderAttr cssAttr
-  HiLink cssRubyAttr cssAttr
-  HiLink cssSpeechAttr cssAttr
-  HiLink cssTableAttr cssAttr
-  HiLink cssTextAttr cssAttr
-  HiLink cssTransformAttr cssAttr
-  HiLink cssTransitionAttr cssAttr
-  HiLink cssUIAttr cssAttr
+HiLink cssAnimationAttr cssAttr
+HiLink cssAuralAttr cssAttr
+HiLink cssBackgroundAttr cssAttr
+HiLink cssBorderAttr cssAttr
+HiLink cssBoxAttr cssAttr
+HiLink cssContentForPagedMediaAttr cssAttr
+HiLink cssCommonAttr cssAttr
+HiLink cssDimensionAttr cssAttr
+HiLink cssFlexibleBoxAttr cssAttr
+HiLink cssFontAttr cssAttr
+HiLink cssGeneratedContentAttr cssAttr
+HiLink cssGridAttr cssAttr
+HiLink cssHyerlinkAttr cssAttr
+HiLink cssIEUIAttr cssAttr
+HiLink cssInteractAttr cssAttr
+HiLink cssLineboxAttr cssAttr
+HiLink cssListAttr cssAttr
+HiLink cssMarginAttr cssAttr
+HiLink cssMarqueeAttr cssAttr
+HiLink cssMultiColumnAttr cssAttr
+HiLink cssPaddingAttr cssAttr
+HiLink cssPagedMediaAttr cssAttr
+HiLink cssPositioningAttr cssAttr
+HiLink cssGradientAttr cssAttr
+HiLink cssPrintAttr cssAttr
+HiLink cssRenderAttr cssAttr
+HiLink cssRubyAttr cssAttr
+HiLink cssSpeechAttr cssAttr
+HiLink cssTableAttr cssAttr
+HiLink cssTextAttr cssAttr
+HiLink cssTransformAttr cssAttr
+HiLink cssTransitionAttr cssAttr
+HiLink cssUIAttr cssAttr
 
-  HiLink cssPseudoClassId PreProc
-  HiLink cssPseudoClassLang Constant
-  HiLink cssValueNumber Number
-  HiLink cssFunction Constant
-  HiLink cssURL String
-  HiLink cssFunctionName Function
-  HiLink cssFunctionComma Function
-  HiLink cssColor Constant
-  HiLink cssIdentifier Function
-  HiLink cssInclude Include
-  HiLink cssIncludeKeyword atKeyword
-  HiLink cssImportant Special
-  HiLink cssBraces Function
-  HiLink cssBraceError Error
-  HiLink cssError Error
-  HiLink cssUnicodeEscape Special
-  HiLink cssStringQQ String
-  HiLink cssStringQ String
-  HiLink cssAttributeSelector String
-  HiLink cssMedia atKeyword
-  HiLink cssMediaType Special
-  HiLink cssMediaComma Normal
-  HiLink cssMediaKeyword Statement
-  HiLink cssMediaProp cssProp
-  HiLink cssMediaAttr cssAttr
-  HiLink cssPage atKeyword
-  HiLink cssPagePseudo PreProc
-  HiLink cssPageMargin atKeyword
-  HiLink cssPageProp cssProp
-  HiLink cssKeyFrame atKeyword
-  HiLink cssKeyFrameSelector Constant
-  HiLink cssFontDescriptor Special
-  HiLink cssFontDescriptorFunction Constant
-  HiLink cssFontDescriptorProp cssProp
-  HiLink cssFontDescriptorAttr cssAttr
-  HiLink cssUnicodeRange Constant
-  HiLink cssClassName Function
-  HiLink cssClassNameDot Function
-  HiLink cssProp StorageClass
-  HiLink cssAttr Constant
-  HiLink cssUnitDecorators Number
-  HiLink cssNoise Noise
-  HiLink atKeyword PreProc
-  delcommand HiLink
-endif
+HiLink cssPseudoClassId PreProc
+HiLink cssPseudoClassLang Constant
+HiLink cssValueNumber Number
+HiLink cssFunction Constant
+HiLink cssURL String
+HiLink cssFunctionName Function
+HiLink cssFunctionComma Function
+HiLink cssColor Constant
+HiLink cssIdentifier Function
+HiLink cssInclude Include
+HiLink cssIncludeKeyword atKeyword
+HiLink cssImportant Special
+HiLink cssBraces Function
+HiLink cssBraceError Error
+HiLink cssError Error
+HiLink cssUnicodeEscape Special
+HiLink cssStringQQ String
+HiLink cssStringQ String
+HiLink cssAttributeSelector String
+HiLink cssMedia atKeyword
+HiLink cssMediaType Special
+HiLink cssMediaComma Normal
+HiLink cssMediaKeyword Statement
+HiLink cssMediaProp cssProp
+HiLink cssMediaAttr cssAttr
+HiLink cssPage atKeyword
+HiLink cssPagePseudo PreProc
+HiLink cssPageMargin atKeyword
+HiLink cssPageProp cssProp
+HiLink cssKeyFrame atKeyword
+HiLink cssKeyFrameSelector Constant
+HiLink cssFontDescriptor Special
+HiLink cssFontDescriptorFunction Constant
+HiLink cssFontDescriptorProp cssProp
+HiLink cssFontDescriptorAttr cssAttr
+HiLink cssUnicodeRange Constant
+HiLink cssClassName Function
+HiLink cssClassNameDot Function
+HiLink cssProp StorageClass
+HiLink cssAttr Constant
+HiLink cssUnitDecorators Number
+HiLink cssNoise Noise
+HiLink atKeyword PreProc
+delcommand HiLink
 
 let b:current_syntax = "css"
-
-if main_syntax == 'css'
-  unlet main_syntax
-endif
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
