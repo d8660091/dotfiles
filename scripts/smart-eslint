@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+if [ -f `yarn bin`/eslint ]; then
+  `yarn bin`/eslint $@
+else
+  eslint $@
+fi

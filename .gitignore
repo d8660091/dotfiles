@@ -2,6 +2,7 @@
 !.gitignore
 !.vimrc
 !.zshrc
+!/scripts
 
 !/.config
 /.config/*
