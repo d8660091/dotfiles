@@ -82,7 +82,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
         \  },
         \}
 "}}}
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue.html.javascript.css'] }
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
