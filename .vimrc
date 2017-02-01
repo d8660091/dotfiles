@@ -37,7 +37,7 @@ Plug '~/projects/vim-twig'
 Plug '~/projects/vim-css'
 Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
-Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
+Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'tpope/vim-repeat',
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'

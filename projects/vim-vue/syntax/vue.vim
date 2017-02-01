@@ -1,7 +1,3 @@
-" Vim syntax file
-" Language: Vue.js
-" Maintainer: Eduardo San Martin Morote
-
 if exists("b:current_syntax")
   finish
 endif
@@ -96,6 +92,5 @@ if s:syntaxes.scss
   endif
   syntax region scss keepend start=/<style\( \+scoped\)\? lang=\("\|'\)[^\1]*scss[^\1]*\1\( \+scoped\)\?>/ end="</style>" contains=@scss fold
 endif
-
 
 let b:current_syntax = "vue"
