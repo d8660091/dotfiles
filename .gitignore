@@ -14,3 +14,4 @@
 /projects/*
 !/projects/vim-css
 !/projects/vim-twig
+!/projects/vim-vue

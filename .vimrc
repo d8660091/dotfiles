@@ -33,12 +33,12 @@ Plug 'junegunn/vim-easy-align' "{{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
-Plug 'elmcast/elm-vim', { 'for': 'elm' }
-Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
-Plug 'posva/vim-vue', { 'for': 'vue.html.javascript.css'}
-Plug 'tpope/vim-repeat',
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-css'
+Plug '~/projects/vim-vue', { 'for': 'vue'}
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
+Plug 'othree/html5.vim', { 'for': ['html', 'twig']}
+Plug 'tpope/vim-repeat',
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
@@ -71,7 +71,7 @@ Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = "ag --vimgrep"
 "}}}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue.html.javascript.css'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
   let g:jsx_ext_required = 0
   let g:user_emmet_settings = {
@@ -82,7 +82,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
         \  },
         \}
 "}}}
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
@@ -152,6 +152,7 @@ Plug 'neomake/neomake' " {{{
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php']
+let g:neomake_html_enabled_makers = []
 let g:neomake_javascript_eslint_exe = "smart-eslint"
 " let g:neomake_typescript_enabled_makers = ['tslint']
 " let g:neomake_css_enabled_makers = ['stylelint']
