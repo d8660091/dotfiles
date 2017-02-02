@@ -1,9 +1,9 @@
 snippet ims "import style"
-import styles from './`!v expand('%:t:r')`.css';
+import styles from './`!v expand('%:t:r')`.css'
 endsnippet
 
 snippet ifp "import fp"
-import fp from 'lodash/fp';
+import fp from 'lodash/fp'
 endsnippet
 
 snippet cn "className"
@@ -11,8 +11,8 @@ className={styles.$1}$0
 endsnippet
 
 snippet fc "functional component"
-import React from 'react';
-import fp from 'lodash/fp';
+import React from 'react'
+import fp from 'lodash/fp'
 
 const enhance = fp.pipe(
 );
@@ -22,16 +22,16 @@ const $1 = enhance(() => (
   </div>
 ));
 
-export default $1;
+export default $1
 endsnippet
 
 snippet sc "simple component"
-import React from 'react';
+import React from 'react'
 
 const $1 = () => (
   <div>
   </div>
 );
 
-export default $1;
+export default $1
 endsnippet

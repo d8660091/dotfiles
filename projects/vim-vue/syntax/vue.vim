@@ -25,11 +25,17 @@ if !exists("s:syntaxes")
 endif
 
 
-syntax include @HTML syntax/html.vim
+syntax include @html syntax/html.vim
 if exists("b:current_syntax")
   unlet b:current_syntax
 endif
-syntax region html keepend start=/^<template>/ end=/^<\/template>/ contains=@HTML fold
+syn match vueCompName +\a\++ containedin=htmlTagN contained
+syn match vueAttrName +\s\+:\(\w\|:\)\{-1,}=\@=+ containedin=htmlTag contained
+syn match vueDirectiveName +v-\(for\|if\)+ containedin=htmlTag contained
+hi link vueCompName Function
+hi link vueAttrName Constant
+hi link vueDirectiveName Statement
+syntax region html keepend start=/^<template>/ end=/^<\/template>/ contains=@html fold
 
 if s:syntaxes.pug
   syntax include @PUG syntax/pug.vim

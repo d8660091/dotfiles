@@ -35,6 +35,7 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-css'
+Plug '~/projects/vim-darkx'
 Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
