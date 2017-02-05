@@ -212,7 +212,7 @@ set foldlevelstart=99                               "open all folds by default
 set cursorline
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
-"  let &colorcolumn=s:settings.max_column    "black bar
+" let &colorcolumn=81
 
 if has('conceal')
   set conceallevel=0
