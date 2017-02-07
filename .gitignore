@@ -2,6 +2,7 @@
 !.gitignore
 !.vimrc
 !.zshrc
+!.emacs
 !/scripts
 
 !/.config
