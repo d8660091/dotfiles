@@ -29,7 +29,7 @@ syntax include @html syntax/html.vim
 if exists("b:current_syntax")
   unlet b:current_syntax
 endif
-syn match vueCompName +\a\++ containedin=htmlTagN contained
+syn match vueCompName +[A-Za-z-]\++ containedin=htmlTagN contained
 syn match vueAttrName +\s\+:\(\w\|:\)\{-1,}=\@=+ containedin=htmlTag contained
 syn match vueDirectiveName +v-\(for\|if\)+ containedin=htmlTag contained
 hi link vueCompName Function
