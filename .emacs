@@ -58,13 +58,15 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
+ '(recentf-max-menu-items 25)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist (backquote ((".*" . ,temporary-file-directory))))
  '(vc-annotate-background nil)
  '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
@@ -108,9 +110,13 @@
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 
 
 ;;  Put backup files to /tmp/
@@ -120,11 +126,10 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; Modes
+(projectile-mode t)
 (global-evil-matchit-mode t)
 (evil-mode 1)
 (ido-mode t)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (key-chord-mode 1)
 
 ;; jk to esc
@@ -140,6 +145,14 @@
 
 ;; recent files
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+
+;; neotree
+(setq neo-window-position 'right)
+(setq neo-smart-open t) ;; jump to current file
+(global-set-key [f8] 'neotree-toggle)
