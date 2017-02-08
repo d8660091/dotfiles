@@ -1,0 +1,42 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/xdeng/Documents/matching-game/src/" . "components/")
+ ("/Users/xdeng/Documents/matching-game/" . "src/")
+ ("/Users/xdeng/Documents/" . "matching-game/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/xdeng/Documents/matching-game/src/components/"
+ "/Users/xdeng/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "App.vue"
+ ".emacs"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/xdeng/" (22683 15732 0 0) "yarn.lock" "xterm-256color.ti" "scripts/" "Public/" "projects/" "play/" "Pictures/" "node_modules/" "Music/" "Movies/" "Library/" "Downloads/" "Documents/" "Desktop/" "bin/" "Applications/" ".zshrc.pre-oh-my-zsh" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-xudeng-5.0.8.xudeng.local.70340" ".zcompdump-xudeng-5.0.8.xudeng.local.69834" ".zcompdump-2010-3.0i3-12g-xdeng-5.0.8" ".yarnrc" ".vue-templates/" ".vimundodir/" ".vimundo/" ".vimrc" ".viminfo" ".vim/" ".v8flags.5.4.500.36.xdeng.json" ".v8flags.5.1.281.83.xdeng.json" ".Trash/" ".tmux.conf" ".terminfo/" ".stack/" ".ssh/" ".slate" ".php_history" ".pdepend/" ".oracle_jre_usage/" ".openvpn-connect.json" ".oh-my-zsh/" ".npm/" ".node_repl_history" ".node-gyp/" ".NERDTreeBookmarks" ".local/" ".lesshst" ".gitmodules" ".gitignore_global" ".gitignore" ".gitconfig" ".git/" ".ghc/" ".gem/" ".fzf.zsh" ".fzf.bash" ".fzf/" ".emacs~" ".emacs.d/" ".emacs" ".DS_Store" ".config/" ".composer/" ".CFUserTextEncoding" ".cache/" ".bashrc" ".bash_sessions/" ".bash_history" ".babel.json" ".atom/" "..tmux.conf.un~" "..scss-lint.yml.un~" "..gitconfig.un~" "../" "./")
+
+ ("/Users/xdeng/Documents/matching-game/src/components/" (22683 15440 0 0) "Welcome.vue" "PositionIndicator.vue" "Persona.vue" "HealthBar.vue" "FoodGrid.vue" "Food.vue" "FaceMobile.vue" "Face.vue" "DiePrompt.vue" "CompletePrompt.vue" "Checkmark.vue" "CarouselMobile.vue" "Carousel.vue" "App.vue" "../" "./")
+
+ ("/Users/" (22455 28581 0 0) "xdeng/" "Shared/" "launchfire/" ".localized" "../" "./")
+
+ ("/Users/xdeng/Applications/" (22458 64297 0 0) "Chrome Apps.localized/" ".localized" "../" "./")
+
+ ("/Users/xdeng/projects/" (22683 8514 0 0) "vim-vue/" "vim-twig/" "vim-darkx/" "vim-css/" "neovim-vifm/" "../" "./")
+
+ ("/Users/xdeng/Documents/" (22676 62990 0 0) "Untitled.svg" "Untitled.mov" "test.html" "platform/" "matching-game/" "market/" "Lemonade/" "Launchfire/" "lambda-mailer/" "jre1.8.0_101.jre/" "fish-user/" "fish-admin/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/xdeng/Documents/matching-game/" (22682 10901 0 0) "yarn.lock" "webpack.config.js" "src/" "README.md" "package.json" "node_modules/" "firebase.json" "dist/" ".gitignore" ".git/" ".firebaserc" ".DS_Store" ".babelrc" "../" "./")
+
+ ("/Users/xdeng/Documents/matching-game/src/" (22682 17170 0 0) "store.js" "personas.js" "main.js" "locales.js" "components/" "assets/" "_global.scss" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
