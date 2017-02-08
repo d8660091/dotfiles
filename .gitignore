@@ -3,6 +3,7 @@
 !.vimrc
 !.zshrc
 !.emacs
+!/.emacs.d
 !/scripts
 
 !/.config
@@ -16,3 +17,4 @@
 !/projects/vim-css
 !/projects/vim-twig
 !/projects/vim-vue
+!/projects/neovim-vifm

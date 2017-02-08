@@ -35,6 +35,12 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-css'
+Plug '~/projects/neovim-vifm', "{{{
+  tnoremap <C-w>h <C-\><C-n><C-w>h
+  tnoremap <C-q> <C-\><C-n>:q<CR>
+  autocmd TermOpen * setlocal statusline=%{b:term_title}
+  let g:vifmOpenCommand='bo'
+"}}}
 Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
