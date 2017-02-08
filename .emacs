@@ -118,6 +118,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . emmet-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 
 
