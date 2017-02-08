@@ -1,0 +1,3 @@
+[submodule "projects/neovim-vifm"]
+	path = projects/neovim-vifm
+	url = https://github.com/d8660091/neovim-vifm
