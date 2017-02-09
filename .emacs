@@ -58,10 +58,11 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
- '(recentf-max-menu-items 25)
+ '(recentf-max-menu-items 500)
+ '(save-place-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
@@ -107,7 +108,7 @@
  '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 1 :width normal :foundry "default" :family "default")))))
 
 ;; UI
-(set-default-font "Sauce Code Powerline 14")
+(set-default-font "Sauce Code Powerline 13")
 (global-hl-line-mode t)
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
@@ -118,8 +119,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . emmet-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+(add-hook 'web-mode-hook  'emmet-mode)
+(add-hook 'web-mode-hook  'auto-complete-mode)
 
 
 ;;  Put backup files to /tmp/
@@ -132,11 +134,17 @@
 (projectile-mode t)
 (global-evil-matchit-mode t)
 (evil-mode 1)
+(global-evil-surround-mode 1)
 (ido-mode t)
 (key-chord-mode 1)
 
 ;; jk to esc
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+(key-chord-define evil-normal-state-map  ",w" 'save-buffer)
+(key-chord-define evil-normal-state-map  "\\r" 'helm-recentf)
+(key-chord-define evil-normal-state-map  "\\f" 'projectile-find-file)
+(key-chord-define evil-normal-state-map  "\\d" 'projectile-switch-project)
+(define-key evil-normal-state-map "Q" 'kill-this-buffer)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
