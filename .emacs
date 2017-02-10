@@ -1,3 +1,4 @@
+(add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; Added by Package.el.  This must come before configurations of
@@ -5,44 +6,6 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
-
-(defvar zenburn-override-colors-alist
- '(("zenburn-fg+1"     . "#FFFFEF")
-    ("zenburn-fg"       . "#DCDCCC")
-    ("zenburn-fg-1"     . "#656555")
-    ("zenburn-bg-2"     . "#000000")
-    ("zenburn-bg-1"     . "#050505")
-    ("zenburn-bg-05"    . "#101010")
-    ("zenburn-bg"       . "#151515")
-    ("zenburn-bg+05"    . "#252525")
-    ("zenburn-bg+1"     . "#353535")
-    ("zenburn-bg+2"     . "#454545")
-    ("zenburn-bg+3"     . "#555555")
-    ("zenburn-red+1"    . "#F18F72")
-    ("zenburn-red"      . "#cf6a4c")
-    ("zenburn-red-1"    . "#B14D30")
-    ("zenburn-red-2"    . "#8A2F15")
-    ("zenburn-red-3"    . "#81260C")
-    ("zenburn-red-4"    . "#691903")
-    ("zenburn-orange"   . "#c59f6f")
-    ("zenburn-yellow"   . "#fad07a")
-    ("zenburn-yellow-1" . "#E0CF9F")
-    ("zenburn-yellow-2" . "#D0BF8F")
-    ("zenburn-green-1"  . "#70b950")
-    ("zenburn-green"    . "#799d6a")
-    ("zenburn-green+1"  . "#8FB28F")
-    ("zenburn-green+2"  . "#99ad6a")
-    ("zenburn-green+3"  . "#AFD8AF")
-    ("zenburn-green+4"  . "#BFEBBF")
-    ("zenburn-cyan"     . "#c6b6ee")
-    ("zenburn-blue+1"   . "#94BFF3")
-    ("zenburn-blue"     . "#8fbfdc")
-    ("zenburn-blue-1"   . "#7697d6")
-    ("zenburn-blue-2"   . "#6CA0A3")
-    ("zenburn-blue-3"   . "#5C888B")
-    ("zenburn-blue-4"   . "#4C7073")
-    ("zenburn-blue-5"   . "#366060")
-    ("zenburn-magenta"  . "#f0a0c0")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -58,10 +21,10 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (zenburn)))
+ '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("de0b7245463d92cba3362ec9fe0142f54d2bf929f971a8cdf33c0bf995250bcf" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "45712b65018922c9173439d9b1b193cb406f725f14d02c8c33e0d2cdad844613" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+    ("8adf8588bc70036a936386c36cbeb54094ee99641269a4efd588ec22f5160bb7" "d1b7c3afa5273f92bf472ef2544c0a36829f39166f28152054e275ba485a2672" "6755fa3d0c7998c3fbf409ff819eb137100fc8b71d5dcc55fd35a743d0d47a03" "aa568967910b696d0a6351f93fdc5f58f580ee0ecb3abddd6abc941fb4dd364e" "bf77cf50a731159cecc56f1006c9adfcc2c56fbdeca80b446cf4eca806c4487e" "2399ccfc33f9a48c8d2599e7544d6c39ccefe1b887b2c7931d3b868076ba5c76" "a337f34194308ec0197d7d41b5915f97125b3133e2fd045684cc45bd25dd965d" "de0b7245463d92cba3362ec9fe0142f54d2bf929f971a8cdf33c0bf995250bcf" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "45712b65018922c9173439d9b1b193cb406f725f14d02c8c33e0d2cdad844613" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
@@ -97,6 +60,7 @@
  '(package-selected-packages
    (quote
     (airline-themes powerline php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+ '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(recentf-max-menu-items 500)
@@ -181,6 +145,7 @@
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
 (key-chord-define evil-normal-state-map  ",w" 'save-buffer)
 (key-chord-define evil-normal-state-map  "\\r" 'helm-recentf)
+(key-chord-define evil-normal-state-map  "\\b" 'helm-buffers-list)
 (key-chord-define evil-normal-state-map  "\\f" 'projectile-find-file)
 (key-chord-define evil-normal-state-map  "\\d" 'projectile-switch-project)
 (define-key evil-normal-state-map "Q" 'kill-this-buffer)
@@ -218,4 +183,7 @@
 (setq evil-visual-state-cursor 'box)  ; █
 (setq evil-normal-state-cursor 'box)  ; █
 (setq evil-insert-state-cursor 'bar)  ; ⎸
-(setq evil-emacs-state-cursor  'hbar) ; _
+(setq evil-emacs-state-cursor  'box)  ; |
+
+;; utils
+(global-set-key [f10] 'describe-face)

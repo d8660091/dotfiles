@@ -347,7 +347,8 @@ nnoremap <BS> :set hlsearch! hlsearch?<cr>
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . "> fg-color<"
+      \ . synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg") . ">"<CR>
 
 " command line mode shortcut
 cnoremap <C-A> <Home>
