@@ -96,8 +96,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (airline-themes powerline evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+    (airline-themes powerline php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(recentf-max-menu-items 500)
@@ -160,6 +159,7 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
+(add-hook 'php-mode-hook  'auto-complete-mode)
 
 
 ;;  Put backup files to /tmp/
@@ -184,6 +184,10 @@
 (key-chord-define evil-normal-state-map  "\\f" 'projectile-find-file)
 (key-chord-define evil-normal-state-map  "\\d" 'projectile-switch-project)
 (define-key evil-normal-state-map "Q" 'kill-this-buffer)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-bottom)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-window-top)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -206,3 +210,12 @@
 (setq neo-window-position 'right)
 (setq neo-smart-open t) ;; jump to current file
 (global-set-key [f8] 'neotree-toggle)
+
+;; terminal cursor
+(unless (display-graphic-p)
+  (evil-terminal-cursor-changer-activate))
+(setq evil-motion-state-cursor 'box)  ; █
+(setq evil-visual-state-cursor 'box)  ; █
+(setq evil-normal-state-cursor 'box)  ; █
+(setq evil-insert-state-cursor 'bar)  ; ⎸
+(setq evil-emacs-state-cursor  'hbar) ; _
