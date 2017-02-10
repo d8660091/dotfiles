@@ -150,6 +150,7 @@ Plug 'kien/ctrlp.vim' "{{{
   nnoremap [ctrlp]b :CtrlPBuffer<cr>
 "}}}
 Plug 'nanotech/jellybeans.vim'
+Plug 'jnurmine/Zenburn'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'

@@ -6,6 +6,44 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(defvar zenburn-override-colors-alist
+ '(("zenburn-fg+1"     . "#FFFFEF")
+    ("zenburn-fg"       . "#DCDCCC")
+    ("zenburn-fg-1"     . "#656555")
+    ("zenburn-bg-2"     . "#000000")
+    ("zenburn-bg-1"     . "#050505")
+    ("zenburn-bg-05"    . "#101010")
+    ("zenburn-bg"       . "#151515")
+    ("zenburn-bg+05"    . "#252525")
+    ("zenburn-bg+1"     . "#353535")
+    ("zenburn-bg+2"     . "#454545")
+    ("zenburn-bg+3"     . "#555555")
+    ("zenburn-red+1"    . "#F18F72")
+    ("zenburn-red"      . "#cf6a4c")
+    ("zenburn-red-1"    . "#B14D30")
+    ("zenburn-red-2"    . "#8A2F15")
+    ("zenburn-red-3"    . "#81260C")
+    ("zenburn-red-4"    . "#691903")
+    ("zenburn-orange"   . "#c59f6f")
+    ("zenburn-yellow"   . "#fad07a")
+    ("zenburn-yellow-1" . "#E0CF9F")
+    ("zenburn-yellow-2" . "#D0BF8F")
+    ("zenburn-green-1"  . "#70b950")
+    ("zenburn-green"    . "#799d6a")
+    ("zenburn-green+1"  . "#8FB28F")
+    ("zenburn-green+2"  . "#99ad6a")
+    ("zenburn-green+3"  . "#AFD8AF")
+    ("zenburn-green+4"  . "#BFEBBF")
+    ("zenburn-cyan"     . "#c6b6ee")
+    ("zenburn-blue+1"   . "#94BFF3")
+    ("zenburn-blue"     . "#8fbfdc")
+    ("zenburn-blue-1"   . "#7697d6")
+    ("zenburn-blue-2"   . "#6CA0A3")
+    ("zenburn-blue-3"   . "#5C888B")
+    ("zenburn-blue-4"   . "#4C7073")
+    ("zenburn-blue-5"   . "#366060")
+    ("zenburn-magenta"  . "#f0a0c0")))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,7 +61,7 @@
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("45712b65018922c9173439d9b1b193cb406f725f14d02c8c33e0d2cdad844613" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+    ("962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "45712b65018922c9173439d9b1b193cb406f725f14d02c8c33e0d2cdad844613" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
@@ -58,7 +96,8 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (airline-themes powerline evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+ '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(recentf-max-menu-items 500)
@@ -105,10 +144,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 1 :width normal :foundry "default" :family "default")))))
+ )
 
 ;; UI
-(set-default-font "Sauce Code Powerline 13")
 (global-hl-line-mode t)
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
@@ -135,6 +173,7 @@
 (global-evil-matchit-mode t)
 (evil-mode 1)
 (global-evil-surround-mode 1)
+(evilnc-default-hotkeys)
 (ido-mode t)
 (key-chord-mode 1)
 
