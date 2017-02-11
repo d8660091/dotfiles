@@ -1,4 +1,5 @@
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; Added by Package.el.  This must come before configurations of
@@ -15,7 +16,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
-   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
+   ["#151515" "#cf6a4c" "#7F9F7F" "#fad07a" "#7697d6" "#DC8CC3" "#c6b6fe" "#e4e8e5"])
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
@@ -24,8 +25,8 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("fe6fc827d5982062f348bbadfd5edd80dac2e1aebae8e74719c0a38efb614877" "" default)))
- '(fci-rule-color "#3C3D37")
+    ("705d431b4084bbded9b856474de223f93d05a7c47324ba5fe19c194c1e8177ef" "8bd8d1b9e7ab0f37fa5dfdb573d28f724d250106ecbef3c7f96a8c2dc154b26e" "fe6fc827d5982062f348bbadfd5edd80dac2e1aebae8e74719c0a38efb614877" "" default)))
+ '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
    (--map
@@ -56,11 +57,11 @@
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors
    (quote
-    ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+    ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#8fbfdc" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (which-key airline-themes powerline php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+    (which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+ '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(recentf-max-menu-items 500)
@@ -77,29 +78,29 @@
  '(term-default-fg-color "#839496")
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
- '(vc-annotate-background nil)
+ '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
    (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
+    ((20 . "#BC8383")
+     (40 . "#cf6a4c")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#fad07a")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#99ad6a")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#c6b6fe")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#7697d6")
+     (340 . "#8fbfdc")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3")
  '(web-mode-attr-indent-offset 2)
  '(web-mode-script-padding 0)
  '(web-mode-style-padding 0)
@@ -126,6 +127,7 @@
 (scroll-bar-mode -1)
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
+(setq mode-line-format '("%e" evil-mode-line-tag mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position (vc-mode vc-mode) "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
@@ -154,7 +156,7 @@
 (key-chord-define-global "jk" 'evil-normal-state)
 (key-chord-define-global ",w" 'save-buffer)
 (key-chord-define-global ",e" 'eval-last-sexp)
-(key-chord-define-global ",Q" 'kill-this-buffer)
+(key-chord-define-global ",q" 'kill-this-buffer)
 (key-chord-define-global "\\r" 'helm-recentf)
 (key-chord-define-global "\\b" 'helm-buffers-list)
 (key-chord-define-global "\\f" 'projectile-find-file)
