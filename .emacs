@@ -25,7 +25,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
+    ("51c4caabf87f07364c9f19d4d44aecc378e97092c88b4d7cdd9d6f742c8eb512" "64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
  '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -66,6 +66,27 @@
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
+ '(projectile-other-file-alist
+   (quote
+    (("cpp" "h" "hpp" "ipp")
+     ("ipp" "h" "hpp" "cpp")
+     ("hpp" "h" "ipp" "cpp" "cc")
+     ("cxx" "h" "hxx" "ixx")
+     ("ixx" "h" "hxx" "cxx")
+     ("hxx" "h" "ixx" "cxx")
+     ("c" "h")
+     ("m" "h")
+     ("mm" "h")
+     ("h" "c" "cc" "cpp" "ipp" "hpp" "cxx" "ixx" "hxx" "m" "mm")
+     ("cc" "h" "hh" "hpp")
+     ("hh" "cc")
+     ("vert" "frag")
+     ("frag" "vert")
+     (nil "lock" "gpg")
+     ("lock" "")
+     ("gpg" "")
+     ("jsx" "css")
+     ("css" "jsx"))))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
    (quote
@@ -130,9 +151,7 @@
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
 
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.scss\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
 (add-hook 'php-mode-hook  'auto-complete-mode)
@@ -153,6 +172,7 @@
 (ido-mode t)
 (key-chord-mode 1)
 (ivy-mode)
+(auto-complete-mode)
 
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
@@ -168,6 +188,7 @@
 (key-chord-define-global "]q" 'next-error)
 (key-chord-define-global "[b" 'previous-buffer)
 (key-chord-define-global "]b" 'next-error)
+(key-chord-define-global "]f" 'projectile-find-other-file)
 (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
@@ -211,15 +232,3 @@
 
 ;; utils
 (global-set-key [f10] 'describe-face)
-
-(defun helm-fzf (directory)
-  (interactive "D")
-  (let ((default-directory directory))
-    (helm :sources (helm-build-async-source "fzf"
-		     :candidates-process 
-		     (lambda()
-		       (start-process "echo" nil "echo" "a\nb\nc\nd\ne"))
-		     :nohighlight t
-		     :requires-pattern 2
-		     :candidate-number-limit 9999)
-	  :buffer "*helm-fzf*")))

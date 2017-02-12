@@ -59,6 +59,7 @@ Plug 'majutsushi/tagbar' "{{{
 nmap <F8> :TagbarToggle<CR>
 "}}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree' "{{{
   let NERDTreeShowHidden=1
@@ -257,25 +258,24 @@ endif
 "}}}
 
 " mappings {{{
-nmap <space>b :CtrlPBuffer<CR>
-
 nmap <leader>f$ :call StripTrailingWhitespace()<CR>
 vmap <leader>s :sort<cr>
+
+nmap <leader>w :w<cr>
 
 " eval vimscript by line or visual selection
 nmap <silent> <leader>e :call Source(line('.'), line('.'))<CR>
 vmap <silent> <leader>e :call Source(line('v'), line('.'))<CR>
 
-nnoremap <leader>w :w<cr>
 
 " toggle paste
 map <F6> :set invpaste<CR>:set paste?<CR>
 
 " remap arrow keys
-nnoremap <left> :bprev<CR>
-nnoremap <right> :bnext<CR>
-nnoremap <up> :tabnext<CR>
-nnoremap <down> :tabprev<CR>
+nmap <left> :bprev<CR>
+nmap <right> :bnext<CR>
+nmap <up> :tabnext<CR>
+nmap <down> :tabprev<CR>
 
 " smash escape
 inoremap jk <esc>
@@ -338,12 +338,7 @@ nnoremap Y y$
 nnoremap <silent> <C-q> :call CloseWindowOrKillBuffer()<cr>
 nnoremap <silent> Q :bp\|bd #<cr>
 
-" quick buffer open
-nnoremap gb :ls<cr>:e #
-
-" general
-nmap <leader>l :set list! list?<cr>
-nnoremap <BS> :set hlsearch! hlsearch?<cr>
+nmap <BS> :set hlsearch! hlsearch?<cr>
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -357,12 +352,16 @@ cnoremap <C-B> <Left>
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
-" helpers for profiling {{{
-nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
-"}}}
+" FZF
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+nmap ag :Ag<cr>
+
 "}}}
 
 " functions {{{
