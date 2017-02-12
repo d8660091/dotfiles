@@ -25,7 +25,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" "e11e1408eca6d72c5f23cfc21e94c77ef3d710c9527b33fbcc3d538a47cf5396" "cc198c92a8b32ba9b7422dd755cd5bffe40cb797981939193834bac217ee1845" "705d431b4084bbded9b856474de223f93d05a7c47324ba5fe19c194c1e8177ef" "8bd8d1b9e7ab0f37fa5dfdb573d28f724d250106ecbef3c7f96a8c2dc154b26e" "fe6fc827d5982062f348bbadfd5edd80dac2e1aebae8e74719c0a38efb614877" "" default)))
+    ("64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
  '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -62,7 +62,7 @@
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (helm-projectile helm-fuzzier helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -148,26 +148,43 @@
 (global-evil-matchit-mode t)
 (evil-mode 1)
 (global-evil-surround-mode 1)
+(global-evil-leader-mode)
 (evilnc-default-hotkeys)
 (ido-mode t)
 (key-chord-mode 1)
 (ivy-mode)
 
 ;; Shortcuts
-(key-chord-define-global "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 (key-chord-define-global ",w" 'save-buffer)
 (key-chord-define-global ",e" 'eval-last-sexp)
 (key-chord-define-global ",q" 'kill-this-buffer)
 (key-chord-define-global "\\r" 'helm-recentf)
 (key-chord-define-global "\\b" 'helm-buffers-list)
 (key-chord-define-global "\\f" 'helm-projectile)
-(key-chord-define-global "\\d" 'projectile-switch-project)
+(key-chord-define-global "\\d" 'helm-projectile-find-dir)
+(key-chord-define-global "[q" 'previous-error)
+(key-chord-define-global "]q" 'next-error)
+(key-chord-define-global "[b" 'previous-buffer)
+(key-chord-define-global "]b" 'next-error)
 (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-s") 'swiper)
+(evil-leader/set-key
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+  "."  'evilnc-copy-and-comment-operator
+  "\\" 'evilnc-comment-operator ; if you prefer backslash key
+)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -180,7 +197,8 @@
 ;; neotree
 (setq neo-window-position 'right)
 (setq neo-smart-open t) ;; jump to current file
-(global-set-key [f8] 'neotree-toggle)
+(global-set-key [f2] 'neotree)
+(global-set-key [f3] 'neotree-find)
 
 ;; terminal cursor
 (unless (display-graphic-p)
@@ -193,3 +211,15 @@
 
 ;; utils
 (global-set-key [f10] 'describe-face)
+
+(defun helm-fzf (directory)
+  (interactive "D")
+  (let ((default-directory directory))
+    (helm :sources (helm-build-async-source "fzf"
+		     :candidates-process 
+		     (lambda()
+		       (start-process "echo" nil "echo" "a\nb\nc\nd\ne"))
+		     :nohighlight t
+		     :requires-pattern 2
+		     :candidate-number-limit 9999)
+	  :buffer "*helm-fzf*")))
