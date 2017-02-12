@@ -25,7 +25,8 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("705d431b4084bbded9b856474de223f93d05a7c47324ba5fe19c194c1e8177ef" "8bd8d1b9e7ab0f37fa5dfdb573d28f724d250106ecbef3c7f96a8c2dc154b26e" "fe6fc827d5982062f348bbadfd5edd80dac2e1aebae8e74719c0a38efb614877" "" default)))
+    ("64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" "e11e1408eca6d72c5f23cfc21e94c77ef3d710c9527b33fbcc3d538a47cf5396" "cc198c92a8b32ba9b7422dd755cd5bffe40cb797981939193834bac217ee1845" "705d431b4084bbded9b856474de223f93d05a7c47324ba5fe19c194c1e8177ef" "8bd8d1b9e7ab0f37fa5dfdb573d28f724d250106ecbef3c7f96a8c2dc154b26e" "fe6fc827d5982062f348bbadfd5edd80dac2e1aebae8e74719c0a38efb614877" "" default)))
+ '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
@@ -50,6 +51,7 @@
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(ivy-mode t)
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
  '(js2-strict-missing-semi-warning nil)
@@ -57,10 +59,10 @@
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors
    (quote
-    ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#8fbfdc" "#DC8CC3")))
+    ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (helm-projectile helm-fuzzier helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -95,10 +97,10 @@
      (220 . "#AFD8AF")
      (240 . "#BFEBBF")
      (260 . "#c6b6fe")
-     (280 . "#6CA0A3")
-     (300 . "#7CB8BB")
+     (280 . "#5e78ab")
+     (300 . "#6a87c0")
      (320 . "#7697d6")
-     (340 . "#8fbfdc")
+     (340 . "#83a1da")
      (360 . "#DC8CC3"))))
  '(vc-annotate-very-old-color "#DC8CC3")
  '(web-mode-attr-indent-offset 2)
@@ -127,7 +129,6 @@
 (scroll-bar-mode -1)
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
-(setq mode-line-format '("%e" evil-mode-line-tag mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position (vc-mode vc-mode) "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
@@ -135,7 +136,6 @@
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
 (add-hook 'php-mode-hook  'auto-complete-mode)
-
 
 ;;  Put backup files to /tmp/
 (setq backup-directory-alist
@@ -151,6 +151,7 @@
 (evilnc-default-hotkeys)
 (ido-mode t)
 (key-chord-mode 1)
+(ivy-mode)
 
 ;; Shortcuts
 (key-chord-define-global "jk" 'evil-normal-state)
@@ -159,8 +160,14 @@
 (key-chord-define-global ",q" 'kill-this-buffer)
 (key-chord-define-global "\\r" 'helm-recentf)
 (key-chord-define-global "\\b" 'helm-buffers-list)
-(key-chord-define-global "\\f" 'projectile-find-file)
+(key-chord-define-global "\\f" 'helm-projectile)
 (key-chord-define-global "\\d" 'projectile-switch-project)
+(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-s") 'swiper)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -169,15 +176,6 @@
   (setq web-mode-code-indent-offset 2)
 )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-;; recent files
-(recentf-mode 1)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 
 ;; neotree
 (setq neo-window-position 'right)
