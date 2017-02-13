@@ -6,7 +6,9 @@
 
 (defvar jellybeans-colors-alist
   '(("jellybeans-fg"       . "#c5c8c6")
-    ("jellybeans-fg-1"     . "#707880")
+    ("jellybeans-fg-1"     . "#9da09e")
+    ("jellybeans-fg-2"     . "#767876")
+    ("jellybeans-fg-3"     . "#4e504f")
     ("jellybeans-bg"       . "#1d1f21")
     ("jellybeans-black"    . "#373841")
     ("jellybeans-black-1"  . "#282a2e")
@@ -33,6 +35,10 @@ Also bind `class' to ((class color) (min-colors 89))."
                    jellybeans-colors-alist))
      ,@body))
 
+(defvar jellybeans-font-height (if (eq system-type 'darwin)
+    140
+  120))
+
 ;;; Theme Faces
 (jellybeans-with-color-variables
   (custom-theme-set-faces
@@ -41,14 +47,14 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(button ((t (:foreground ,jellybeans-blue))))
    `(link ((t (:foreground ,jellybeans-yellow :underline t :weight bold))))
    `(link-visited ((t (:foreground ,jellybeans-yellow-1 :underline t :weight normal))))
-   `(default ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
+   `(default ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg :height ,jellybeans-font-height))))
    `(cursor ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
    `(escape-glyph ((t (:foreground ,jellybeans-yellow :weight bold))))
-   `(fringe ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
+   `(fringe ((t (:foreground ,jellybeans-fg :background ,jellybeans-black))))
    `(header-line ((t (:foreground ,jellybeans-yellow
                                   :background ,jellybeans-bg
                                   :box (:line-width -1 :style released-button)))))
-   `(highlight ((t (:background ,jellybeans-bg))))
+   `(highlight ((t (:background ,jellybeans-black))))
    `(success ((t (:foreground ,jellybeans-green :weight bold))))
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))
    `(tooltip ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
@@ -66,7 +72,7 @@ Also bind `class' to ((class color) (min-colors 89))."
                       :box nil))))
    `(region ((,class (:background ,jellybeans-blue-1))
              (t :inverse-video t)))
-   `(secondary-selection ((t (:background ,jellybeans-bg))))
+   `(secondary-selection ((t (:background ,jellybeans-magenta-1))))
    `(trailing-whitespace ((t (:background ,jellybeans-red))))
    `(vertical-border ((t (:foreground ,jellybeans-fg))))
    ;; font lock
@@ -88,7 +94,7 @@ Also bind `class' to ((class color) (min-colors 89))."
 
    ;; plugins
    `(helm-header
-     ((t (:foreground ,jellybeans-fg
+     ((t (:foreground ,jellybeans-fg-1
                       :background ,jellybeans-bg
                       :underline nil
                       :box nil))))
@@ -104,11 +110,14 @@ Also bind `class' to ((class color) (min-colors 89))."
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
 
-   `(linum ((t (:foreground ,jellybeans-fg-1))))
+   `(linum ((t (:foreground ,jellybeans-fg-3))))
 
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
    `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))
    `(git-gutter:modified ((t (:foreground ,jellybeans-magenta))))
+
+   `(eshell-prompt
+     ((t (:foreground ,jellybeans-fg-1))))
 
    `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 

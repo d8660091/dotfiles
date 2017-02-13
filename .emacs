@@ -26,9 +26,10 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
+    ("2edc929ddf0d2bb80a6697ac331c26511300d5e18a82eb8cae22dd9e178e7f6f" "5e56ef26e875bec09e10384200e0e3384b26a19f311f0b851930be0008de5dcb" "0a9bfd1cfef256e4fa081badde3222784b452aa66990be7d8663ef1dad9c1715" "9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
  '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
+ '(helm-split-window-in-side-p t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
    (--map
@@ -64,7 +65,7 @@
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -145,7 +146,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#e4e8e5" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "PfEd" :family "Source Code Pro")))))
+ )
 
 ;; UI
 (global-hl-line-mode t)
@@ -157,7 +158,7 @@
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
 
-(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
 (add-hook 'php-mode-hook  'auto-complete-mode)
@@ -171,14 +172,15 @@
 ;; Modes
 (projectile-mode t)
 (global-evil-matchit-mode t)
-(evil-mode 1)
-(global-evil-surround-mode 1)
-(global-evil-leader-mode)
+(evil-mode t)
+(global-evil-surround-mode t)
+(global-evil-leader-mode t)
 (evilnc-default-hotkeys)
 (ido-mode t)
-(key-chord-mode 1)
-(ivy-mode)
-(auto-complete-mode)
+(key-chord-mode t)
+(ivy-mode t)
+(auto-complete-mode t)
+(editorconfig-mode t)
 
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
@@ -215,7 +217,7 @@
 ;; neotree
 (setq neo-window-position 'right)
 (setq neo-smart-open t) ;; jump to current file
-(global-set-key [f2] 'neotree)
+(global-set-key [f2] 'neotree-toggle)
 (global-set-key [f3] 'neotree-find)
 
 ;; terminal cursor
