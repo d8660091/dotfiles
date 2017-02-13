@@ -17,6 +17,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#151515" "#cf6a4c" "#7F9F7F" "#fad07a" "#7697d6" "#DC8CC3" "#c6b6fe" "#e4e8e5"])
+ '(column-number-mode t)
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
@@ -25,7 +26,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("51c4caabf87f07364c9f19d4d44aecc378e97092c88b4d7cdd9d6f742c8eb512" "64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
+    ("4f8bbc28212e9843fd2b37121427b41f1165be8975e5cd0ce39e1f9002aff00f" "641aa1c297f15b8159718c02d77c559b8ee17e181549569cb1d5e06b15cbce59" "88d993ee8443872393cce7fd54d2a49b88bdfb955fd07c849880ef9008af2307" "5464a908f4a0d99adb937a2752867ee84f33d4aa81fce73bc9ebd5e9dbabf233" "972a68c73698ff7c2f78b1db01e7bf052f75c1d798ce1b6398402271751f67ce" "3ea3ffa2e7aad367c9a339976d138282f13b8d390b4223358e488faef2909884" "1a9a7616b6e28677f840cffc82591d78465a34d43d51976a94c821a61f40ad57" "51c4caabf87f07364c9f19d4d44aecc378e97092c88b4d7cdd9d6f742c8eb512" "64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
  '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -51,6 +52,7 @@
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(indent-tabs-mode nil)
  '(ivy-mode t)
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
@@ -62,7 +64,7 @@
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -91,11 +93,12 @@
  '(safe-local-variable-values
    (quote
     ((eval when
-	   (require
-	    (quote rainbow-mode)
-	    nil t)
-	   (rainbow-mode 1)))))
+           (require
+            (quote rainbow-mode)
+            nil t)
+           (rainbow-mode 1)))))
  '(save-place-mode t)
+ '(show-trailing-whitespace t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
@@ -125,6 +128,9 @@
      (360 . "#DC8CC3"))))
  '(vc-annotate-very-old-color "#DC8CC3")
  '(web-mode-attr-indent-offset 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
  '(web-mode-style-padding 0)
  '(weechat-color-list
@@ -151,7 +157,7 @@
 (git-gutter:linum-setup)
 (add-hook 'prog-mode-hook 'linum-mode)
 
-(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.scss\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
 (add-hook 'php-mode-hook  'auto-complete-mode)
@@ -192,7 +198,7 @@
 (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(evil-define-key 'insert neotree-mode-map (kbd "RET") 'neotree-enter)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-s") 'swiper)
 (evil-leader/set-key
@@ -204,16 +210,7 @@
   "cr" 'comment-or-uncomment-region
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
-  "\\" 'evilnc-comment-operator ; if you prefer backslash key
-)
-
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-)
-(add-hook 'web-mode-hook  'my-web-mode-hook)
+  "\\" 'evilnc-comment-operator)
 
 ;; neotree
 (setq neo-window-position 'right)
