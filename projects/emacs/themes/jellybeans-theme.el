@@ -64,7 +64,7 @@ Also bind `class' to ((class color) (min-colors 89))."
      ((t (:foreground ,jellybeans-fg-1
                       :background ,jellybeans-bg
                       :box nil))))
-   `(region ((,class (:background ,jellybeans-bg))
+   `(region ((,class (:background ,jellybeans-blue-1))
              (t :inverse-video t)))
    `(secondary-selection ((t (:background ,jellybeans-bg))))
    `(trailing-whitespace ((t (:background ,jellybeans-red))))
@@ -74,7 +74,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(font-lock-comment-face ((t (:foreground ,jellybeans-fg-1))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,jellybeans-fg-1))))
    `(font-lock-constant-face ((t (:foreground ,jellybeans-green))))
-   `(font-lock-doc-face ((t (:foreground ,jellybeans-green))))
+   `(font-lock-doc-face ((t (:foreground ,jellybeans-fg-1))))
    `(font-lock-function-name-face ((t (:foreground ,jellybeans-yellow))))
    `(font-lock-keyword-face ((t (:foreground ,jellybeans-blue :weight bold))))
    `(font-lock-negation-char-face ((t (:foreground ,jellybeans-yellow :weight bold))))
@@ -107,6 +107,8 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(linum ((t (:foreground ,jellybeans-fg-1))))
 
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
+   `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))
+   `(git-gutter:modified ((t (:foreground ,jellybeans-magenta))))
 
    `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 

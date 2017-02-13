@@ -26,7 +26,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("4f8bbc28212e9843fd2b37121427b41f1165be8975e5cd0ce39e1f9002aff00f" "641aa1c297f15b8159718c02d77c559b8ee17e181549569cb1d5e06b15cbce59" "88d993ee8443872393cce7fd54d2a49b88bdfb955fd07c849880ef9008af2307" "5464a908f4a0d99adb937a2752867ee84f33d4aa81fce73bc9ebd5e9dbabf233" "972a68c73698ff7c2f78b1db01e7bf052f75c1d798ce1b6398402271751f67ce" "3ea3ffa2e7aad367c9a339976d138282f13b8d390b4223358e488faef2909884" "1a9a7616b6e28677f840cffc82591d78465a34d43d51976a94c821a61f40ad57" "51c4caabf87f07364c9f19d4d44aecc378e97092c88b4d7cdd9d6f742c8eb512" "64cf3c837f9ef0712a9b0c6214b9cb8e05a1177ea882a554714aaf2501a36f29" default)))
+    ("9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
  '(evil-mode-line-format (quote (before . mode-line-front-space)))
  '(fci-rule-color "#383838")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -64,7 +64,7 @@
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -229,3 +229,9 @@
 
 ;; utils
 (global-set-key [f10] 'describe-face)
+
+;; (setq yas-snippet-dirs
+;;       '("~/projects/emacs/yasnippet/yasmate/snippets" ;; the yasmate collection
+;;         ))
+
+;; (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
