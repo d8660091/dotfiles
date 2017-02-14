@@ -70,6 +70,7 @@ Plug 'scrooloose/nerdtree' "{{{
   nnoremap <F3> :NERDTreeFind<CR>
 "}}}
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown' "{{{
   let g:vim_markdown_frontmatter = 1
@@ -356,12 +357,14 @@ cnoremap <Esc>f <S-Right>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+nmap <leader>C :Commands<cr>
+nmap <leader>H :Help<cr>
+nmap <leader>F :Files<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
-nmap \c :Commands<cr>
 
 "}}}
 
