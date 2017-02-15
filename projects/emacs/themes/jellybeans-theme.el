@@ -10,6 +10,8 @@
     ("jellybeans-fg-2"     . "#767876")
     ("jellybeans-fg-3"     . "#4e504f")
     ("jellybeans-bg"       . "#1d1f21")
+    ("jellybeans-black+2"  . "#5e5f66")
+    ("jellybeans-black+1"  . "#4b4b54")
     ("jellybeans-black"    . "#373841")
     ("jellybeans-black-1"  . "#282a2e")
     ("jellybeans-red"      . "#cc6666")
@@ -54,7 +56,8 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(header-line ((t (:foreground ,jellybeans-yellow
                                   :background ,jellybeans-bg
                                   :box (:line-width -1 :style released-button)))))
-   `(highlight ((t (:background ,jellybeans-black))))
+   `(highlight ((t (:background ,jellybeans-black-1))))
+   `(lazy-highlight ((t (:background ,jellybeans-black+1))))
    `(success ((t (:foreground ,jellybeans-green :weight bold))))
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))
    `(tooltip ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
@@ -109,8 +112,12 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
+   `(isearch
+     ((t (:foreground ,jellybeans-fg
+                      :background ,jellybeans-red-1))))
 
    `(linum ((t (:foreground ,jellybeans-fg-3))))
+   `(show-paren-match ((t (:foreground ,jellybeans-fg :background ,jellybeans-blue-1, :weight bold))))
 
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
    `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))

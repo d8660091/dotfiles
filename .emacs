@@ -26,8 +26,11 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("2edc929ddf0d2bb80a6697ac331c26511300d5e18a82eb8cae22dd9e178e7f6f" "5e56ef26e875bec09e10384200e0e3384b26a19f311f0b851930be0008de5dcb" "0a9bfd1cfef256e4fa081badde3222784b452aa66990be7d8663ef1dad9c1715" "9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
- '(evil-mode-line-format (quote (before . mode-line-front-space)))
+    ("d383118c6044a8a0c31aea602b1bf3fd2cab69f7570e9ed3739616c551e33077" "f558995b278d613b5b85c1dcfce25c93b0e1179fa9dadb27474d15b0e8b627be" "2edc929ddf0d2bb80a6697ac331c26511300d5e18a82eb8cae22dd9e178e7f6f" "5e56ef26e875bec09e10384200e0e3384b26a19f311f0b851930be0008de5dcb" "0a9bfd1cfef256e4fa081badde3222784b452aa66990be7d8663ef1dad9c1715" "9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
+ '(evil-mode-line-format (quote (after . mode-line-front-space)))
+ '(exec-path
+   (quote
+    ("/usr/bin" "/bin" "/usr/local/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(fci-rule-color "#383838")
  '(helm-split-window-in-side-p t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -63,9 +66,10 @@
  '(nrepl-message-colors
    (quote
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
+ '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-    (editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md evil-snipe counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree git-gutter projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -99,6 +103,7 @@
             nil t)
            (rainbow-mode 1)))))
  '(save-place-mode t)
+ '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
@@ -155,8 +160,8 @@
 (menu-bar-mode -1)
 (which-key-mode)
 (scroll-bar-mode -1)
-(git-gutter:linum-setup)
-(add-hook 'prog-mode-hook 'linum-mode)
+;; (git-gutter:linum-setup)
+;; (add-hook 'prog-mode-hook 'linum-mode)
 
 (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
@@ -181,6 +186,7 @@
 (ivy-mode t)
 (auto-complete-mode t)
 (editorconfig-mode t)
+(require 'git-gutter-fringe)
 
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
@@ -188,10 +194,11 @@
 (key-chord-define-global ",w" 'save-buffer)
 (key-chord-define-global ",e" 'eval-last-sexp)
 (key-chord-define-global ",q" 'kill-this-buffer)
-(key-chord-define-global "\\r" 'helm-recentf)
-(key-chord-define-global "\\b" 'helm-buffers-list)
-(key-chord-define-global "\\f" 'helm-projectile)
-(key-chord-define-global "\\d" 'helm-projectile-find-dir)
+(key-chord-define-global " r" 'helm-recentf)
+(key-chord-define-global " b" 'helm-buffers-list)
+(key-chord-define-global " f" 'helm-projectile)
+(key-chord-define-global " d" 'helm-projectile-find-dir)
+(key-chord-define-global " p" 'helm-projectile-switch-project)
 (key-chord-define-global "[q" 'previous-error)
 (key-chord-define-global "]q" 'next-error)
 (key-chord-define-global "[b" 'previous-buffer)
@@ -201,6 +208,7 @@
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'insert neotree-mode-map (kbd "RET") 'neotree-enter)
+(define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-s") 'swiper)
 (evil-leader/set-key

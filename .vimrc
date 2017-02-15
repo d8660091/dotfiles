@@ -35,7 +35,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
-Plug '~/projects/vim-css'
+" Plug '~/projects/vim-css'
+Plug 'hail2u/vim-css3-syntax'
 Plug '~/projects/neovim-vifm', "{{{
   tnoremap <C-w>h <C-\><C-n><C-w>h
   tnoremap <C-q> <C-\><C-n>:q<CR>
@@ -337,17 +338,26 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 nmap <space>c :Commands<cr>
 nmap <space>h :Help<cr>
-nmap <space>f :Files<cr>
+nmap <space>F :Files<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
-
+nmap <silent> <space>f :call fzf#run({
+\  'source':  'git ls-files',
+\  'sink':    'e',
+\  'options': '-m +s -e',
+\  'down':    '40%'})<cr>
 nmap <silent> <space>r :call fzf#run({
 \  'source':  v:oldfiles,
 \  'sink':    'e',
-\  'options': '-m +s',
+\  'options': '-m +s -e',
+\  'down':    '40%'})<cr>
+nmap <silent> <space>p :call fzf#run({
+\  'source':  '{ ag -g "" ~/Documents;  ag -g "" ~/projects }',
+\  'sink':    'e',
+\  'options': '-m +s -e',
 \  'down':    '40%'})<cr>
 "}}}
 
@@ -412,6 +422,4 @@ autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
-autocmd BufNewFile,BufRead *.css set syntax=scss
 "}}
