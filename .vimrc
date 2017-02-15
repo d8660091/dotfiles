@@ -129,29 +129,6 @@ Plug 'coot/atp_vim' " {{{
   let g:tex_flavor='latex'
   let b:atp_Viewer="zathura"
 "}}}
-Plug 'Shougo/neomru.vim'
-Plug 'tacahiroy/ctrlp-funky'
-Plug 'kien/ctrlp.vim' "{{{
-  let g:ctrlp_cmd = 'CtrlPMixed'
-  "let g:ctrlp_user_command = 'git ls-files --exclude-standard %s'
-  let g:ctrlp_max_height=15
-  let g:ctrlp_show_hidden=0
-  let g:ctrlp_follow_symlinks=1
-  let g:ctrlp_reuse_window='startify'
-  let g:ctrlp_extensions=['funky']
-  let g:ctrlp_custom_ignore = {
-        \ 'dir': '\v[\/](\.(git|hg|svn|idea)$)|(node_modules)',
-        \ 'file': '\v\.DS_Store$'
-        \ }
-  nmap \ [ctrlp]
-  nnoremap [ctrlp] <nop>
-  nnoremap [ctrlp]f :FZF<cr>
-  nnoremap [ctrlp]r :CtrlPMRU<cr>
-  nnoremap [ctrlp]T :CtrlPTag<cr>
-  nnoremap [ctrlp]l :CtrlPLine<cr>
-  nnoremap [ctrlp]o :CtrlPFunky<cr>
-  nnoremap [ctrlp]b :CtrlPBuffer<cr>
-"}}}
 Plug 'nanotech/jellybeans.vim'
 Plug 'jnurmine/Zenburn'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
@@ -358,15 +335,20 @@ cnoremap <Esc>f <S-Right>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-nmap <leader>C :Commands<cr>
-nmap <leader>H :Help<cr>
-nmap <leader>F :Files<cr>
+nmap <space>c :Commands<cr>
+nmap <space>h :Help<cr>
+nmap <space>f :Files<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 
+nmap <silent> <space>r :call fzf#run({
+\  'source':  v:oldfiles,
+\  'sink':    'e',
+\  'options': '-m +s',
+\  'down':    '40%'})<cr>
 "}}}
 
 " functions {{{
