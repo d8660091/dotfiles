@@ -12,20 +12,21 @@ endif
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
 let mapleader = ","
-set clipboard=unnamedplus          "sync with OS clipboard
+set clipboard=unnamedplus " sync with OS clipboard
 set noswapfile
-set expandtab                      "spaces instead of tabs
-set smarttab                       "use shiftwidth to enter tabs
-set timeoutlen=500                 "leader key timeout
+set expandtab             " spaces instead of tabs
+set smarttab              " use shiftwidth to enter tabs
+set timeoutlen=500        " leader key timeout
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-let &tabstop=2                     "number of spaces per tab for display
-let &softtabstop=2                 "number of spaces per tab in insert mode
-let &shiftwidth=2                  "number of spaces when indenting
-set undofile                       "persistent undo
+let &tabstop=2            " number of spaces per tab for display
+let &softtabstop=2        " number of spaces per tab in insert mode
+let &shiftwidth=2         " number of spaces when indenting
+set undofile              " persistent undo
 set undodir=$HOME/.vimundo
+set completeopt-=preview  " do not show scratch when press c-x c-o
 
 call plug#begin()
 
