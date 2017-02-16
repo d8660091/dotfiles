@@ -35,8 +35,10 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
-" Plug '~/projects/vim-css'
+Plug '~/projects/vim-color'
+Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'easymotion/vim-easymotion'
 Plug '~/projects/neovim-vifm', "{{{
   tnoremap <C-w>h <C-\><C-n><C-w>h
   tnoremap <C-q> <C-\><C-n>:q<CR>
@@ -47,7 +49,6 @@ Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'tpope/vim-repeat',
-Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
   let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
@@ -345,20 +346,21 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 nmap <silent> <space>f :call fzf#run({
-\  'source':  'git ls-files',
-\  'sink':    'e',
-\  'options': '-m +s -e',
-\  'down':    '40%'})<cr>
+      \ 'source':'git ls-files',
+      \ 'sink': 'e',
+      \ 'options': '-m +s -e',
+      \ 'down': '40%'})<cr>
 nmap <silent> <space>r :call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m +s -e',
-\  'down':    '40%'})<cr>
+      \  'source':  v:oldfiles,
+      \  'sink':    'e',
+      \  'options': '-m +s -e',
+      \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
-\  'source':  '{ ag -g "" ~/Documents;  ag -g "" ~/projects }',
-\  'sink':    'e',
-\  'options': '-m +s -e',
-\  'down':    '40%'})<cr>
+      \  'source':  '{ ag -g "" ~/Documents;  ag -g "" ~/projects }',
+      \  'sink':    'e',
+      \  'options': '-m +s -e',
+      \  'down':    '40%'})<cr>
+map s <Plug>(easymotion-overwin-f)
 "}}}
 
 " functions {{{

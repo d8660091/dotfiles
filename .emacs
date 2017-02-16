@@ -103,6 +103,7 @@
             nil t)
            (rainbow-mode 1)))))
  '(save-place-mode t)
+ '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
@@ -163,6 +164,7 @@
 ;; (git-gutter:linum-setup)
 ;; (add-hook 'prog-mode-hook 'linum-mode)
 
+;; miscs
 (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode))
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'auto-complete-mode)
@@ -175,6 +177,8 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; Modes
+(require 'git-gutter-fringe)
+(helm-projectile-on)
 (projectile-mode t)
 (global-evil-matchit-mode t)
 (evil-mode t)
@@ -186,7 +190,6 @@
 (ivy-mode t)
 (auto-complete-mode t)
 (editorconfig-mode t)
-(require 'git-gutter-fringe)
 
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
@@ -197,6 +200,7 @@
 (key-chord-define-global " r" 'helm-recentf)
 (key-chord-define-global " b" 'helm-buffers-list)
 (key-chord-define-global " f" 'helm-projectile)
+(key-chord-define-global "\\f" 'helm-find)
 (key-chord-define-global " d" 'helm-projectile-find-dir)
 (key-chord-define-global " p" 'helm-projectile-switch-project)
 (key-chord-define-global "[q" 'previous-error)
