@@ -49,7 +49,10 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(button ((t (:foreground ,jellybeans-blue))))
    `(link ((t (:foreground ,jellybeans-yellow :underline t :weight bold))))
    `(link-visited ((t (:foreground ,jellybeans-yellow-1 :underline t :weight normal))))
-   `(default ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg :height ,jellybeans-font-height))))
+   `(default ((t (:foreground ,jellybeans-fg
+                              :background ,jellybeans-bg
+                              :family "Source Code Pro"
+                              :height ,jellybeans-font-height))))
    `(cursor ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
    `(escape-glyph ((t (:foreground ,jellybeans-yellow :weight bold))))
    `(fringe ((t (:foreground ,jellybeans-fg :background ,jellybeans-black))))

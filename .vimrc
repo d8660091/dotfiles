@@ -37,14 +37,8 @@ nmap ga <Plug>(EasyAlign)
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-color'
 Plug 'ap/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 Plug 'easymotion/vim-easymotion'
-Plug '~/projects/neovim-vifm', "{{{
-  tnoremap <C-w>h <C-\><C-n><C-w>h
-  tnoremap <C-q> <C-\><C-n>:q<CR>
-  autocmd TermOpen * setlocal statusline=%{b:term_title}
-  let g:vifmOpenCommand='bo'
-"}}}
 Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
@@ -153,6 +147,12 @@ if has('nvim')
   let g:tern_request_timeout = 1
   let g:tern_show_signature_in_pum = '0'
   "}}}
+Plug '~/projects/neovim-vifm', "{{{
+  tnoremap <C-w>h <C-\><C-n><C-w>h
+  tnoremap <C-q> <C-\><C-n>:q<CR>
+  autocmd TermOpen * setlocal statusline=%{b:term_title}
+  let g:vifmOpenCommand='bo'
+"}}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']

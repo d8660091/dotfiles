@@ -26,8 +26,9 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("d383118c6044a8a0c31aea602b1bf3fd2cab69f7570e9ed3739616c551e33077" "f558995b278d613b5b85c1dcfce25c93b0e1179fa9dadb27474d15b0e8b627be" "2edc929ddf0d2bb80a6697ac331c26511300d5e18a82eb8cae22dd9e178e7f6f" "5e56ef26e875bec09e10384200e0e3384b26a19f311f0b851930be0008de5dcb" "0a9bfd1cfef256e4fa081badde3222784b452aa66990be7d8663ef1dad9c1715" "9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
+    ("96174afb07203af3d3d39bd3f358455c7da25c5c15fcdbc1b05881e7d8bb81ba" "d383118c6044a8a0c31aea602b1bf3fd2cab69f7570e9ed3739616c551e33077" "f558995b278d613b5b85c1dcfce25c93b0e1179fa9dadb27474d15b0e8b627be" "2edc929ddf0d2bb80a6697ac331c26511300d5e18a82eb8cae22dd9e178e7f6f" "5e56ef26e875bec09e10384200e0e3384b26a19f311f0b851930be0008de5dcb" "0a9bfd1cfef256e4fa081badde3222784b452aa66990be7d8663ef1dad9c1715" "9d39d4ca9e85a2047e6f6bf430f5e91fd18bce3959ba89d5395d7832d3e8798b" "dcd22eb1b244838f2b913c3b63f4437824ef01ba6b9a5124a67b31932c118c80" default)))
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
+ '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/local/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
@@ -69,7 +70,7 @@
  '(ns-pop-up-frames nil)
  '(package-selected-packages
    (quote
-    (avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit web-mode-edit-element web-mode zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (web-mode avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -154,29 +155,26 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; UI
+;; hooks
+(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode))
+(add-hook 'web-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'auto-complete-mode)
+(add-hook 'php-mode-hook 'auto-complete-mode)
+
+;; miscs
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+(setq neo-window-position 'right) ; test
+
+;; Modes
 (global-hl-line-mode t)
 (global-git-gutter-mode t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (which-key-mode)
 (scroll-bar-mode -1)
-;; (git-gutter:linum-setup)
-;; (add-hook 'prog-mode-hook 'linum-mode)
-
-;; miscs
-(add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode))
-(add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'web-mode-hook  'auto-complete-mode)
-(add-hook 'php-mode-hook  'auto-complete-mode)
-
-;;  Put backup files to /tmp/
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; Modes
 (require 'git-gutter-fringe)
 (helm-projectile-on)
 (projectile-mode t)
@@ -194,12 +192,12 @@
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+(key-chord-define evil-normal-state-map " r" 'helm-recentf)
+(key-chord-define evil-normal-state-map " b" 'helm-buffers-list)
+(key-chord-define evil-normal-state-map " f" 'helm-projectile)
 (key-chord-define-global ",w" 'save-buffer)
 (key-chord-define-global ",e" 'eval-last-sexp)
 (key-chord-define-global ",q" 'kill-this-buffer)
-(key-chord-define-global " r" 'helm-recentf)
-(key-chord-define-global " b" 'helm-buffers-list)
-(key-chord-define-global " f" 'helm-projectile)
 (key-chord-define-global "\\f" 'helm-find)
 (key-chord-define-global " d" 'helm-projectile-find-dir)
 (key-chord-define-global " p" 'helm-projectile-switch-project)
@@ -213,8 +211,11 @@
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'insert neotree-mode-map (kbd "RET") 'neotree-enter)
 (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1)
+(define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key [f2] 'neotree-toggle)
+(global-set-key [f3] 'neotree-find)
 (evil-leader/set-key
   "ci" 'evilnc-comment-or-uncomment-lines
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -225,12 +226,6 @@
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator)
-
-;; neotree
-(setq neo-window-position 'right)
-(setq neo-smart-open t) ;; jump to current file
-(global-set-key [f2] 'neotree-toggle)
-(global-set-key [f3] 'neotree-find)
 
 ;; terminal cursor
 (unless (display-graphic-p)
