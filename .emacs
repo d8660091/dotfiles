@@ -138,6 +138,7 @@
  '(web-mode-attr-indent-offset 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
+ '(web-mode-enable-auto-pairing t)
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
  '(web-mode-style-padding 0)
@@ -167,8 +168,19 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 (setq neo-window-position 'right) ; test
+(setq yas-snippet-dirs
+      '("~/projects/emacs/snippets" ;; the yasmate collection
+        ))
+
+;; (setq evil-motion-state-cursor 'box)  ; █
+;; (setq evil-visual-state-cursor 'box)  ; █
+;; (setq evil-normal-state-cursor 'box)  ; █
+;; (setq evil-insert-state-cursor 'bar)  ; ⎸
+;; (setq evil-emacs-state-cursor  'box)  ; |
+
 
 ;; Modes
+(yas-global-mode)
 (global-hl-line-mode t)
 (global-git-gutter-mode t)
 (tool-bar-mode -1)
@@ -212,10 +224,16 @@
 (evil-define-key 'insert neotree-mode-map (kbd "RET") 'neotree-enter)
 (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1)
 (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
+(define-key evil-insert-state-map (kbd "C-h") 'left-char)
+(define-key evil-insert-state-map (kbd "C-l") 'right-char)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key [f2] 'neotree-toggle)
 (global-set-key [f3] 'neotree-find)
+(global-set-key [f10] 'describe-face)
 (evil-leader/set-key
   "ci" 'evilnc-comment-or-uncomment-lines
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -226,21 +244,3 @@
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator)
-
-;; terminal cursor
-(unless (display-graphic-p)
-  (evil-terminal-cursor-changer-activate))
-(setq evil-motion-state-cursor 'box)  ; █
-(setq evil-visual-state-cursor 'box)  ; █
-(setq evil-normal-state-cursor 'box)  ; █
-(setq evil-insert-state-cursor 'bar)  ; ⎸
-(setq evil-emacs-state-cursor  'box)  ; |
-
-;; utils
-(global-set-key [f10] 'describe-face)
-
-;; (setq yas-snippet-dirs
-;;       '("~/projects/emacs/yasnippet/yasmate/snippets" ;; the yasmate collection
-;;         ))
-
-;; (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
