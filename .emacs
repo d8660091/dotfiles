@@ -68,9 +68,12 @@
    (quote
     ("#cf6a4c" "#DFAF8F" "#fad07a" "#7F9F7F" "#BFEBBF" "#c6b6fe" "#83a1da" "#DC8CC3")))
  '(ns-pop-up-frames nil)
+ '(org-agenda-files (quote ("~/org/home.org")))
+ '(org-clock-persist t)
+ '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (web-mode avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
+    (spaceline web-mode avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)))
  '(pdf-view-midnight-colors (quote ("#e4e8e5" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -187,7 +190,6 @@
 (menu-bar-mode -1)
 (which-key-mode)
 (scroll-bar-mode -1)
-(require 'git-gutter-fringe)
 (helm-projectile-on)
 (projectile-mode t)
 (global-evil-matchit-mode t)
@@ -200,6 +202,18 @@
 (ivy-mode t)
 (auto-complete-mode t)
 (editorconfig-mode t)
+
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (diminish 'which-key-mode)
+  (diminish 'undo-tree-mode "UT")
+  (diminish 'editorconfig-mode "EC")
+  (diminish 'git-gutter-mode "GG")
+  (diminish 'ivy-mode)
+  (diminish 'yas-minor-mode)
+  (spaceline-spacemacs-theme))
 
 ;; Shortcuts
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
