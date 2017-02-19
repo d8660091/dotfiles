@@ -72,6 +72,8 @@ Also bind `class' to ((class color) (min-colors 89))."
                            :box nil))
       (t :inverse-video t)))
    `(mode-line-buffer-id ((t (:weight bold))))
+   `(powerline-active2 ((t (:background ,jellybeans-black))))
+   `(powerline-inactive2 ((t (:background ,jellybeans-bg))))
    `(mode-line-inactive
      ((t (:foreground ,jellybeans-fg-1
                       :background ,jellybeans-bg
@@ -115,6 +117,11 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
+   `(ivy-minibuffer-match-face-1 ((t (:foreground ,jellybeans-fg))))
+   `(ivy-minibuffer-match-face-2 ((t (:weight bold :foreground ,jellybeans-yellow))))
+   `(ivy-minibuffer-match-face-3 ((t (:weight bold :foreground ,jellybeans-yellow))))
+   `(ivy-minibuffer-match-face-4 ((t (:weight bold :foreground ,jellybeans-yellow))))
+
    `(isearch
      ((t (:foreground ,jellybeans-fg
                       :background ,jellybeans-red-1))))
@@ -125,6 +132,8 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
    `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))
    `(git-gutter:modified ((t (:foreground ,jellybeans-magenta))))
+   `(spaceline-evil-normal ((t (:foreground ,jellybeans-fg :background ,jellybeans-black+2))))
+   `(spaceline-evil-insert ((t (:foreground ,jellybeans-fg :background ,jellybeans-green-1))))
 
    `(eshell-prompt
      ((t (:foreground ,jellybeans-fg-1))))
