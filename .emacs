@@ -13,6 +13,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (jellybeans)))
@@ -35,10 +36,9 @@
  '(ns-pop-up-frames nil)
  '(org-agenda-files (quote ("~/org/home.org")))
  '(org-clock-persist t)
- '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
    (quote
@@ -160,7 +160,6 @@
   (key-chord-define evil-normal-state-map " r" 'helm-recentf)
   (key-chord-define evil-normal-state-map " b" 'helm-buffers-list)
   (key-chord-define evil-normal-state-map " f" 'helm-projectile)
-  (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1)
   (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
   (define-key evil-insert-state-map (kbd "C-h") 'left-char)
   (define-key evil-insert-state-map (kbd "C-l") 'right-char)
@@ -239,5 +238,19 @@
   :config
   (which-key-mode t))
 
+(use-package avy
+  :ensure t
+  :config
+  (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1))
+
 (use-package magit
+  :ensure t)
+
+(use-package restclient
+  :ensure t)
+
+(use-package helm-dash
+  :ensure t)
+
+(use-package ag
   :ensure t)
