@@ -16,15 +16,16 @@
  '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
  '(compilation-message-face (quote default))
+ '(cursor-in-non-selected-windows nil)
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
+    ("90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
-    ("/usr/bin" "/bin" "/usr/local/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
@@ -34,11 +35,13 @@
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
  '(ns-pop-up-frames nil)
+ '(ns-use-srgb-colorspace nil)
  '(org-agenda-files (quote ("~/org/home.org")))
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+ '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
    (quote
@@ -143,10 +146,12 @@
   :config
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-spacemacs-theme)
+  (spaceline-helm-mode t)
   (diminish 'which-key-mode)
+  (diminish 'auto-revert-mode)
   (diminish 'undo-tree-mode)
   (diminish 'editorconfig-mode)
-  (diminish 'git-gutter-mode "GG")
+  (diminish 'git-gutter-mode)
   (diminish 'ivy-mode)
   (diminish 'yas-minor-mode))
 
@@ -254,3 +259,17 @@
 
 (use-package ag
   :ensure t)
+
+(use-package wgrep
+  :ensure t)
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac))
+  (exec-path-from-shell-initialize)))
+
+(use-package evil-mc
+  :ensure t
+  :config
+  (global-evil-mc-mode))

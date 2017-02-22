@@ -73,6 +73,7 @@ Also bind `class' to ((class color) (min-colors 89))."
       (t :inverse-video t)))
    `(mode-line-buffer-id ((t (:weight bold))))
    `(powerline-active2 ((t (:background ,jellybeans-black))))
+   `(powerline-inactive1 ((t (:background ,jellybeans-bg))))
    `(powerline-inactive2 ((t (:background ,jellybeans-bg))))
    `(mode-line-inactive
      ((t (:foreground ,jellybeans-fg-1

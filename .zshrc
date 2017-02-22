@@ -95,3 +95,5 @@ function d() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias v="gvim --remote"
+
+export PATH="$HOME/.yarn/bin:$PATH"
