@@ -59,7 +59,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(header-line ((t (:foreground ,jellybeans-yellow
                                   :background ,jellybeans-bg
                                   :box (:line-width -1 :style released-button)))))
-   `(highlight ((t (:background ,jellybeans-black-1))))
+   `(highlight ((t ())))
    `(lazy-highlight ((t (:background ,jellybeans-black+1))))
    `(success ((t (:foreground ,jellybeans-green :weight bold))))
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))

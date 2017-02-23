@@ -110,6 +110,7 @@
 (use-package git-gutter-fringe
   :ensure t
   :config
+  (key-chord-define-global "]d" 'git-gutter:next-hunk)
   (global-git-gutter-mode))
 
 (use-package auto-complete
@@ -216,9 +217,8 @@
   (key-chord-define-global ",w" 'save-buffer)
   (key-chord-define-global ",e" 'eval-last-sexp)
   (key-chord-define-global ",q" 'kill-this-buffer)
-  (key-chord-define-global "\\f" 'helm-find)
-  (key-chord-define-global " d" 'helm-projectile-find-dir)
-  (key-chord-define-global " p" 'helm-projectile-switch-project)
+  (key-chord-define evil-normal-state-map " d" 'helm-projectile-find-dir)
+  (key-chord-define evil-normal-state-map " p" 'helm-projectile-switch-project)
   (key-chord-define-global "[q" 'previous-error)
   (key-chord-define-global "]q" 'next-error)
   (key-chord-define-global "[b" 'previous-buffer)
@@ -272,4 +272,5 @@
 (use-package evil-mc
   :ensure t
   :config
+  (diminish 'evil-mc-mode)
   (global-evil-mc-mode))
