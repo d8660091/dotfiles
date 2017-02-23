@@ -20,7 +20,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
+    ("d7dc7ca588ecc465126a9fbe31257746a7a61f7590bb4c28a55888c53a4122d4" "6483a161a4fde5d663857bbc7977f9e43e2d1d353ed6b5a3a6a07db3b60b23f6" "919cb62fb048d1f69723208c3c9a37b0e657db98e5a447f5d3f61291e206bbaf" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
