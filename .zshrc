@@ -96,4 +96,4 @@ function d() {
 
 alias v="gvim --remote"
 
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/go/bin:$HOME/.yarn/bin:$PATH"

@@ -20,7 +20,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("d7dc7ca588ecc465126a9fbe31257746a7a61f7590bb4c28a55888c53a4122d4" "6483a161a4fde5d663857bbc7977f9e43e2d1d353ed6b5a3a6a07db3b60b23f6" "919cb62fb048d1f69723208c3c9a37b0e657db98e5a447f5d3f61291e206bbaf" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
+    ("8c00af95df065f01c676701d6648d649ed0ea18cdad3a0b8b56bc5c5f04738a7" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
@@ -40,7 +40,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
@@ -54,6 +54,7 @@
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
+ '(tab-width 4)
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
  '(web-mode-attr-indent-offset 2)
@@ -266,11 +267,28 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac))
-  (exec-path-from-shell-initialize)))
+  (exec-path-from-shell-initialize))
 
 (use-package evil-mc
   :ensure t
   :config
   (diminish 'evil-mc-mode)
   (global-evil-mc-mode))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(use-package go-mode
+  :ensure t
+  :config
+  (defun my-go-mode-hook ()
+    (add-hook 'before-save-hook 'gofmt-before-save))
+  (add-hook 'go-mode-hook 'my-go-mode-hook))
+
+(use-package flycheck
+  :ensure t)
