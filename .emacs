@@ -21,7 +21,6 @@
  '(custom-safe-themes
    (quote
     ("8c00af95df065f01c676701d6648d649ed0ea18cdad3a0b8b56bc5c5f04738a7" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
- '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -40,7 +39,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
@@ -71,8 +70,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; (spaceline web-mode avy git-gutter-fringe fzf editorconfig ac-php flycheck evil-mc helm-projectile helm-ag git-timemachine auto-org-md counsel swiper ivy which-key php-mode evil-terminal-cursor-changer evil-nerd-commenter evil-surround yasnippet ag magit auto-complete vue-mode emmet-mode jbeans-theme neotree projectile helm key-chord evil-matchit zenburn-theme monokai-theme js2-mode solarized-theme evil color-theme-sanityinc-tomorrow)
 
 ;; miscs
 (setq backup-directory-alist
@@ -141,22 +138,6 @@
 
 (use-package diminish
   :ensure t)
-
-(use-package spaceline-config
-  :ensure spaceline
-  :after diminish which-key
-  :config
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (spaceline-spacemacs-theme)
-  (spaceline-helm-mode t)
-  (diminish 'which-key-mode)
-  (diminish 'auto-revert-mode)
-  (diminish 'undo-tree-mode)
-  (diminish 'editorconfig-mode)
-  (diminish 'git-gutter-mode)
-  (diminish 'ivy-mode)
-  (diminish 'yas-minor-mode))
-
 
 (use-package evil
   :ensure t
@@ -292,3 +273,38 @@
 
 (use-package flycheck
   :ensure t)
+
+(use-package spaceline
+  :ensure t
+  :config
+  (use-package spaceline-config)
+  (spaceline-helm-mode t)
+  (spaceline-install
+   '((evil-state :face highlight-face)
+     '(buffer-modified buffer-id remote-host)
+     point-position
+     line-column
+     buffer-position
+     anzu
+     auto-compile
+     major-mode
+     (process :when active)
+     ((flycheck-error flycheck-warning flycheck-info)
+      :when active)
+     ;; (minor-modes :when active)
+     (mu4e-alert-segment :when active)
+     (erc-track :when active)
+     (org-pomodoro :when active)
+     (org-clock :when active)
+     nyan-cat)
+
+   '((python-pyvenv :fallback python-pyenv)
+     purpose
+     (battery :when active)
+     selection-info
+     (global :when active)
+     (version-control :when active)
+     buffer-size
+     projectile-root))
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
