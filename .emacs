@@ -39,7 +39,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
@@ -274,6 +274,9 @@
 (use-package flycheck
   :ensure t)
 
+(use-package helm-ag
+  :ensure t)
+
 (use-package spaceline
   :ensure t
   :config
@@ -287,7 +290,6 @@
      buffer-position
      anzu
      auto-compile
-     major-mode
      (process :when active)
      ((flycheck-error flycheck-warning flycheck-info)
       :when active)
@@ -298,7 +300,8 @@
      (org-clock :when active)
      nyan-cat)
 
-   '((python-pyvenv :fallback python-pyenv)
+   '(major-mode
+     (python-pyvenv :fallback python-pyenv)
      purpose
      (battery :when active)
      selection-info
