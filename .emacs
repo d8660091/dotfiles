@@ -1,3 +1,8 @@
+;;; mydotemacs --- a minimal emacs configuration
+
+;;; Commentary:
+
+;;; Code:
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 
 (require 'package)
@@ -76,10 +81,7 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
-(setq neo-window-position 'right) ; test
-(setq yas-snippet-dirs
-      '("~/projects/emacs/snippets" ;; the yasmate collection
-        ))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; Modes
 (global-hl-line-mode t)
@@ -97,7 +99,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.s?css\\|.twig\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.twig\\'" . web-mode)))
 
 (use-package emmet-mode
   :ensure t
@@ -215,6 +217,9 @@
 (use-package yasnippet
   :ensure t
   :config
+  (setq yas-snippet-dirs
+        '("~/projects/emacs/snippets" ;; the yasmate collection
+          ))
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
@@ -272,7 +277,9 @@
   (add-hook 'go-mode-hook 'my-go-mode-hook))
 
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :config
+  (global-flycheck-mode))
 
 (use-package helm-ag
   :ensure t)
