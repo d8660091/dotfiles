@@ -1,4 +1,6 @@
-;;; jellybeans-theme.el
+;;; jellybeans-theme --- a simple theme
+
+;;; Commentary:
 
 (deftheme jellybeans "Jellybeans color theme")
 
@@ -55,12 +57,13 @@
                 (t :inverse-video t)))
    `(mode-line-buffer-id ((t (:weight bold))))
    `(powerline-active2 ((t (:background ,jellybeans-black))))
-   `(powerline-inactive1 ((t (:background ,jellybeans-bg))))
+   `(powerline-inactive1 ((t (:foreground ,jellybeans-magenta-1 :background ,jellybeans-bg))))
    `(powerline-inactive2 ((t (:background ,jellybeans-bg))))
    `(mode-line-inactive
-     ((t (:foreground ,jellybeans-fg-1
+     ((t (:foreground ,jellybeans-magenta-1
                       :background ,jellybeans-bg
                       :box nil))))
+   `(anzu-mode-line ((t (:foreground ,jellybeans-red))))
    `(region ((t (:background ,jellybeans-blue-1))
              (t :inverse-video t)))
    `(secondary-selection ((t (:background ,jellybeans-magenta-1))))
@@ -124,3 +127,4 @@
    `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 
 (provide-theme 'jellybeans)
+;;; jellybeans-theme.el ends here

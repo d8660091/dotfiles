@@ -25,7 +25,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("8c00af95df065f01c676701d6648d649ed0ea18cdad3a0b8b56bc5c5f04738a7" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
+    ("c31bc92c3591fe9a74b938c2b6d29fe7c828d37acbee76280cabd54a56f252d8" "8c00af95df065f01c676701d6648d649ed0ea18cdad3a0b8b56bc5c5f04738a7" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -44,7 +44,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 500)
  '(safe-local-variable-values
@@ -116,6 +116,11 @@
 (use-package auto-complete
   :ensure t
   :config
+  (ac-config-default)
+  (ac-set-trigger-key "TAB")
+  (setq ac-use-menu-map t)
+  (define-key ac-menu-map "\C-n" 'ac-next)
+  (define-key ac-menu-map "\C-p" 'ac-previous)
   (auto-complete-mode t))
 
 (use-package editorconfig
@@ -153,6 +158,7 @@
   (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
   (define-key evil-insert-state-map (kbd "C-h") 'left-char)
   (define-key evil-insert-state-map (kbd "C-l") 'right-char)
+  (define-key evil-insert-state-map (kbd "C-n") 'nil)
   (evil-mode t))
 
 (use-package evil-matchit
@@ -219,7 +225,7 @@
   :config
   (setq yas-snippet-dirs
         '("~/projects/emacs/snippets" ;; the yasmate collection
-          ))
+          "~/projects/emacs/yasnippet-snippets"))
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
@@ -283,6 +289,13 @@
 
 (use-package helm-ag
   :ensure t)
+
+(use-package anzu
+  :init
+  :ensure t
+  :config
+  (setq anzu-cons-mode-line-p nil)
+  (global-anzu-mode +1))
 
 (use-package spaceline
   :ensure t
