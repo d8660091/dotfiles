@@ -1,8 +1,5 @@
-;;; mydotemacs --- a minimal emacs configuration
+;; -*- flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
 
-;;; Commentary:
-
-;;; Code:
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 
 (require 'package)
@@ -101,12 +98,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.twig\\'" . web-mode)))
 
-(use-package emmet-mode
-  :ensure t
-  :after web-mode
-  :config
-  (add-hook 'web-mode-hook 'emmet-mode))
-
 (use-package git-gutter-fringe
   :ensure t
   :config
@@ -116,6 +107,9 @@
 (use-package auto-complete
   :ensure t
   :config
+  (add-hook 'web-mode-hook
+            (lambda()
+              (add-to-list 'ac-sources 'ac-source-yasnippet)))
   (ac-config-default)
   (ac-set-trigger-key "TAB")
   (setq ac-use-menu-map t)
@@ -159,7 +153,16 @@
   (define-key evil-insert-state-map (kbd "C-h") 'left-char)
   (define-key evil-insert-state-map (kbd "C-l") 'right-char)
   (define-key evil-insert-state-map (kbd "C-n") 'nil)
+  (define-key evil-motion-state-map (kbd "C-y") 'nil)
+  (define-key evil-insert-state-map (kbd "C-y") 'nil)
   (evil-mode t))
+
+(use-package emmet-mode
+  :ensure t
+  :after (web-mode evil)
+  :config
+  (define-key emmet-mode-keymap (kbd "C-y n") 'emmet-next-edit-point)
+  (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package evil-matchit
   :ensure t
@@ -297,6 +300,7 @@
   (setq anzu-cons-mode-line-p nil)
   (global-anzu-mode +1))
 
+(declare-function spaceline-install "spaceline.el")
 (use-package spaceline
   :ensure t
   :config
