@@ -78,7 +78,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; Modes
 (global-hl-line-mode t)
@@ -102,6 +101,9 @@
 (use-package linum
   :config
   (global-linum-mode t))
+
+(use-package css-mode
+  :mode ("\\.scss\\'" . scss-mode))
 
 (use-package web-mode
   :ensure t
@@ -169,10 +171,16 @@
 
 (use-package emmet-mode
   :ensure t
-  :after (web-mode evil)
+  :after web-mode
   :config
   (define-key emmet-mode-keymap (kbd "C-y n") 'emmet-next-edit-point)
+  (add-hook 'scss-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :config
+  (add-hook 'scss-mode-hook 'rainbow-mode))
 
 (use-package evil-matchit
   :ensure t
@@ -305,7 +313,6 @@
   (setq anzu-cons-mode-line-p nil)
   (global-anzu-mode +1))
 
-(declare-function spaceline-install "spaceline.el")
 (use-package spaceline
   :ensure t
   :config
