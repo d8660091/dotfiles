@@ -35,8 +35,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
-Plug '~/projects/vim-color'
-Plug 'ap/vim-css-color'
+" Plug '~/projects/vim-color'
+" Plug 'ap/vim-css-color'
 " Plug 'hail2u/vim-css3-syntax'
 Plug 'easymotion/vim-easymotion'
 Plug '~/projects/vim-vue', { 'for': 'vue'}

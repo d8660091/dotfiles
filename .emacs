@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("c31bc92c3591fe9a74b938c2b6d29fe7c828d37acbee76280cabd54a56f252d8" "8c00af95df065f01c676701d6648d649ed0ea18cdad3a0b8b56bc5c5f04738a7" "90a1c84970ccce2780e758491e7191d1bb069cef1ec7daeb28c1edde81c8a711" "0a80c4fd9d36cccb1414b25bb6327b4fc469c00eaccf8b2d381cc19d4efd9a7d" default)))
+    ("39bfa859fbf04cd2c3509b0e508a47ef8f4ec2c9fba4dbf98b2a463c1900903b" "c31bc92c3591fe9a74b938c2b6d29fe7c828d37acbee76280cabd54a56f252d8" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -93,6 +93,16 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+(use-package cus-edit
+  :config
+  (add-hook 'custom-mode-hook
+            (lambda ()
+              (linum-mode -1))))
+
+(use-package linum
+  :config
+  (global-linum-mode t))
+
 (use-package web-mode
   :ensure t
   :config
@@ -106,16 +116,16 @@
 
 (use-package auto-complete
   :ensure t
+  :init
   :config
   (add-hook 'web-mode-hook
             (lambda()
               (add-to-list 'ac-sources 'ac-source-yasnippet)))
   (ac-config-default)
-  (ac-set-trigger-key "TAB")
   (setq ac-use-menu-map t)
   (define-key ac-menu-map "\C-n" 'ac-next)
   (define-key ac-menu-map "\C-p" 'ac-previous)
-  (auto-complete-mode t))
+  (global-auto-complete-mode))
 
 (use-package editorconfig
   :ensure t
@@ -197,11 +207,6 @@
     "cv" 'evilnc-toggle-invert-comment-line-by-line
     "."  'evilnc-copy-and-comment-operator
     "\\" 'evilnc-comment-operator))
-
-(use-package auto-complete
-  :ensure t
-  :config
-  (global-auto-complete-mode))
 
 (use-package key-chord
   :ensure t
