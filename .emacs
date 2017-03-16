@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" "39bfa859fbf04cd2c3509b0e508a47ef8f4ec2c9fba4dbf98b2a463c1900903b" "c31bc92c3591fe9a74b938c2b6d29fe7c828d37acbee76280cabd54a56f252d8" default)))
+    ("81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -43,7 +43,7 @@
    (quote
     (auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
- '(recentf-max-menu-items 500)
+ '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -92,11 +92,17 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+<<<<<<< HEAD
 (use-package info
   :config
   (add-hook 'info-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil))))
+=======
+(use-package js2-mode
+  :ensure t
+  :mode "\\.jsx?\\'")
+>>>>>>> Use js2-mode for js files
 
 (use-package cus-edit
   :config
@@ -114,7 +120,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.jsx?\\|.vue\\|.twig\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\'" . web-mode)))
 
 (use-package git-gutter-fringe
   :ensure t
