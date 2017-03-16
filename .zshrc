@@ -49,9 +49,6 @@ plugins=(git colored-man-pages)
 
 # User configuration
 
-export PATH="$HOME/scripts:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -95,7 +92,5 @@ function d() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias v="gvim --remote"
-
-export PATH="$HOME/go/bin:$HOME/.yarn/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

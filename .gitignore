@@ -2,6 +2,7 @@
 !.gitignore
 !.vimrc
 !.zshrc
+!.zshenv
 !.emacs
 !/scripts
 

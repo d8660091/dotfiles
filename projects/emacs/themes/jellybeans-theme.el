@@ -28,7 +28,6 @@
       (jellybeans-cyan     "#8abeb7")
       (jellybeans-cyan-1   "#5e8d87")
       (jellybeans-font-height (if (eq system-type 'darwin) 140 120)))
-  (message jellybeans-fg)
   (custom-theme-set-faces
    'jellybeans
    ;; basic coloring
