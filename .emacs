@@ -231,16 +231,16 @@
   :ensure t
   :config
   (key-chord-mode t)
-  (key-chord-define-global ",w" 'save-buffer)
-  (key-chord-define-global ",e" 'eval-last-sexp)
-  (key-chord-define-global ",q" 'kill-this-buffer)
+  (key-chord-define evil-normal-state-map ",w" 'save-buffer)
+  (key-chord-define evil-normal-state-map ",e" 'eval-last-sexp)
+  (key-chord-define evil-normal-state-map ",q" 'kill-this-buffer)
   (key-chord-define evil-normal-state-map " d" 'helm-projectile-find-dir)
   (key-chord-define evil-normal-state-map " p" 'helm-projectile-switch-project)
-  (key-chord-define-global "[q" 'previous-error)
-  (key-chord-define-global "]q" 'next-error)
-  (key-chord-define-global "[b" 'magit-blob-previous)
-  (key-chord-define-global "]b" 'magit-blob-next)
-  (key-chord-define-global "]f" 'projectile-find-other-file))
+  (key-chord-define evil-normal-state-map "[q" 'previous-error)
+  (key-chord-define evil-normal-state-map "]q" 'next-error)
+  (key-chord-define evil-normal-state-map "[b" 'magit-blob-previous)
+  (key-chord-define evil-normal-state-map "]b" 'magit-blob-next)
+  (key-chord-define evil-normal-state-map "]f" 'projectile-find-other-file))
 
 (use-package ivy
   :ensure t
