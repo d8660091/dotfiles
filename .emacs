@@ -92,17 +92,15 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
-<<<<<<< HEAD
 (use-package info
   :config
   (add-hook 'info-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil))))
-=======
+
 (use-package js2-mode
   :ensure t
   :mode "\\.jsx?\\'")
->>>>>>> Use js2-mode for js files
 
 (use-package cus-edit
   :config
@@ -240,8 +238,8 @@
   (key-chord-define evil-normal-state-map " p" 'helm-projectile-switch-project)
   (key-chord-define-global "[q" 'previous-error)
   (key-chord-define-global "]q" 'next-error)
-  (key-chord-define-global "[b" 'previous-buffer)
-  (key-chord-define-global "]b" 'next-error)
+  (key-chord-define-global "[b" 'magit-blob-previous)
+  (key-chord-define-global "]b" 'magit-blob-next)
   (key-chord-define-global "]f" 'projectile-find-other-file))
 
 (use-package ivy
