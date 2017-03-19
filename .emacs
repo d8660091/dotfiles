@@ -165,13 +165,7 @@
 
 (use-package evil
   :ensure t
-  :after key-chord
   :config
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
-  (key-chord-define evil-normal-state-map " r" 'helm-recentf)
-  (key-chord-define evil-normal-state-map " b" 'helm-buffers-list)
-  (key-chord-define evil-normal-state-map " f" 'helm-projectile)
   (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
   (define-key evil-insert-state-map (kbd "C-h") 'left-char)
   (define-key evil-insert-state-map (kbd "C-l") 'right-char)
@@ -229,8 +223,14 @@
 
 (use-package key-chord
   :ensure t
+  :after evil
   :config
   (key-chord-mode t)
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+  (key-chord-define evil-normal-state-map " r" 'helm-recentf)
+  (key-chord-define evil-normal-state-map " b" 'helm-buffers-list)
+  (key-chord-define evil-normal-state-map " f" 'helm-projectile)
   (key-chord-define evil-normal-state-map ",w" 'save-buffer)
   (key-chord-define evil-normal-state-map ",e" 'eval-last-sexp)
   (key-chord-define evil-normal-state-map ",q" 'kill-this-buffer)
