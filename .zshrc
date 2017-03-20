@@ -94,3 +94,5 @@ function d() {
 alias v="gvim --remote"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="$HOME/scripts:$HOME/go/bin:$HOME/.yarn/bin:$PATH"
