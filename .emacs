@@ -41,7 +41,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -92,6 +92,11 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+(use-package ace-link
+  :ensure t
+  :config
+  (ace-link-setup-default))
+
 (use-package info
   :config
   (add-hook 'info-mode-hook
@@ -358,3 +363,4 @@
      projectile-root))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
+(put 'downcase-region 'disabled nil)

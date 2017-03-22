@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: persona
+# key: persona
+# --
+{
+  name: '$1',
+  id: '$1',
+  descriptions: [
+    '$1',
+  ],
+  neededFoodsTotal: 3,
+},$0

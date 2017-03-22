@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: include mobile
+# key: im
+# --
+@include mobile {
+  $0
+}
