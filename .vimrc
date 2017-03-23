@@ -35,6 +35,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
+Plug '~/projects/vim-php'
 " Plug '~/projects/vim-color'
 " Plug 'ap/vim-css-color'
 " Plug 'hail2u/vim-css3-syntax'
@@ -101,7 +102,6 @@ Plug 'scrooloose/nerdcommenter' "{{{
   let g:NERDSpaceDelims = 1
 "}}}
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
-  nmap <leader># :b#<CR>
   nmap <leader>1 <Plug>AirlineSelectTab1
   nmap <leader>2 <Plug>AirlineSelectTab2
   nmap <leader>3 <Plug>AirlineSelectTab3
@@ -116,9 +116,11 @@ Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '¦'
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#show_splits = 0
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#show_splits = 1
+  let g:airline#extensions#tabline#show_tab_nr = 1
 " }}}
 Plug 'coot/atp_vim' " {{{
   let g:atp_folding=1
@@ -126,7 +128,6 @@ Plug 'coot/atp_vim' " {{{
   let b:atp_Viewer="zathura"
 "}}}
 Plug 'nanotech/jellybeans.vim'
-Plug 'jnurmine/Zenburn'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -334,10 +335,11 @@ cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
 " FZF
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nmap <space><tab> <plug>(fzf-maps-n)
+xmap <space><tab> <plug>(fzf-maps-x)
+omap <space><tab> <plug>(fzf-maps-o)
 nmap <space>c :Commands<cr>
+nmap <space>b :Buffers<cr>
 nmap <space>h :Help<cr>
 nmap <space>F :Files<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
