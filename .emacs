@@ -35,13 +35,14 @@
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
+ '(neo-window-position (quote right))
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
  '(org-agenda-files (quote ("~/org/home.org")))
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -92,6 +93,15 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+(use-package all-the-icons
+  :ensure t)
+
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
 (use-package ace-link
   :ensure t
   :config
@@ -171,12 +181,26 @@
 (use-package evil
   :ensure t
   :config
-  (define-key evil-normal-state-map (kbd "M-d") 'evil-scroll-up)
-  (define-key evil-insert-state-map (kbd "C-h") 'left-char)
-  (define-key evil-insert-state-map (kbd "C-l") 'right-char)
-  (define-key evil-insert-state-map (kbd "C-n") 'nil)
-  (define-key evil-motion-state-map (kbd "C-y") 'nil)
-  (define-key evil-insert-state-map (kbd "C-y") 'nil)
+  (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
+  (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+  (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
+  (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile)
+  (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
+  (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
+  (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
+  (define-key evil-normal-state-map (kbd ", q") 'kill-this-buffer)
+  (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
+  (define-key evil-normal-state-map (kbd "[ q") 'previous-error)
+  (define-key evil-normal-state-map (kbd "] q") 'next-error)
+  (define-key evil-normal-state-map (kbd "[ b") 'magit-blob-previous)
+  (define-key evil-normal-state-map (kbd "] b") 'magit-blob-next)
+  (define-key evil-normal-state-map (kbd "] f") 'projectile-find-other-file)
+  (define-key evil-insert-state-map "\C-h" 'left-char)
+  (define-key evil-insert-state-map "\C-l" 'right-char)
+  (define-key evil-insert-state-map "\C-n" 'nil)
+  (define-key evil-insert-state-map "\C-y" 'nil)
+  (define-key evil-motion-state-map "\C-y" 'nil)
   (evil-mode t))
 
 (use-package emmet-mode
@@ -231,21 +255,7 @@
   :after evil
   :config
   (key-chord-mode t)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
-  (key-chord-define evil-normal-state-map " r" 'helm-recentf)
-  (key-chord-define evil-normal-state-map " b" 'helm-buffers-list)
-  (key-chord-define evil-normal-state-map " f" 'helm-projectile)
-  (key-chord-define evil-normal-state-map ",w" 'save-buffer)
-  (key-chord-define evil-normal-state-map ",e" 'eval-last-sexp)
-  (key-chord-define evil-normal-state-map ",q" 'kill-this-buffer)
-  (key-chord-define evil-normal-state-map " d" 'helm-projectile-find-dir)
-  (key-chord-define evil-normal-state-map " p" 'helm-projectile-switch-project)
-  (key-chord-define evil-normal-state-map "[q" 'previous-error)
-  (key-chord-define evil-normal-state-map "]q" 'next-error)
-  (key-chord-define evil-normal-state-map "[b" 'magit-blob-previous)
-  (key-chord-define evil-normal-state-map "]b" 'magit-blob-next)
-  (key-chord-define evil-normal-state-map "]f" 'projectile-find-other-file))
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
 
 (use-package ivy
   :ensure t
