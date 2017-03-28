@@ -27,6 +27,7 @@
  '(exec-path
    (quote
     ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+ '(flycheck-disabled-checkers (quote (javascript-jshint)))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
@@ -42,7 +43,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit git-timemachine emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -225,19 +226,16 @@
 
 (use-package evil-matchit
   :ensure t
-  :after evil
   :config
   (global-evil-matchit-mode t))
 
 (use-package evil-surround
   :ensure t
-  :after evil
   :config
   (global-evil-surround-mode t))
 
 (use-package evil-nerd-commenter
   :ensure t
-  :after evil
   :config
   (evilnc-default-hotkeys))
 
