@@ -36,7 +36,7 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 Plug '~/projects/vim-twig'
 Plug '~/projects/vim-php'
-" Plug '~/projects/vim-color'
+Plug '~/projects/vim-color'
 " Plug 'ap/vim-css-color'
 " Plug 'hail2u/vim-css3-syntax'
 Plug 'easymotion/vim-easymotion'
@@ -101,33 +101,33 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter' "{{{
   let g:NERDSpaceDelims = 1
 "}}}
-Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
-  nmap <leader>1 <Plug>AirlineSelectTab1
-  nmap <leader>2 <Plug>AirlineSelectTab2
-  nmap <leader>3 <Plug>AirlineSelectTab3
-  nmap <leader>4 <Plug>AirlineSelectTab4
-  nmap <leader>5 <Plug>AirlineSelectTab5
-  nmap <leader>6 <Plug>AirlineSelectTab6
-  nmap <leader>7 <Plug>AirlineSelectTab7
-  nmap <leader>8 <Plug>AirlineSelectTab8
-  nmap <leader>9 <Plug>AirlineSelectTab9
-  let g:airline_powerline_fonts=1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '¦'
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#fnamemod = ':t'
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-  let g:airline#extensions#tabline#show_buffers = 1
-  let g:airline#extensions#tabline#show_splits = 1
-  let g:airline#extensions#tabline#show_tab_nr = 1
-" }}}
+" Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
+  " nmap <leader>1 <Plug>AirlineSelectTab1
+  " nmap <leader>2 <Plug>AirlineSelectTab2
+  " nmap <leader>3 <Plug>AirlineSelectTab3
+  " nmap <leader>4 <Plug>AirlineSelectTab4
+  " nmap <leader>5 <Plug>AirlineSelectTab5
+  " nmap <leader>6 <Plug>AirlineSelectTab6
+  " nmap <leader>7 <Plug>AirlineSelectTab7
+  " nmap <leader>8 <Plug>AirlineSelectTab8
+  " nmap <leader>9 <Plug>AirlineSelectTab9
+  " let g:airline_powerline_fonts=1
+  " let g:airline#extensions#tabline#enabled = 1
+  " let g:airline#extensions#tabline#left_sep = ' '
+  " let g:airline#extensions#tabline#left_alt_sep = '¦'
+  " let g:airline#extensions#tabline#buffer_idx_mode = 1
+  " let g:airline#extensions#tabline#fnamemod = ':t'
+  " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  " let g:airline#extensions#tabline#show_buffers = 1
+  " let g:airline#extensions#tabline#show_splits = 1
+  " let g:airline#extensions#tabline#show_tab_nr = 1
+" " }}}
 Plug 'coot/atp_vim' " {{{
   let g:atp_folding=1
   let g:tex_flavor='latex'
   let b:atp_Viewer="zathura"
 "}}}
-Plug 'nanotech/jellybeans.vim'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -186,17 +186,17 @@ endif
 
 " ui configuration {{{
 syntax enable
-exec 'colorscheme jellybeans'
-set showmatch                                       "automatically highlight matching braces/brackets/etc.
-set matchtime=2                                     "tens of a second to show matching parentheses
+exec 'colorscheme mycolor'
+" set showmatch                                       "automatically highlight matching braces/brackets/etc.
+" set matchtime=2                                     "tens of a second to show matching parentheses
 set number
 set lazyredraw
 set laststatus=2
 set noshowmode
 set foldenable                                      "enable folds by default
-set foldmethod=syntax                               "fold via syntax of files
-set foldlevelstart=99                               "open all folds by default
-" let g:xml_syntax_folding=1                          "enable xml folding
+" set foldmethod=syntax                               "fold via syntax of files, very slow
+" set foldlevelstart=99                               "open all folds by default
+" " let g:xml_syntax_folding=1                          "enable xml folding
 
 set cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -237,6 +237,22 @@ else
     endif
   endif
 endif
+
+" %< Where to truncate
+" %n buffer number
+" %F Full path
+" %m Modified flag: [+], [-]
+" %r Readonly flag: [RO]
+" %y Type:          [vim]
+" fugitive#statusline()
+" %= Separator
+" %-14.(...)
+" %l Line
+" %c Column
+" %V Virtual column
+" %P Percentage
+" %#HighlightGroup#
+set statusline=%<%F\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
 "}}}
 
 " mappings {{{
