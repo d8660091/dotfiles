@@ -1,17 +1,18 @@
-" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
+scriptencoding utf-8
+" vim: fdm=marker ts=2 sts=2 sw=2
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set termguicolors
 else
   " True color for vim inside st
-  let &t_8f = "[38;2;%lu;%lu;%lum"
-  let &t_8b = "[48;2;%lu;%lu;%lum"
+  let &t_8f = '[38;2;%lu;%lu;%lum'
+  let &t_8b = '[48;2;%lu;%lu;%lum'
   set termguicolors
 endif
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
-let mapleader = ","
+let g:mapleader = ','
 set clipboard=unnamedplus " sync with OS clipboard
 set noswapfile
 set expandtab             " spaces instead of tabs
@@ -30,7 +31,7 @@ set completeopt-=preview  " do not show scratch when press c-x c-o
 
 call plug#begin()
 
-Plug 'junegunn/vim-easy-align' "{{{
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } "{{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
@@ -60,21 +61,20 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree' "{{{
-  let NERDTreeShowHidden=1
-  let NERDTreeQuitOnOpen=0
-  let NERDTreeShowLineNumbers=1
+  let g:NERDTreeShowHidden=1
+  let g:NERDTreeQuitOnOpen=0
+  let g:NERDTreeShowLineNumbers=1
   let g:NERDTreeWinPos='right'
   nnoremap <F2> :NERDTreeToggle<CR>
   nnoremap <F3> :NERDTreeFind<CR>
 "}}}
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown' "{{{
   let g:vim_markdown_frontmatter = 1
 "}}}
 Plug 'mileszs/ack.vim' "{{{
-  let g:ackprg = "ag --vimgrep"
+  let g:ackprg = 'ag --vimgrep'
 "}}}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
@@ -125,7 +125,7 @@ Plug 'scrooloose/nerdcommenter' "{{{
 Plug 'coot/atp_vim' " {{{
   let g:atp_folding=1
   let g:tex_flavor='latex'
-  let b:atp_Viewer="zathura"
+  let b:atp_Viewer='zathura'
 "}}}
 " Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
@@ -133,27 +133,39 @@ Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
 Plug 'neomake/neomake' " {{{
-autocmd! BufWritePost * Neomake
+" autocmd InsertChange * update | Neomake
+augroup neomke
+  autocmd! BufWritePost * Neomake
+augroup end
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php']
 let g:neomake_html_enabled_makers = []
-let g:neomake_javascript_eslint_exe = "smart-eslint"
+let g:neomake_javascript_eslint_exe = 'smart-eslint'
 " let g:neomake_typescript_enabled_makers = ['tslint']
 " let g:neomake_css_enabled_makers = ['stylelint']
 " let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
 " "}}}
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
-  let g:deoplete#enable_at_startup = 1
-  let g:tern_request_timeout = 1
-  let g:tern_show_signature_in_pum = '0'
-  "}}}
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
+  " let g:deoplete#enable_at_startup = 1
+  " let g:tern_request_timeout = 1
+  " let g:tern_show_signature_in_pum = '0'
+  " "}}}
 Plug '~/projects/neovim-vifm', "{{{
   tnoremap <C-w>h <C-\><C-n><C-w>h
   tnoremap <C-q> <C-\><C-n>:q<CR>
   autocmd TermOpen * setlocal statusline=%{b:term_title}
   let g:vifmOpenCommand='bo'
 "}}}
+  Plug 'Valloric/YouCompleteMe' "{{{
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_autoclose_preview_window_after_completion=0
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
+  let g:ycm_server_python_interpreter= '/usr/bin/python'
+  nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+  nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  "}}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -181,7 +193,7 @@ endif
 call plug#end()
 
 if has('nvim')
-  call deoplete#custom#set('ultisnips', 'min_pattern_length', 1)
+  " call deoplete#custom#set('ultisnips', 'min_pattern_length', 1)
 endif
 
 " ui configuration {{{
@@ -218,7 +230,7 @@ if has('gui_running')
   set guioptions-=r                                 "disable scroll bar
 
   if has('gui_gtk')
-    set gfn=Source\ Code\ Pro\ for\ Powerline\ 12
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
     " set gfn=Ubuntu\ Mono\ 11
     set guioptions=ai
   endif
@@ -226,7 +238,7 @@ else
   let g:NERDTreeDirArrows=0
   let &t_SI = "\x1b[\x34 q"
   let &t_EI = "\x1b[\x32 q"
-  if $TERM_PROGRAM == 'iTerm.app'
+  if $TERM_PROGRAM ==? 'iTerm.app'
     " different cursors for insert vs normal mode
     if exists('$TMUX')
       let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -252,7 +264,7 @@ endif
 " %V Virtual column
 " %P Percentage
 " %#HighlightGroup#
-set statusline=%<%F\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
+set statusline=%<[%{fnamemodify(getcwd(),':t')}]\ %m%r%f\ %=%{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %-15.(%l,%c%V%)\ %P
 "}}}
 
 " mappings {{{
@@ -364,7 +376,7 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 nmap <silent> <space>f :call fzf#run({
-      \ 'source':'git ls-files',
+      \ 'source':'ag -g .',
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
@@ -374,36 +386,33 @@ nmap <silent> <space>r :call fzf#run({
       \  'options': '-m +s -e',
       \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
-      \  'source':  '{ ag -g "" ~/Documents;  ag -g "" ~/projects }',
-      \  'sink':    'e',
-      \  'options': '-m +s -e',
+      \  'source':  '{ ag --depth 2 -g . -- ~/projects ~/play \| xargs -n 1 dirname \| uniq -u }',
+      \  'sink':    'cd',
+      \  'options': '-e',
       \  'down':    '40%'})<cr>
 map s <Plug>(easymotion-overwin-f)
 "}}}
 
 " functions {{{
-function! s:get_cache_dir(suffix) "{{{
-  return resolve(expand(s:cache_dir . '/' . a:suffix))
-endfunction "}}}
 function! Source(begin, end) "{{{
-  let lines = getline(a:begin, a:end)
-  for line in lines
-    execute line
+  let l:lines = getline(a:begin, a:end)
+  for l:line in l:lines
+    execute l:line
   endfor
 endfunction "}}}
 function! StripTrailingWhitespace() "{{{
   call Preserve("%s/\\s\\+$//e")
 endfunction "}}}
 function! CloseWindowOrKillBuffer() "{{{
-  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+  let l:number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
   " never bdelete a nerd tree
-  if matchstr(expand("%"), 'NERD') == 'NERD'
+  if matchstr(expand('%'), 'NERD') ==? 'NERD'
     wincmd c
     return
   endif
 
-  if number_of_windows_to_this_buffer > 1
+  if l:number_of_windows_to_this_buffer > 1
     wincmd c
   else
     bdelete
@@ -411,25 +420,25 @@ function! CloseWindowOrKillBuffer() "{{{
 endfunction "}}}
 function! Preserve(command) "{{{
   " preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
+  let l:_s=@/
+  let l:l = line('.')
+  let l:c = col('.')
   " do the business:
   execute a:command
   " clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
+  let @/=l:_s
+  call cursor(l:l, l:c)
 endfunction "}}}
 function! Dump(cmd) "{{{
-  redir => message
+  redir => l:message
   silent execute a:cmd
   redir END
-  if empty(message)
-    echoerr "no output"
+  if empty(l:message)
+    echoerr 'no output'
   else
     enew
     setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
-    silent put=message
+    silent put=l:message
   endif
 endfunction
 command! -nargs=+ -complete=command Dump call Dump(<q-args>)
