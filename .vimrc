@@ -31,11 +31,8 @@ set completeopt-=preview  " do not show scratch when press c-x c-o
 
 call plug#begin()
 
-Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } "{{{
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-"}}}
 Plug '~/projects/vim-twig'
+Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
 Plug '~/projects/vim-php'
 Plug '~/projects/vim-color'
 " Plug 'ap/vim-css-color'
@@ -46,6 +43,26 @@ Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'tpope/vim-repeat',
 Plug 'tpope/vim-unimpaired'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }
+Plug 'mattn/emmet-vim'
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-surround'
+" Plug 'nanotech/jellybeans.vim'
+Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
+Plug 'junegunn/vim-easy-align' "{{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+"}}}
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
   let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
   let g:UltiSnipsExpandTrigger = '<tab>'
@@ -53,31 +70,23 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
   let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
   autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
 "}}}
-Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar' "{{{
 nmap <F8> :TagbarToggle<CR>
 "}}}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree' "{{{
-  let g:NERDTreeShowHidden=1
-  let g:NERDTreeQuitOnOpen=0
-  let g:NERDTreeShowLineNumbers=1
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " {{{
+  let NERDTreeShowHidden=1
+  let NERDTreeQuitOnOpen=0
+  let NERDTreeShowLineNumbers=1
   let g:NERDTreeWinPos='right'
   nnoremap <F2> :NERDTreeToggle<CR>
   nnoremap <F3> :NERDTreeFind<CR>
 "}}}
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
 Plug 'plasticboy/vim-markdown' "{{{
   let g:vim_markdown_frontmatter = 1
 "}}}
 Plug 'mileszs/ack.vim' "{{{
   let g:ackprg = 'ag --vimgrep'
 "}}}
-Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
   let g:jsx_ext_required = 0
   let g:user_emmet_settings = {
@@ -88,16 +97,11 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
         \  },
         \}
 "}}}
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }
-Plug 'mattn/emmet-vim'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mhinz/vim-startify' "{{{
   nnoremap <F1> :Startify<cr>
   let g:startify_change_to_vcs_root = 1
   let g:startify_bookmarks = [{'projects': '~/projects'}]
 "}}}
-Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter' "{{{
   let g:NERDSpaceDelims = 1
 "}}}
@@ -127,8 +131,6 @@ Plug 'coot/atp_vim' " {{{
   let g:tex_flavor='latex'
   let b:atp_Viewer='zathura'
 "}}}
-" Plug 'nanotech/jellybeans.vim'
-Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
@@ -151,20 +153,20 @@ if has('nvim')
   " let g:tern_request_timeout = 1
   " let g:tern_show_signature_in_pum = '0'
   " "}}}
-Plug '~/projects/neovim-vifm', "{{{
-  tnoremap <C-w>h <C-\><C-n><C-w>h
-  tnoremap <C-q> <C-\><C-n>:q<CR>
-  autocmd TermOpen * setlocal statusline=%{b:term_title}
-  let g:vifmOpenCommand='bo'
-"}}}
+  Plug '~/projects/neovim-vifm', "{{{
+    tnoremap <C-w>h <C-\><C-n><C-w>h
+    tnoremap <C-q> <C-\><C-n>:q<CR>
+    autocmd TermOpen * setlocal statusline=%{b:term_title}
+    let g:vifmOpenCommand='bo'
+  "}}}
   Plug 'Valloric/YouCompleteMe' "{{{
-  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  let g:ycm_autoclose_preview_window_after_completion=0
-  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  let g:SuperTabDefaultCompletionType = '<C-n>'
-  let g:ycm_server_python_interpreter= '/usr/bin/python'
-  nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-  nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_autoclose_preview_window_after_completion=0
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+    let g:ycm_server_python_interpreter= '/usr/bin/python'
+    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+    nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
   "}}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
@@ -375,6 +377,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
+
 nmap <silent> <space>f :call fzf#run({
       \ 'source':'ag -g .',
       \ 'sink': 'e',
@@ -386,7 +389,7 @@ nmap <silent> <space>r :call fzf#run({
       \  'options': '-m +s -e',
       \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
-      \  'source':  '{ ag --depth 2 -g . -- ~/projects ~/play \| xargs -n 1 dirname \| uniq -u }',
+      \  'source':  '{ find ~/Documents -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname }',
       \  'sink':    'cd',
       \  'options': '-e',
       \  'down':    '40%'})<cr>

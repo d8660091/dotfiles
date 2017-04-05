@@ -28,21 +28,25 @@ let s:NONE     = 'NONE'
 exec 'hi '.'Comment'         .' guifg='.s:fg_2     .' guibg='.s:NONE
 exec 'hi '.'Constant'        .' guifg='.s:red      .' guibg='.s:NONE
 exec 'hi '.'Cursor'          .' guifg='.s:NONE     .' guibg='.s:fg
-exec 'hi '.'CursorLine'      .' guifg='.s:NONE     .' guibg='.s:NONE
+exec 'hi '.'CursorLine'      .' guifg='.s:NONE     .' guibg='.s:NONE  .' gui=NONE'
 exec 'hi '.'CursorLineNR'    .' guifg='.s:fg_1
 exec 'hi '.'Delimiter'       .' guifg='.s:fg_2     .' guibg='.s:NONE
-exec 'hi '.'EndOfBuffer'     .' guifg='.s:red      .' guibg='.s:NONE
+exec 'hi '.'Directory'       .' guifg='.s:fg_2     .' guibg='.s:NONE
+exec 'hi '.'EndOfBuffer'     .' guifg='.s:black    .' guibg='.s:NONE
 exec 'hi '.'ErrorMsg'        .' guifg='.s:fg       .' guibg='.s:red_1
 exec 'hi '.'Folded'          .' guifg='.s:fg_1     .' guibg='.s:grey_2
 exec 'hi '.'Function'        .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Identifier'      .' guifg='.s:purple   .' guibg='.s:NONE
 exec 'hi '.'LineNr'          .' guifg='.s:fg_4     .' guibg='.s:bg
+exec 'hi '.'MatchParen'      .' guifg='.s:fg       .' guibg='.s:grey
 exec 'hi '.'Normal'          .' guifg='.s:fg       .' guibg='.s:bg
+exec 'hi '.'Operator'        .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Pmenu'           .' guifg='.s:fg_1     .' guibg='.s:grey
 exec 'hi '.'PmenuSel'        .' guifg='.s:black    .' guibg='.s:blue  .' gui=bold'
 exec 'hi '.'PreProc'         .' guifg='.s:blue     .' guibg='.s:NONE
 exec 'hi '.'Search'          .' guifg='.s:fg       .' guibg='.s:red_2
 exec 'hi '.'Special'         .' guifg='.s:green    .' guibg='.s:NONE
+exec 'hi '.'SpecialKey'      .' guifg='.s:cyan_1   .' guibg='.s:NONE
 exec 'hi '.'StartifyPath'    .' guifg='.s:fg       .' guibg='.s:NONE
 exec 'hi '.'Statement'       .' guifg='.s:blue_1   .' guibg='.s:NONE
 exec 'hi '.'StatusLine'      .' guifg='.s:fg_1     .' guibg='.s:black .' gui=bold'
@@ -53,8 +57,5 @@ exec 'hi '.'Structure'       .' guifg='.s:cyan_1   .' guibg='.s:NONE
 exec 'hi '.'Title'           .' guifg='.s:green    .' guibg='.s:NONE  .' gui=bold'
 exec 'hi '.'Todo'            .' guifg='.s:fg       .' guibg='.s:NONE  .' gui=bold'
 exec 'hi '.'Type'            .' guifg='.s:yellow_1 .' guibg='.s:NONE
+exec 'hi '.'VertSplit'       .' guifg='.s:fg_3     .' guibg='.s:NONE  .' gui=NONE'
 exec 'hi '.'Visual'          .' guifg='.s:NONE     .' guibg='.s:black
-exec 'hi '.'MatchParen'      .' guifg='.s:fg       .' guibg='.s:grey
-
-hi!  link          Operator          Structure
-hi!  link          Conceal           Operator
