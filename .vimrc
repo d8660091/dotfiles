@@ -1,64 +1,63 @@
-scriptencoding utf-8
 " vim: fdm=marker ts=2 sts=2 sw=2
+scriptencoding utf-8
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set termguicolors
-else
-  " True color for vim inside st
+else " True color for vim inside st
   let &t_8f = '[38;2;%lu;%lu;%lum'
   let &t_8b = '[48;2;%lu;%lu;%lum'
   set termguicolors
 endif
 
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
 let g:mapleader = ','
-set clipboard=unnamedplus " sync with OS clipboard
+set hlsearch
+set ignorecase
+set incsearch
 set noswapfile
+set smartcase
+set undodir=$HOME/.vimundo
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/node_modules/*
+let &shiftwidth=2         " number of spaces when indenting
+let &softtabstop=2        " number of spaces per tab in insert mode
+let &tabstop=2            " number of spaces per tab for display
+set clipboard=unnamedplus " sync with OS clipboard
+set completeopt-=preview  " do not show scratch when press c-x c-o
 set expandtab             " spaces instead of tabs
 set smarttab              " use shiftwidth to enter tabs
 set timeoutlen=500        " leader key timeout
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-let &tabstop=2            " number of spaces per tab for display
-let &softtabstop=2        " number of spaces per tab in insert mode
-let &shiftwidth=2         " number of spaces when indenting
 set undofile              " persistent undo
-set undodir=$HOME/.vimundo
-set completeopt-=preview  " do not show scratch when press c-x c-o
 
 call plug#begin()
 
-Plug '~/projects/vim-twig'
-Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
-Plug '~/projects/vim-php'
-Plug '~/projects/vim-color'
 " Plug 'ap/vim-css-color'
 " Plug 'hail2u/vim-css3-syntax'
-Plug 'easymotion/vim-easymotion'
-Plug '~/projects/vim-vue', { 'for': 'vue'}
-Plug 'elmcast/elm-vim', { 'for': 'elm' }
-Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
-Plug 'tpope/vim-repeat',
-Plug 'tpope/vim-unimpaired'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }
+Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
+Plug 'godlygeek/tabular'
+Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'godlygeek/tabular'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }
-Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
+Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat',
 Plug 'tpope/vim-surround'
-" Plug 'nanotech/jellybeans.vim'
-Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
+Plug 'tpope/vim-unimpaired'
+Plug '~/projects/vim-color'
+Plug '~/projects/vim-php'
+Plug '~/projects/vim-twig'
+Plug '~/projects/vim-vue', { 'for': 'vue'}
 Plug 'junegunn/vim-easy-align' "{{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -147,11 +146,12 @@ let g:neomake_javascript_eslint_exe = 'smart-eslint'
 " let g:neomake_css_enabled_makers = ['stylelint']
 " let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
 " "}}}
+
 if has('nvim')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
-  " let g:deoplete#enable_at_startup = 1
-  " let g:tern_request_timeout = 1
-  " let g:tern_show_signature_in_pum = '0'
+    " let g:deoplete#enable_at_startup = 1
+    " let g:tern_request_timeout = 1
+    " let g:tern_show_signature_in_pum = '0'
   " "}}}
   Plug '~/projects/neovim-vifm', "{{{
     tnoremap <C-w>h <C-\><C-n><C-w>h
@@ -167,7 +167,7 @@ if has('nvim')
     let g:ycm_server_python_interpreter= '/usr/bin/python'
     nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-  "}}}
+  " }}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
