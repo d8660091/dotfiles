@@ -136,12 +136,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\'" . web-mode)))
 
-(use-package git-gutter-fringe
-  :ensure t
-  :config
-  (key-chord-define-global "]d" 'git-gutter:next-hunk)
-  (global-git-gutter-mode))
-
 (use-package auto-complete
   :ensure t
   :init
@@ -201,6 +195,12 @@
   (define-key evil-insert-state-map "\C-y" 'nil)
   (define-key evil-motion-state-map "\C-y" 'nil)
   (evil-mode t))
+
+(use-package git-gutter-fringe
+  :ensure t
+  :config
+  (define-key evil-normal-state-map (kbd "] d") 'git-gutter:next-hunk)
+  (global-git-gutter-mode))
 
 (use-package evil-numbers
   :ensure t
