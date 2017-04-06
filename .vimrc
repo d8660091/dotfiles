@@ -266,7 +266,7 @@ endif
 " %V Virtual column
 " %P Percentage
 " %#HighlightGroup#
-set statusline=%<\ %m%r%f\ %=\ %-15.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')}]\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
+set statusline=%<\ %f%m%r\ %=\ %-16.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')}]\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
 "}}}
 
 " mappings {{{
