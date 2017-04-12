@@ -73,7 +73,7 @@
    `(font-lock-builtin-face ((t (:foreground ,jellybeans-fg :weight bold))))
    `(font-lock-comment-face ((t (:foreground ,jellybeans-fg-1))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,jellybeans-fg-1))))
-   `(font-lock-constant-face ((t (:foreground ,jellybeans-green))))
+   `(font-lock-constant-face ((t (:foreground ,jellybeans-cyan))))
    `(font-lock-doc-face ((t (:foreground ,jellybeans-fg-1))))
    `(font-lock-function-name-face ((t (:foreground ,jellybeans-yellow))))
    `(font-lock-keyword-face ((t (:foreground ,jellybeans-blue :weight bold))))
