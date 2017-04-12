@@ -286,7 +286,9 @@
   (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package restclient
   :ensure t)

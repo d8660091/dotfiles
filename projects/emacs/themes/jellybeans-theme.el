@@ -120,6 +120,8 @@
    `(git-gutter:modified ((t (:foreground ,jellybeans-magenta))))
    `(spaceline-evil-normal ((t (:foreground ,jellybeans-fg :background ,jellybeans-black+2))))
    `(spaceline-evil-insert ((t (:foreground ,jellybeans-fg :background ,jellybeans-green-1))))
+   `(ido-subdir ((t (:foreground ,jellybeans-red))))
+   `(ido-only-match ((t (:foreground ,jellybeans-blue))))
 
    `(eshell-prompt
      ((t (:foreground ,jellybeans-fg-1))))
