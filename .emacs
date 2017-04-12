@@ -27,7 +27,7 @@
  '(exec-path
    (quote
     ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
- '(flycheck-disabled-checkers (quote (php-phpcs javascript-jshint)))
+ '(flycheck-disabled-checkers (quote (javascript-jshint)))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
@@ -64,6 +64,7 @@
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-pairing t)
+ '(web-mode-enable-auto-quoting nil)
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
  '(web-mode-style-padding 0))
