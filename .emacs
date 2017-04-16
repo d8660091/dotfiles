@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
+    ("07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote

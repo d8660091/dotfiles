@@ -3,6 +3,7 @@ scriptencoding utf-8
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
   set termguicolors
 else " True color for vim inside st
   let &t_8f = '[38;2;%lu;%lu;%lum'
@@ -11,6 +12,8 @@ else " True color for vim inside st
 endif
 
 let g:mapleader = ','
+set hidden
+set autoread
 set hlsearch
 set ignorecase
 set incsearch
@@ -148,26 +151,26 @@ let g:neomake_javascript_eslint_exe = 'smart-eslint'
 " "}}}
 
 if has('nvim')
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
-    " let g:deoplete#enable_at_startup = 1
-    " let g:tern_request_timeout = 1
-    " let g:tern_show_signature_in_pum = '0'
-  " "}}}
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
+    let g:deoplete#enable_at_startup = 1
+    let g:tern_request_timeout = 1
+    let g:tern_show_signature_in_pum = '0'
+  "}}}
   Plug '~/projects/neovim-vifm', "{{{
     tnoremap <C-w>h <C-\><C-n><C-w>h
     tnoremap <C-q> <C-\><C-n>:q<CR>
     autocmd TermOpen * setlocal statusline=%{b:term_title}
     let g:vifmOpenCommand='bo'
   "}}}
-  Plug 'Valloric/YouCompleteMe' "{{{
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_autoclose_preview_window_after_completion=0
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:SuperTabDefaultCompletionType = '<C-n>'
-    let g:ycm_server_python_interpreter= '/usr/bin/python'
-    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-    nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-  " }}}
+  " Plug 'Valloric/YouCompleteMe' "{{{
+    " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    " let g:ycm_autoclose_preview_window_after_completion=0
+    " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    " let g:SuperTabDefaultCompletionType = '<C-n>'
+    " let g:ycm_server_python_interpreter= '/usr/bin/python'
+    " nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+    " nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  " " }}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -266,7 +269,7 @@ endif
 " %V Virtual column
 " %P Percentage
 " %#HighlightGroup#
-set statusline=%<\ %f%m%r\ %=\ %-16.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')}]\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
+set statusline=%<\ %f%m%r\ %=\ %-8.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')}]\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}
 "}}}
 
 " mappings {{{
@@ -389,7 +392,7 @@ nmap <silent> <space>r :call fzf#run({
       \  'options': '-m +s -e',
       \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
-      \  'source':  '{ find ~/Documents -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname }',
+      \  'source':  '{ find ~/Documents ~/play ~/projects -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname }',
       \  'sink':    'cd',
       \  'options': '-e',
       \  'down':    '40%'})<cr>
