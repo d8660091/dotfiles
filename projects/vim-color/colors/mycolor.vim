@@ -32,9 +32,14 @@ exec 'hi '.'Cursor'          .' guifg='.s:NONE     .' guibg='.s:fg
 exec 'hi '.'CursorLine'      .' guifg='.s:NONE     .' guibg='.s:NONE    .' gui=NONE' .' cterm=NONE'
 exec 'hi '.'CursorLineNR'    .' guifg='.s:fg_1
 exec 'hi '.'Delimiter'       .' guifg='.s:fg_2     .' guibg='.s:NONE
+exec 'hi '.'DiffAdd'         .' guifg='.s:bg       .' guibg='.s:green
+exec 'hi '.'DiffChange'      .' guifg='.s:bg       .' guibg='.s:yellow
+exec 'hi '.'DiffDelete'      .' guifg='.s:bg       .' guibg='.s:red
+exec 'hi '.'DiffText'        .' guifg='.s:bg       .' guibg='.s:yellow  .' gui=bold'
 exec 'hi '.'Directory'       .' guifg='.s:fg_2     .' guibg='.s:NONE
 exec 'hi '.'EndOfBuffer'     .' guifg='.s:black    .' guibg='.s:NONE
 exec 'hi '.'ErrorMsg'        .' guifg='.s:fg       .' guibg='.s:red_1
+exec 'hi '.'FoldColumn'      .' guifg='.s:fg       .' guibg='.s:black
 exec 'hi '.'Folded'          .' guifg='.s:fg_1     .' guibg='.s:grey_2
 exec 'hi '.'Function'        .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Identifier'      .' guifg='.s:purple   .' guibg='.s:NONE
@@ -55,16 +60,12 @@ exec 'hi '.'StatusLineNC'    .' guifg='.s:black_1  .' guibg='.s:fg_3
 exec 'hi '.'String'          .' guifg='.s:green    .' guibg='.s:NONE
 exec 'hi '.'StringDelimiter' .' guifg='.s:green_1  .' guibg='.s:NONE
 exec 'hi '.'Structure'       .' guifg='.s:cyan_1   .' guibg='.s:NONE
+exec 'hi '.'TabLine'         .' guifg='.s:fg_3     .' guibg='.s:black_1 .' gui=NONE'
+exec 'hi '.'TabLineFill'     .' guifg='.s:black_1  .' guibg='.s:blue
+exec 'hi '.'TabLineSel'      .' guifg='.s:fg       .' guibg='.s:black_1 .' gui=bold'
 exec 'hi '.'Title'           .' guifg='.s:fg_2     .' guibg='.s:NONE    .' gui=bold'
 exec 'hi '.'Todo'            .' guifg='.s:fg       .' guibg='.s:NONE    .' gui=bold'
 exec 'hi '.'Type'            .' guifg='.s:yellow_1 .' guibg='.s:NONE
 exec 'hi '.'VertSplit'       .' guifg='.s:fg_3     .' guibg='.s:NONE    .' gui=NONE'
 exec 'hi '.'Visual'          .' guifg='.s:NONE     .' guibg='.s:black
-exec 'hi '.'DiffAdd'         .' guifg='.s:bg       .' guibg='.s:green
-exec 'hi '.'DiffDelete'      .' guifg='.s:bg       .' guibg='.s:red
-exec 'hi '.'DiffChange'      .' guifg='.s:bg       .' guibg='.s:yellow
-exec 'hi '.'DiffText'        .' guifg='.s:bg       .' guibg='.s:yellow  .' gui=bold'
-exec 'hi '.'FoldColumn'      .' guifg='.s:fg       .' guibg='.s:black
-exec 'hi '.'TabLine'         .' guifg='.s:fg_3     .' guibg='.s:black_1 .' gui=NONE'
-exec 'hi '.'TabLineSel'      .' guifg='.s:fg       .' guibg='.s:black_1 .' gui=bold'
-exec 'hi '.'TabLineFill'     .' guifg='.s:black_1  .' guibg='.s:blue
+exec 'hi '.'Underlined'      .' guifg='.s:fg       .' guibg='.s:NONE    .' gui=underline' 
