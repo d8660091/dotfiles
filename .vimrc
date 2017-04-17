@@ -392,7 +392,7 @@ nmap <silent> <space>r :call fzf#run({
       \  'options': '-m +s -e',
       \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
-      \  'source':  '{ find ~/Documents ~/play ~/projects -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname }',
+      \  'source':  'find ~/Documents ~/play ~/projects -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname',
       \  'sink':    'cd',
       \  'options': '-e',
       \  'down':    '40%'})<cr>
