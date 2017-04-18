@@ -45,6 +45,7 @@ exec 'hi '.'Function'        .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Identifier'      .' guifg='.s:purple   .' guibg='.s:NONE
 exec 'hi '.'LineNr'          .' guifg='.s:fg_4     .' guibg='.s:bg
 exec 'hi '.'MatchParen'      .' guifg='.s:fg       .' guibg='.s:grey
+exec 'hi '.'NonText   '      .' guifg='.s:blue     .' guibg='.s:NONE    .' gui=NONE' 
 exec 'hi '.'Normal'          .' guifg='.s:fg       .' guibg='.s:bg
 exec 'hi '.'Operator'        .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Pmenu'           .' guifg='.s:fg_1     .' guibg='.s:grey
@@ -66,6 +67,7 @@ exec 'hi '.'TabLineSel'      .' guifg='.s:fg       .' guibg='.s:black_1 .' gui=b
 exec 'hi '.'Title'           .' guifg='.s:fg_2     .' guibg='.s:NONE    .' gui=bold'
 exec 'hi '.'Todo'            .' guifg='.s:fg       .' guibg='.s:NONE    .' gui=bold'
 exec 'hi '.'Type'            .' guifg='.s:yellow_1 .' guibg='.s:NONE
+exec 'hi '.'Underlined'      .' guifg='.s:fg       .' guibg='.s:NONE    .' gui=underline' 
 exec 'hi '.'VertSplit'       .' guifg='.s:fg_3     .' guibg='.s:NONE    .' gui=NONE'
 exec 'hi '.'Visual'          .' guifg='.s:NONE     .' guibg='.s:black
-exec 'hi '.'Underlined'      .' guifg='.s:fg       .' guibg='.s:NONE    .' gui=underline' 
+exec 'hi '.'WildMenu'        .' guifg='.s:bg       .' guibg='.s:yellow  .' gui=bold'

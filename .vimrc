@@ -54,6 +54,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', { 'on': ['Gitv']}
 Plug 'tpope/vim-repeat',
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
