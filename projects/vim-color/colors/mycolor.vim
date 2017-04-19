@@ -28,7 +28,7 @@ let s:NONE     = 'NONE'
 
 exec 'hi '.'Comment'         .' guifg='.s:fg_2     .' guibg='.s:NONE
 exec 'hi '.'Constant'        .' guifg='.s:red      .' guibg='.s:NONE
-exec 'hi '.'Cursor'          .' guifg='.s:NONE     .' guibg='.s:fg
+exec 'hi '.'Cursor'          .' guifg='.s:bg       .' guibg='.s:fg
 exec 'hi '.'CursorLine'      .' guifg='.s:NONE     .' guibg='.s:NONE    .' gui=NONE' .' cterm=NONE'
 exec 'hi '.'CursorLineNR'    .' guifg='.s:fg_1
 exec 'hi '.'Delimiter'       .' guifg='.s:fg_2     .' guibg='.s:NONE

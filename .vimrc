@@ -6,12 +6,12 @@ if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
   set termguicolors
 else " True color for vim inside st
-  let &t_8f = '[38;2;%lu;%lu;%lum'
-  let &t_8b = '[48;2;%lu;%lu;%lum'
+  let &t_8f='[38;2;%lu;%lu;%lum'
+  let &t_8b='[48;2;%lu;%lu;%lum'
   set termguicolors
 endif
 
-let g:mapleader = ','
+let g:mapleader=','
 set hidden
 set autoread
 set hlsearch
@@ -34,7 +34,7 @@ set undofile              " persistent undo
 call plug#begin()
 
 " Plug 'ap/vim-css-color'
-" Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css', 'vue'] }

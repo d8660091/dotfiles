@@ -200,7 +200,8 @@
 (use-package git-gutter-fringe
   :ensure t
   :config
-  (define-key evil-normal-state-map (kbd "] d") 'git-gutter:next-hunk)
+  (define-key evil-normal-state-map (kbd "] c") 'git-gutter:next-hunk)
+  (define-key evil-normal-state-map (kbd "[ c") 'git-gutter:previous-hunk)
   (global-git-gutter-mode))
 
 (use-package evil-numbers
