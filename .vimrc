@@ -53,7 +53,9 @@ Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'on': 'Gstatus' } "{{{
+nmap <C-x>g :Gstatus<cr>
+"}}}
 Plug 'gregsexton/gitv', { 'on': ['Gitv']}
 Plug 'tpope/vim-repeat',
 Plug 'tpope/vim-surround'
@@ -352,7 +354,7 @@ nnoremap Y y$
 
 " window killer
 nnoremap <silent> <C-q> :call CloseWindowOrKillBuffer()<cr>
-nnoremap <silent> Q :bp\|bd #<cr>
+nnoremap <silent> Q :bd<cr>
 
 nmap <BS> :set hlsearch! hlsearch?<cr>
 
@@ -383,7 +385,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 
 nmap <silent> <space>f :call fzf#run({
-      \ 'source':'ag -g .',
+      \ 'source': '{ag -g . & git ls-files}',
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
