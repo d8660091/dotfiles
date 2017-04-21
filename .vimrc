@@ -277,9 +277,10 @@ set statusline=%<\ %f%m%r\ %=\ %-8.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')
 
 " mappings {{{
 nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-vmap <leader>s :sort<cr>
-
-nmap <leader>w :w<cr>
+vmap <leader>s :sort<CR>
+nmap <leader>w :w<CR>
+nmap <C-x>0 :close<CR>
+nmap <C-x>1 <C-w><C-o>
 
 " eval vimscript by line or visual selection
 nmap <silent> <leader>e :call Source(line('.'), line('.'))<CR>
