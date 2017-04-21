@@ -37,6 +37,8 @@
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
  '(neo-window-position (quote right))
+ '(ns-alternate-modifier (quote super))
+ '(ns-command-modifier (quote meta))
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
  '(org-agenda-files (quote ("~/org/home.org")))
@@ -155,6 +157,10 @@
 (use-package editorconfig
   :ensure t
   :config
+  (add-hook 'editorconfig-custom-hooks
+            (lambda (hash)
+              (setq web-mode-script-padding 0)
+              (setq web-mode-style-padding 0)))
   (editorconfig-mode t))
 
 (use-package projectile

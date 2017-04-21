@@ -33,6 +33,7 @@ set undofile              " persistent undo
 
 call plug#begin()
 
+Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
 " Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 " Plug 'nanotech/jellybeans.vim'
@@ -53,7 +54,7 @@ Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-fugitive', { 'on': 'Gstatus' } "{{{
+Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcd'] } "{{{
 nmap <C-x>g :Gstatus<cr>
 "}}}
 Plug 'gregsexton/gitv', { 'on': ['Gitv']}
@@ -154,26 +155,26 @@ let g:neomake_javascript_eslint_exe = 'smart-eslint'
 " "}}}
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
-    let g:deoplete#enable_at_startup = 1
-    let g:tern_request_timeout = 1
-    let g:tern_show_signature_in_pum = '0'
-  "}}}
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
+    " let g:deoplete#enable_at_startup = 1
+    " let g:tern_request_timeout = 1
+    " let g:tern_show_signature_in_pum = '0'
+  " "}}}
   Plug '~/projects/neovim-vifm', "{{{
     tnoremap <C-w>h <C-\><C-n><C-w>h
     tnoremap <C-q> <C-\><C-n>:q<CR>
     autocmd TermOpen * setlocal statusline=%{b:term_title}
     let g:vifmOpenCommand='bo'
   "}}}
-  " Plug 'Valloric/YouCompleteMe' "{{{
-    " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    " let g:ycm_autoclose_preview_window_after_completion=0
-    " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    " let g:SuperTabDefaultCompletionType = '<C-n>'
-    " let g:ycm_server_python_interpreter= '/usr/bin/python'
-    " nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-    " nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-  " " }}}
+  Plug 'Valloric/YouCompleteMe' "{{{
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_autoclose_preview_window_after_completion=0
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+    let g:ycm_server_python_interpreter= '/usr/bin/python'
+    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+    nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  " }}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -276,11 +277,14 @@ set statusline=%<\ %f%m%r\ %=\ %-8.(%l,%c%V%)\ %P\ [%{fnamemodify(getcwd(),':t')
 "}}}
 
 " mappings {{{
-nmap <leader>f$ :call StripTrailingWhitespace()<CR>
-vmap <leader>s :sort<CR>
-nmap <leader>w :w<CR>
-nmap <C-x>0 :close<CR>
-nmap <C-x>1 <C-w><C-o>
+nnoremap <leader>f$ :call StripTrailingWhitespace()<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>d :Dash<CR>
+vnoremap <leader>s :sort<CR>
+nnoremap <C-X>0 :close<CR>
+nnoremap <C-X>1 <C-w><C-o>
+nnoremap <C-X>o <C-w><C-w>
+cnoremap <C-G> <C-C>
 
 " eval vimscript by line or visual selection
 nmap <silent> <leader>e :call Source(line('.'), line('.'))<CR>
@@ -386,7 +390,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 
 nmap <silent> <space>f :call fzf#run({
-      \ 'source': '{ag -g . & git ls-files}',
+      \ 'source': 'ag -g .',
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
