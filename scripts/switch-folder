@@ -1,0 +1,11 @@
+#!/bin/bash
+machine_name=$1
+name=$2
+hostpath=$3
+
+VBoxManage controlvm "${machine_name}" poweroff
+
+vboxmanage sharedfolder remove "${machine_name}" --name webroot
+vboxmanage sharedfolder add "${machine_name}" --name webroot --hostpath $hostpath
+
+VBoxManage startvm "${machine_name}" --type headless

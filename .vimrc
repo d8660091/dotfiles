@@ -54,7 +54,7 @@ Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcd'] } "{{{
+Plug 'tpope/vim-fugitive' "{{{
 nmap <C-x>g :Gstatus<cr>
 "}}}
 Plug 'gregsexton/gitv', { 'on': ['Gitv']}
@@ -390,7 +390,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 
 nmap <silent> <space>f :call fzf#run({
-      \ 'source': 'ag -g .',
+      \ 'source': '{ ag -g .; [[ -a .git ]] && git ls-files; } \| uniq',
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
