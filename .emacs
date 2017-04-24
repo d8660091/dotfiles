@@ -175,6 +175,7 @@
 (use-package evil
   :ensure t
   :config
+  (evil-mode t)
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
@@ -195,7 +196,10 @@
   (define-key evil-insert-state-map "\C-n" 'nil)
   (define-key evil-insert-state-map "\C-y" 'nil)
   (define-key evil-motion-state-map "\C-y" 'nil)
-  (evil-mode t))
+  (define-key evil-normal-state-map "p" (lambda ()
+                                          (interactive)
+                                          (evil-end-of-line)
+                                          (evil-paste-after nil))))
 
 (use-package git-gutter-fringe
   :ensure t
