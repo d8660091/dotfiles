@@ -113,7 +113,7 @@
                       :background ,jellybeans-red-1))))
 
    `(linum ((t (:foreground ,jellybeans-fg-1))))
-   `(show-paren-match ((t (:foreground ,jellybeans-fg :background ,jellybeans-blue-1, :weight bold))))
+   `(show-paren-match ((t (:foreground ,jellybeans-fg :background ,jellybeans-green-1, :weight bold))))
 
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
    `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))

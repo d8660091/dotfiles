@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
+    ("dd2f76d36ff218c10a7eef1fd164138a0f539ba91104174e848502250b29df03" "07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -145,8 +145,11 @@
   :config
   (add-hook 'web-mode-hook
             (lambda()
+              (add-to-list 'ac-sources 'ac-source-css-property)
               (add-to-list 'ac-sources 'ac-source-yasnippet)))
   (ac-config-default)
+  (defun ac-common-setup ()
+    (add-to-list 'ac-sources 'ac-source-filename))
   (setq ac-use-menu-map t)
   (setq ac-auto-show-menu 0.2)
   (define-key ac-menu-map "\C-n" 'ac-next)
