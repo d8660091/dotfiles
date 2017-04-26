@@ -45,7 +45,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -204,11 +204,7 @@
   (define-key evil-insert-state-map "\C-l" 'right-char)
   (define-key evil-insert-state-map "\C-n" 'nil)
   (define-key evil-insert-state-map "\C-y" 'nil)
-  (define-key evil-motion-state-map "\C-y" 'nil)
-  (define-key evil-normal-state-map "p" (lambda ()
-                                          (interactive)
-                                          (evil-end-of-line)
-                                          (evil-paste-after nil))))
+  (define-key evil-motion-state-map "\C-y" 'nil))
 
 (use-package git-gutter-fringe
   :ensure t

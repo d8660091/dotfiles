@@ -48,7 +48,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim' "{{{
+let g:user_emmet_expandabbr_key = '<C-j>'
+"}}}
 Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
 Plug 'othree/html5.vim', { 'for': ['html', 'twig', 'vue']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'twig', 'html', 'vue'] }
@@ -291,6 +293,7 @@ nmap <silent> <leader>e :call Source(line('.'), line('.'))<CR>
 vmap <silent> <leader>e :call Source(line('v'), line('.'))<CR>
 
 
+
 " toggle paste
 map <F6> :set invpaste<CR>:set paste?<CR>
 
@@ -348,10 +351,10 @@ nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 nnoremap <leader>v <C-w>v<C-w>l
 nnoremap <leader>s <C-w>s
 nnoremap <leader>vsa :vert sba<cr>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 "}}}
 
 " make Y consistent with C and D. See :help Y.
