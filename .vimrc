@@ -5,6 +5,7 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
   set termguicolors
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 else " True color for vim inside st
   let &t_8f='[38;2;%lu;%lu;%lum'
   let &t_8b='[48;2;%lu;%lu;%lum'
@@ -72,72 +73,72 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' "{{{
-  let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
-  let g:UltiSnipsExpandTrigger = '<tab>'
-  let g:UltiSnipsJumpForwardTrigger = '<c-f>'
-  let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
-  autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
+let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-f>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
 "}}}
 Plug 'majutsushi/tagbar' "{{{
 nmap <F8> :TagbarToggle<CR>
 "}}}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " {{{
-  let NERDTreeShowHidden=1
-  let NERDTreeQuitOnOpen=0
-  let NERDTreeShowLineNumbers=1
-  let g:NERDTreeWinPos='right'
-  nnoremap <F2> :NERDTreeToggle<CR>
-  nnoremap <F3> :NERDTreeFind<CR>
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=0
+let NERDTreeShowLineNumbers=1
+let g:NERDTreeWinPos='right'
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeFind<CR>
 "}}}
 Plug 'plasticboy/vim-markdown' "{{{
-  let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_frontmatter = 1
 "}}}
 Plug 'mileszs/ack.vim' "{{{
-  let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'ag --vimgrep'
 "}}}
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx'] } "{{{
-  let g:jsx_ext_required = 0
-  let g:user_emmet_settings = {
-        \  'javascript.jsx': {
-        \    'extends': 'html',
-        \    'attribute_name': {'class': 'className', 'for': 'htmlFor'},
-        \    'empty_element_suffix': ' />',
-        \  },
-        \}
+let g:jsx_ext_required = 0
+let g:user_emmet_settings = {
+      \  'javascript.jsx': {
+      \    'extends': 'html',
+      \    'attribute_name': {'class': 'className', 'for': 'htmlFor'},
+      \    'empty_element_suffix': ' />',
+      \  },
+      \}
 "}}}
 Plug 'mhinz/vim-startify' "{{{
-  nnoremap <F1> :Startify<cr>
-  let g:startify_change_to_vcs_root = 1
-  let g:startify_bookmarks = [{'projects': '~/projects'}]
+nnoremap <F1> :Startify<cr>
+let g:startify_change_to_vcs_root = 1
+let g:startify_bookmarks = [{'projects': '~/projects'}]
 "}}}
 Plug 'scrooloose/nerdcommenter' "{{{
-  let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 "}}}
 " Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes' " {{{
-  " nmap <leader>1 <Plug>AirlineSelectTab1
-  " nmap <leader>2 <Plug>AirlineSelectTab2
-  " nmap <leader>3 <Plug>AirlineSelectTab3
-  " nmap <leader>4 <Plug>AirlineSelectTab4
-  " nmap <leader>5 <Plug>AirlineSelectTab5
-  " nmap <leader>6 <Plug>AirlineSelectTab6
-  " nmap <leader>7 <Plug>AirlineSelectTab7
-  " nmap <leader>8 <Plug>AirlineSelectTab8
-  " nmap <leader>9 <Plug>AirlineSelectTab9
-  " let g:airline_powerline_fonts=1
-  " let g:airline#extensions#tabline#enabled = 1
-  " let g:airline#extensions#tabline#left_sep = ' '
-  " let g:airline#extensions#tabline#left_alt_sep = '¦'
-  " let g:airline#extensions#tabline#buffer_idx_mode = 1
-  " let g:airline#extensions#tabline#fnamemod = ':t'
-  " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-  " let g:airline#extensions#tabline#show_buffers = 1
-  " let g:airline#extensions#tabline#show_splits = 1
-  " let g:airline#extensions#tabline#show_tab_nr = 1
+" nmap <leader>1 <Plug>AirlineSelectTab1
+" nmap <leader>2 <Plug>AirlineSelectTab2
+" nmap <leader>3 <Plug>AirlineSelectTab3
+" nmap <leader>4 <Plug>AirlineSelectTab4
+" nmap <leader>5 <Plug>AirlineSelectTab5
+" nmap <leader>6 <Plug>AirlineSelectTab6
+" nmap <leader>7 <Plug>AirlineSelectTab7
+" nmap <leader>8 <Plug>AirlineSelectTab8
+" nmap <leader>9 <Plug>AirlineSelectTab9
+" let g:airline_powerline_fonts=1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '¦'
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#tabline#show_splits = 1
+" let g:airline#extensions#tabline#show_tab_nr = 1
 " " }}}
 Plug 'coot/atp_vim' " {{{
-  let g:atp_folding=1
-  let g:tex_flavor='latex'
-  let b:atp_Viewer='zathura'
+let g:atp_folding=1
+let g:tex_flavor='latex'
+let b:atp_Viewer='zathura'
 "}}}
 Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -158,24 +159,24 @@ let g:neomake_javascript_eslint_exe = 'smart-eslint'
 
 if has('nvim')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} "{{{
-    " let g:deoplete#enable_at_startup = 1
-    " let g:tern_request_timeout = 1
-    " let g:tern_show_signature_in_pum = '0'
+  " let g:deoplete#enable_at_startup = 1
+  " let g:tern_request_timeout = 1
+  " let g:tern_show_signature_in_pum = '0'
   " "}}}
   Plug '~/projects/neovim-vifm', "{{{
-    tnoremap <C-w>h <C-\><C-n><C-w>h
-    tnoremap <C-q> <C-\><C-n>:q<CR>
-    autocmd TermOpen * setlocal statusline=%{b:term_title}
-    let g:vifmOpenCommand='bo'
+  tnoremap <C-w>h <C-\><C-n><C-w>h
+  tnoremap <C-q> <C-\><C-n>:q<CR>
+  autocmd TermOpen * setlocal statusline=%{b:term_title}
+  let g:vifmOpenCommand='bo'
   "}}}
   Plug 'Valloric/YouCompleteMe' "{{{
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_autoclose_preview_window_after_completion=0
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:SuperTabDefaultCompletionType = '<C-n>'
-    let g:ycm_server_python_interpreter= '/usr/bin/python'
-    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-    nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_autoclose_preview_window_after_completion=0
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
+  let g:ycm_server_python_interpreter= '/usr/bin/python'
+  nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+  nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
   " }}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
@@ -465,7 +466,7 @@ command! -nargs=+ -complete=command Dump call Dump(<q-args>)
 " auto commands {{{
 " Move cursor to last edited position
 autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 "}}

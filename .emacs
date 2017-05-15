@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("dd2f76d36ff218c10a7eef1fd164138a0f539ba91104174e848502250b29df03" "07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
+    ("07b05850c56d87aeb022c43fe9d2460daf6abc3da5380c5c4c6a8cfcaa455e87" "dd2f76d36ff218c10a7eef1fd164138a0f539ba91104174e848502250b29df03" "07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -45,7 +45,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -192,6 +192,7 @@
   (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
   (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile)
   (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
+  (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag)
   (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
   (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
   (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
@@ -387,4 +388,3 @@
      projectile-root))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
-(put 'downcase-region 'disabled nil)
