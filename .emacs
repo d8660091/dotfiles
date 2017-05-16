@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("1fcedfb0fb758fe00a564d1ac2c9054fdf5a60225107eec1e10a6372c34d10cc" "07b05850c56d87aeb022c43fe9d2460daf6abc3da5380c5c4c6a8cfcaa455e87" "dd2f76d36ff218c10a7eef1fd164138a0f539ba91104174e848502250b29df03" "07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
+    ("6a4072db3c1f3b90124faff0f2b1ea709943e09eee20696f597810c0d475e682" "1bf3747d33f6e3a798fb9d7e2df1918377b1faa94deb3d2f3db21e65d2bfe961" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -399,16 +399,14 @@
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
-    ;; company is an optional dependency. You have to
-    ;; install it separately via package-install
-    ;; `M-x package-install [ret] company`
-    (company-mode +1))
-  ;; formats the buffer before saving
+    (company-mode +1)
+    (editorconfig-apply))
   (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 (use-package company
   :ensure t
   :config
+  (setq company-tooltip-align-annotations t)
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))

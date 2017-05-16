@@ -136,6 +136,7 @@
    '(company-tooltip-common-selection
      ((((type x)) (:inherit company-tooltip-selection :weight bold))
       (t (:inherit company-tooltip-selection))))
+   `(company-tooltip-annotation ((t (:foreground ,jellybeans-red-1))))
    `(company-scrollbar-fg ((t (:background ,jellybeans-fg-2))))
    `(company-scrollbar-bg ((t (:background ,jellybeans-black+2))))
 
