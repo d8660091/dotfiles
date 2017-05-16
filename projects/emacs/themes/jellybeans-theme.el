@@ -122,10 +122,24 @@
    `(ido-subdir ((t (:foreground ,jellybeans-red))))
    `(ido-only-match ((t (:foreground ,jellybeans-blue))))
 
-   `(eshell-prompt
-     ((t (:foreground ,jellybeans-fg-1))))
+   `(eshell-prompt ((t (:foreground ,jellybeans-fg-1))))
 
-   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
+   `(tide-hl-identifier-face ((t (:foreground ,jellybeans-yellow))))
+
+   `(company-preview ((t (:foreground ,jellybeans-fg-2 :underline t))))
+   `(company-preview-common ((t (:inherit company-preview))))
+   `(company-tooltip ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg-1))))
+   `(company-tooltip-selection ((t (:foreground ,jellybeans-fg :background ,jellybeans-black))))
+   '(company-tooltip-common
+     ((((type x)) (:inherit company-tooltip :weight bold))
+      (t (:inherit company-tooltip))))
+   '(company-tooltip-common-selection
+     ((((type x)) (:inherit company-tooltip-selection :weight bold))
+      (t (:inherit company-tooltip-selection))))
+   `(company-scrollbar-fg ((t (:background ,jellybeans-fg-2))))
+   `(company-scrollbar-bg ((t (:background ,jellybeans-black+2))))
+
+  `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 
 (provide-theme 'jellybeans)
 ;;; jellybeans-theme.el ends here

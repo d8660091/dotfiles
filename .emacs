@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    (default)))
+    ("1fcedfb0fb758fe00a564d1ac2c9054fdf5a60225107eec1e10a6372c34d10cc" "07b05850c56d87aeb022c43fe9d2460daf6abc3da5380c5c4c6a8cfcaa455e87" "dd2f76d36ff218c10a7eef1fd164138a0f539ba91104174e848502250b29df03" "07e929eb0f589dccc1dd9c98b9ddf929874e047aefebcff067c3123ed36dceec" "81db5887e21c382fc01aa2932382102a46e2572aff5d6ce0c778f785d9548624" default)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -45,7 +45,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
+    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -139,23 +139,23 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\'" . web-mode)))
 
-(use-package auto-complete
-  :ensure t
-  :init
-  :config
-  (add-hook 'web-mode-hook
-            (lambda()
-              (add-to-list 'ac-sources 'ac-source-css-property)
-              (add-to-list 'ac-sources 'ac-source-yasnippet)))
-  (ac-config-default)
-  (defun ac-common-setup ()
-    (add-to-list 'ac-sources 'ac-source-filename))
-  (setq ac-use-menu-map t)
-  (setq ac-auto-show-menu 0.2)
-  (define-key ac-menu-map "\C-n" 'ac-next)
-  (define-key ac-menu-map "\C-p" 'ac-previous)
-  (ac-linum-workaround)
-  (global-auto-complete-mode))
+;; (use-package auto-complete
+;;   :ensure t
+;;   :init
+;;   :config
+;;   (add-hook 'web-mode-hook
+;;             (lambda()
+;;               (add-to-list 'ac-sources 'ac-source-css-property)
+;;               (add-to-list 'ac-sources 'ac-source-yasnippet)))
+;;   (ac-config-default)
+;;   (defun ac-common-setup ()
+;;     (add-to-list 'ac-sources 'ac-source-filename))
+;;   (setq ac-use-menu-map t)
+;;   (setq ac-auto-show-menu 0.2)
+;;   (define-key ac-menu-map "\C-n" 'ac-next)
+;;   (define-key ac-menu-map "\C-p" 'ac-previous)
+;;   (ac-linum-workaround)
+;;   (global-auto-complete-mode))
 
 (use-package editorconfig
   :ensure t
@@ -388,3 +388,30 @@
      projectile-root))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
+
+(use-package tide
+  :ensure t
+  :config
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (company-mode +1))
+  ;; formats the buffer before saving
+  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
