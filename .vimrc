@@ -35,7 +35,7 @@ set undofile              " persistent undo
 call plug#begin()
 
 Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
-" Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'airblade/vim-gitgutter'
@@ -82,7 +82,7 @@ autocmd BufRead,BufNewFile,BufEnter *Spec.php UltiSnipsAddFiletypes php-phpspec
 Plug 'majutsushi/tagbar' "{{{
 nmap <F8> :TagbarToggle<CR>
 "}}}
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " {{{
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } " {{{
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=0
 let NERDTreeShowLineNumbers=1
@@ -394,7 +394,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ag :Ag<cr>
 
 nmap <silent> <space>f :call fzf#run({
-      \ 'source': '{ ag -g .; [[ -a .git ]] && git ls-files; } \| uniq',
+      \ 'source': '{ ag -g .; [[ -a .git ]] && git ls-files; } \| sort \| uniq',
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
