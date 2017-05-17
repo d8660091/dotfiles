@@ -17,6 +17,8 @@
  ;; If there is more than one, they won't work right.
  '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
+ '(company-idle-delay 0.2)
+ '(company-tooltip-idle-delay 0.1)
  '(compilation-message-face (quote default))
  '(cursor-in-non-selected-windows nil)
  '(custom-enabled-themes (quote (jellybeans)))
@@ -392,16 +394,15 @@
 (use-package tide
   :ensure t
   :config
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (company-mode +1)
-    (editorconfig-apply))
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+  (add-hook 'typescript-mode-hook
+            (lambda ()
+              (tide-setup)
+              (flycheck-mode +1)
+              (setq flycheck-check-syntax-automatically '(save mode-enabled))
+              (eldoc-mode +1)
+              (tide-hl-identifier-mode +1)
+              (company-mode +1)
+              (editorconfig-apply))))
 
 (use-package company
   :ensure t
