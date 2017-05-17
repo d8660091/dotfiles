@@ -144,10 +144,6 @@ Plug 'ervandew/supertab' "{{{
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
 Plug 'neomake/neomake' " {{{
-" autocmd InsertChange * update | Neomake
-augroup neomke
-  autocmd! BufWritePost * Neomake
-augroup end
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php']
 let g:neomake_html_enabled_makers = []
