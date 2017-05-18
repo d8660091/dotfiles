@@ -173,6 +173,8 @@ if has('nvim')
   let g:ycm_server_python_interpreter= '/usr/bin/python'
   nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
   nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+  nnoremap <leader>gc :YcmCompleter GetDoc<CR>
+  nnoremap <leader>gt :YcmCompleter GetType<CR>
   " }}}
 else
   Plug 'Valloric/YouCompleteMe' "{{{
