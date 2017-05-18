@@ -40,7 +40,7 @@
                               :height ,jellybeans-font-height))))
    `(cursor ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
    `(escape-glyph ((t (:foreground ,jellybeans-yellow :weight bold))))
-   `(fringe ((t (:foreground ,jellybeans-fg :background ,jellybeans-black))))
+   `(fringe ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
    `(header-line ((t (:foreground ,jellybeans-yellow
                                   :background ,jellybeans-bg
                                   :box (:line-width -1 :style released-button)))))
@@ -49,6 +49,9 @@
    `(success ((t (:foreground ,jellybeans-green :weight bold))))
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))
    `(tooltip ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
+
+   `(linum ((t (:foreground ,jellybeans-fg-2 :weight normal :background ,jellybeans-bg :inherit nil))))
+   `(linum-highlight ((t (:foreground ,jellybeans-fg-2 :weight normal :background ,jellybeans-bg :inherit nil))))
 
    `(minibuffer-prompt ((t (:foreground ,jellybeans-fg-1))))
    `(mode-line ((t (:background ,jellybeans-black

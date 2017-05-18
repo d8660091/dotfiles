@@ -24,7 +24,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("6a4072db3c1f3b90124faff0f2b1ea709943e09eee20696f597810c0d475e682" "1bf3747d33f6e3a798fb9d7e2df1918377b1faa94deb3d2f3db21e65d2bfe961" default)))
+    ("ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -47,8 +47,8 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig auto-complete git-gutter-fringe web-mode use-package)))
- '(powerline-default-separator (quote arrow))
+    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+ '(powerline-default-separator nil)
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
    (quote
@@ -130,7 +130,21 @@
               (linum-mode -1))))
 
 (use-package linum
+  :ensure t
   :config
+  (defvar cur-line-number 1)
+  (defvar linum-width 1)
+  (setq linum-format
+        (lambda (line-number)
+          (propertize (format (concat "%" (number-to-string linum-width) "d ") line-number)
+                      'font-lock-face (if (= line-number cur-line-number)
+                                          '(:foreground "#c5c8c6" :background "#1d1f21" :weight normal)
+                                        'linum))))
+  (defadvice linum-update (before advice-linum-update activate)
+    (setq cur-line-number (line-number-at-pos)
+          linum-width (length
+                       (number-to-string
+                        (count-lines (point-min) (point-max))))))
   (global-linum-mode t))
 
 (use-package css-mode
@@ -208,13 +222,6 @@
   (define-key evil-insert-state-map "\C-n" 'nil)
   (define-key evil-insert-state-map "\C-y" 'nil)
   (define-key evil-motion-state-map "\C-y" 'nil))
-
-(use-package git-gutter-fringe
-  :ensure t
-  :config
-  (define-key evil-normal-state-map (kbd "] c") 'git-gutter:next-hunk)
-  (define-key evil-normal-state-map (kbd "[ c") 'git-gutter:previous-hunk)
-  (global-git-gutter-mode))
 
 (use-package evil-numbers
   :ensure t
@@ -397,12 +404,34 @@
   (add-hook 'typescript-mode-hook
             (lambda ()
               (tide-setup)
+              (define-key evil-normal-state-map (kbd ", g d") 'tide-jump-to-definition)
               (flycheck-mode +1)
               (setq flycheck-check-syntax-automatically '(save mode-enabled))
               (eldoc-mode +1)
               (tide-hl-identifier-mode +1)
               (company-mode +1)
               (editorconfig-apply))))
+
+(use-package git-gutter-fringe
+  :ensure t
+  :config
+  (setq-default fringes-outside-margins t)
+  (define-key evil-normal-state-map (kbd "] c") 'git-gutter:next-hunk)
+  (define-key evil-normal-state-map (kbd "[ c") 'git-gutter:previous-hunk)
+  (global-git-gutter-mode))
+
+(use-package fringe-helper
+  :ensure t
+  :config
+  (fringe-helper-define 'git-gutter-fr:added '(center repeated)
+    "XXX.....")
+  (fringe-helper-define 'git-gutter-fr:modified '(center repeated)
+    "XXX.....")
+  (fringe-helper-define 'git-gutter-fr:deleted 'bottom
+    "X......."
+    "XX......"
+    "XXX....."
+    "XXXX...."))
 
 (use-package company
   :ensure t
@@ -411,3 +440,4 @@
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
+
