@@ -24,7 +24,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("1a3c78d6a2b695f001ab6075e99d2d3a6e01b5729f95adb3ba9c09cbc9ef564b" "ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
+    ("30befbeaf0937d5a528fb0295d7c7970313c6954f17a211db863e65b02b7ac9a" "1a3c78d6a2b695f001ab6075e99d2d3a6e01b5729f95adb3ba9c09cbc9ef564b" "ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -48,7 +48,7 @@
  '(package-selected-packages
    (quote
     (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
- '(powerline-default-separator nil)
+ '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
    (quote
