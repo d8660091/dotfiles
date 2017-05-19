@@ -120,8 +120,13 @@
    `(git-gutter:added ((t (:foreground ,jellybeans-green))))
    `(git-gutter:deleted ((t (:foreground ,jellybeans-red))))
    `(git-gutter:modified ((t (:foreground ,jellybeans-magenta))))
+
    `(spaceline-evil-normal ((t (:foreground ,jellybeans-fg :background ,jellybeans-black+2))))
    `(spaceline-evil-insert ((t (:foreground ,jellybeans-fg :background ,jellybeans-green-1))))
+   `(spaceline-flycheck-error ((t (:foreground ,jellybeans-red))))
+   `(spaceline-flycheck-warning ((t (:foreground ,jellybeans-yellow))))
+   `(spaceline-flycheck-info ((t (:foreground ,jellybeans-cyan))))
+
    `(ido-subdir ((t (:foreground ,jellybeans-red))))
    `(ido-only-match ((t (:foreground ,jellybeans-blue))))
 

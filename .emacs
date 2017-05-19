@@ -24,7 +24,7 @@
  '(custom-enabled-themes (quote (jellybeans)))
  '(custom-safe-themes
    (quote
-    ("ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
+    ("1a3c78d6a2b695f001ab6075e99d2d3a6e01b5729f95adb3ba9c09cbc9ef564b" "ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -201,6 +201,9 @@
   :ensure t
   :config
   (evil-mode t)
+  (setq evil-normal-state-tag "NORMAL"
+        evil-insert-state-tag "INSERT"
+        evil-visual-state-tag "VISUAL")
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
@@ -370,15 +373,13 @@
   (spaceline-helm-mode t)
   (spaceline-install
    '((evil-state :face highlight-face)
-     '(buffer-modified buffer-id remote-host)
-     point-position
-     line-column
+     '(buffer-id buffer-modified remote-host)
+     ;; point-position
+     column
      buffer-position
      anzu
      auto-compile
      (process :when active)
-     ((flycheck-error flycheck-warning flycheck-info)
-      :when active)
      ;; (minor-modes :when active)
      (mu4e-alert-segment :when active)
      (erc-track :when active)
@@ -386,7 +387,9 @@
      (org-clock :when active)
      nyan-cat)
 
-   '(major-mode
+   '(((flycheck-error flycheck-warning flycheck-info)
+      :when active)
+     major-mode
      (python-pyvenv :fallback python-pyenv)
      purpose
      (battery :when active)
@@ -441,3 +444,13 @@
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
+(use-package haskell-mode
+  :ensure t
+  :config
+  (add-hook 'haskell-interactive-mode-hook
+            (lambda ()
+              (setq show-trailing-whitespace nil)))
+  (add-hook 'haskell-error-mode-hook
+            (lambda ()
+              (evil-local-mode -1)
+              (setq show-trailing-whitespace nil))))
