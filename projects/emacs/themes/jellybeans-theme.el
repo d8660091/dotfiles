@@ -59,7 +59,10 @@
                                 :box nil))
                 (t :inverse-video t)))
    `(mode-line-buffer-id ((t (:weight bold))))
-   `(powerline-active2 ((t (:background ,jellybeans-black))))
+
+   `(powerline-active1 ((t (:inherit mode-line))))
+   `(powerline-active2 ((t (:inherit mode-line))))
+
    `(powerline-inactive1 ((t (:foreground ,jellybeans-magenta-1 :background ,jellybeans-bg))))
    `(powerline-inactive2 ((t (:background ,jellybeans-bg))))
    `(mode-line-inactive
