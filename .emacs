@@ -2,6 +2,14 @@
 
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 
+(global-hl-line-mode t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(ido-mode t)
+(load-theme 'jellybeans t)
+
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; Added by Package.el.  This must come before configurations of
@@ -21,14 +29,11 @@
  '(company-tooltip-idle-delay 0.1)
  '(compilation-message-face (quote default))
  '(cursor-in-non-selected-windows nil)
- '(custom-enabled-themes (quote (jellybeans)))
- '(custom-safe-themes
-   (quote
-    ("30befbeaf0937d5a528fb0295d7c7970313c6954f17a211db863e65b02b7ac9a" "1a3c78d6a2b695f001ab6075e99d2d3a6e01b5729f95adb3ba9c09cbc9ef564b" "ed44e6df2318d9369fe02cad665aa3ad1b54a4e85438157409506a8e1290868e")))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
     ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+ '(exec-path-from-shell-check-startup-files nil)
  '(flycheck-disabled-checkers (quote (javascript-jshint)))
  '(fringe-mode nil nil (fringe))
  '(helm-split-window-in-side-p t)
@@ -85,13 +90,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
-
-;; Modes
-(global-hl-line-mode t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(ido-mode t)
 
 ;; Shortcuts
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -369,6 +367,8 @@
 (use-package spaceline
   :ensure t
   :config
+  (add-hook 'focus-in-hook
+              'force-mode-line-update t)
   (use-package spaceline-config)
   (spaceline-helm-mode t)
   (spaceline-install
