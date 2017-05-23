@@ -30,7 +30,7 @@
    (quote
     ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(flycheck-disabled-checkers (quote (javascript-jshint)))
- '(fringe-mode (quote (nil . 0)) nil (fringe))
+ '(fringe-mode nil nil (fringe))
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
  '(js-indent-level 2)
@@ -426,6 +426,23 @@
 (use-package fringe-helper
   :ensure t
   :config
+  (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+    (vector #b00000000
+            #b00000000
+            #b00000000
+            #b00000000
+            #b00000000
+            #b00000000
+            #b11111100
+            #b11111110
+            #b11111110
+            #b11111110
+            #b11111100
+            #b00000000
+            #b00000000
+            #b00000000
+            #b00000000
+            #b00000000))
   (fringe-helper-define 'git-gutter-fr:added '(center repeated)
     "XXX.....")
   (fringe-helper-define 'git-gutter-fr:modified '(center repeated)

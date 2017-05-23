@@ -384,6 +384,7 @@ omap <space><tab> <plug>(fzf-maps-o)
 nmap <space>c :Commands<cr>
 nmap <space>b :Buffers<cr>
 nmap <space>h :Help<cr>
+nmap <space>r :History<cr>
 nmap <space>F :Files<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -396,11 +397,6 @@ nmap <silent> <space>f :call fzf#run({
       \ 'sink': 'e',
       \ 'options': '-m +s -e',
       \ 'down': '40%'})<cr>
-nmap <silent> <space>r :call fzf#run({
-      \  'source':  v:oldfiles,
-      \  'sink':    'e',
-      \  'options': '-m +s -e',
-      \  'down':    '40%'})<cr>
 nmap <silent> <space>p :call fzf#run({
       \  'source':  'find ~/Documents ~/play ~/projects -maxdepth 3 -name .git \| grep -v vendor \| xargs -n 1 dirname',
       \  'sink':    'cd',
