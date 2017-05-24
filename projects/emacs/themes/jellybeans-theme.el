@@ -50,7 +50,11 @@
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))
    `(tooltip ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
 
-   `(linum ((t (:foreground ,jellybeans-fg-2 :weight normal :background ,jellybeans-bg :inherit nil))))
+   `(linum ((t (:foreground
+                ,jellybeans-fg-2
+                :weight normal
+                :background ,jellybeans-bg
+                :underline nil))))
    `(linum-highlight ((t (:foreground ,jellybeans-fg-2 :weight normal :background ,jellybeans-bg :inherit nil))))
 
    `(minibuffer-prompt ((t (:foreground ,jellybeans-fg-1))))

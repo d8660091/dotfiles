@@ -52,7 +52,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers neotree all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -87,8 +87,8 @@
 
 ;; miscs
 (setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
+      `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 ;; Shortcuts
@@ -99,12 +99,6 @@
 ;;; Packges:
 (use-package all-the-icons
   :ensure t)
-
-(use-package neotree
-  :ensure t
-  :config
-  (global-set-key [f8] 'neotree-toggle)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 (use-package ace-link
   :ensure t
@@ -134,10 +128,17 @@
   (defvar linum-width 1)
   (setq linum-format
         (lambda (line-number)
-          (propertize (format (concat "%" (number-to-string linum-width) "d ") line-number)
-                      'font-lock-face (if (= line-number cur-line-number)
-                                          '(:foreground "#c5c8c6" :background "#1d1f21" :weight normal)
-                                        'linum))))
+          (propertize (format
+                       (concat "%" (number-to-string linum-width)
+                               "d ")
+                       line-number)
+                      'font-lock-face
+                      (if (= line-number cur-line-number)
+                          '(:foreground "#c5c8c6"
+                                        :background "#1d1f21"
+                                        :underline nil
+                                        :weight normal)
+                        'linum))))
   (defadvice linum-update (before advice-linum-update activate)
     (setq cur-line-number (line-number-at-pos)
           linum-width (length
@@ -385,11 +386,10 @@
      (erc-track :when active)
      (org-pomodoro :when active)
      (org-clock :when active)
-     nyan-cat)
+     ((flycheck-error flycheck-warning flycheck-info)
+      :when active))
 
-   '(((flycheck-error flycheck-warning flycheck-info)
-      :when active)
-     major-mode
+   '(major-mode
      (python-pyvenv :fallback python-pyenv)
      purpose
      (battery :when active)
@@ -471,3 +471,49 @@
             (lambda ()
               (evil-local-mode -1)
               (setq show-trailing-whitespace nil))))
+
+(use-package fringe
+  :config
+  (setq-default fringe-indicator-alist
+                '((truncation nil right-arrow)
+                  (continuation nil right-curly-arrow)
+                  (overlay-arrow . right-triangle)
+                  (up . up-arrow)
+                  (down . down-arrow)
+                  (top top-left-angle top-right-angle)
+                  (bottom bottom-left-angle bottom-right-angle top-right-angle top-left-angle)
+                  (top-bottom left-bracket right-bracket top-right-angle top-left-angle)
+                  (empty-line . empty-line)
+                  (unknown . question-mark))))
+
+;; (defun projectile-sort-files (files)
+;;   (let* ((project-root
+;;           (projectile-project-root))
+;;          (project-close-files
+;;           (-intersection
+;;            files
+;;            (-map
+;;             (lambda (full-path)
+;;               (replace-regexp-in-string project-root "" full-path))
+;;             (directory-files default-directory t))
+;;            )))
+;;     (append project-close-files
+;;             (projectile-difference files project-close-files))))
+
+(defun projectile-sort-files (files)
+  (let ((project-root
+         (projectile-project-root)))
+    (-sort
+     (lambda (it other)
+       (let* ((absolute-path-1
+               (concat project-root it))
+              (absolute-path-2
+               (concat project-root other))
+              (relative-path-1
+               (file-relative-name absolute-path-1 default-directory))
+              (relative-path-2
+               (file-relative-name absolute-path-2 default-directory))
+              (depth-1 (length (split-string relative-path-1 "/")))
+              (depth-2 (length (split-string relative-path-2 "/"))))
+         (< depth-1 depth-2)))
+     files)))
