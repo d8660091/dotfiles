@@ -486,34 +486,34 @@
                   (empty-line . empty-line)
                   (unknown . question-mark))))
 
-;; (defun projectile-sort-files (files)
-;;   (let* ((project-root
-;;           (projectile-project-root))
-;;          (project-close-files
-;;           (-intersection
-;;            files
-;;            (-map
-;;             (lambda (full-path)
-;;               (replace-regexp-in-string project-root "" full-path))
-;;             (directory-files default-directory t))
-;;            )))
-;;     (append project-close-files
-;;             (projectile-difference files project-close-files))))
-
 (defun projectile-sort-files (files)
-  (let ((project-root
-         (projectile-project-root)))
-    (-sort
-     (lambda (it other)
-       (let* ((absolute-path-1
-               (concat project-root it))
-              (absolute-path-2
-               (concat project-root other))
-              (relative-path-1
-               (file-relative-name absolute-path-1 default-directory))
-              (relative-path-2
-               (file-relative-name absolute-path-2 default-directory))
-              (depth-1 (length (split-string relative-path-1 "/")))
-              (depth-2 (length (split-string relative-path-2 "/"))))
-         (< depth-1 depth-2)))
-     files)))
+  (let* ((project-root
+          (projectile-project-root))
+         (project-close-files
+          (-intersection
+           files
+           (-map
+            (lambda (full-path)
+              (replace-regexp-in-string project-root "" full-path))
+            (directory-files default-directory t))
+           )))
+    (append project-close-files
+            (projectile-difference files project-close-files))))
+
+;; (defun projectile-sort-files (files)
+;;   (let ((project-root
+;;          (projectile-project-root)))
+;;     (-sort
+;;      (lambda (it other)
+;;        (let* ((absolute-path-1
+;;                (concat project-root it))
+;;               (absolute-path-2
+;;                (concat project-root other))
+;;               (relative-path-1
+;;                (file-relative-name absolute-path-1 default-directory))
+;;               (relative-path-2
+;;                (file-relative-name absolute-path-2 default-directory))
+;;               (depth-1 (length (split-string relative-path-1 "/")))
+;;               (depth-2 (length (split-string relative-path-2 "/"))))
+;;          (< depth-1 depth-2)))
+;;      files)))
