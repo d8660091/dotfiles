@@ -29,12 +29,14 @@
  '(company-tooltip-idle-delay 0.1)
  '(compilation-message-face (quote default))
  '(cursor-in-non-selected-windows nil)
+ '(diredp-hide-details-initially-flag nil)
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
     ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(exec-path-from-shell-check-startup-files nil)
  '(flycheck-disabled-checkers (quote (javascript-jshint)))
+ '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
@@ -52,7 +54,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(safe-local-variable-values
@@ -65,7 +67,6 @@
  '(save-place-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
- '(show-trailing-whitespace t)
  '(tab-width 4)
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
@@ -237,6 +238,7 @@
   :config
   (define-key emmet-mode-keymap (kbd "C-y n") 'emmet-next-edit-point)
   (add-hook 'scss-mode-hook 'emmet-mode)
+  (add-hook 'html-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package rainbow-mode
@@ -453,14 +455,6 @@
     "XXX....."
     "XXXX...."))
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-tooltip-align-annotations t)
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
-
 (use-package haskell-mode
   :ensure t
   :config
@@ -517,3 +511,33 @@
 ;;               (depth-2 (length (split-string relative-path-2 "/"))))
 ;;          (< depth-1 depth-2)))
 ;;      files)))
+
+(use-package paredit
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojurescript-mode-hook 'paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
+
+(use-package dired+
+  :ensure t
+  :config
+  (diredp-toggle-find-file-reuse-dir 1))
+
+(use-package cider
+  :ensure t
+  :config
+  (add-hook 'cider-repl-mode-hook (lambda () (linum-mode -1))))
+
+(use-package clojure-mode
+  :mode ("\\.cljs\\'" . clojurescript-mode)
+  :ensure t)
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-tooltip-align-annotations t)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
