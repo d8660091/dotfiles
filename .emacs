@@ -145,6 +145,11 @@
           linum-width (length
                        (number-to-string
                         (count-lines (point-min) (point-max))))))
+  ;; (advice-add 'linum-update :before
+  ;;   (lambda () (setq cur-line-number (line-number-at-pos)
+  ;;                    linum-width (length
+  ;;                                 (number-to-string
+  ;;                                  (count-lines (point-min) (point-max)))))))
   (global-linum-mode t))
 
 (use-package css-mode
@@ -378,7 +383,7 @@
    '((evil-state :face highlight-face)
      '(buffer-id buffer-modified remote-host)
      ;; point-position
-     column
+     ;; column
      buffer-position
      anzu
      auto-compile
@@ -387,19 +392,21 @@
      (mu4e-alert-segment :when active)
      (erc-track :when active)
      (org-pomodoro :when active)
-     (org-clock :when active)
+     ;; (org-clock :when active)
      ((flycheck-error flycheck-warning flycheck-info)
       :when active))
 
-   '(major-mode
+   '((org-clock :when active)
+     major-mode
      (python-pyvenv :fallback python-pyenv)
      purpose
      (battery :when active)
      selection-info
      (global :when active)
      (version-control :when active)
-     buffer-size
-     projectile-root))
+     ;; buffer-size
+     ;; projectile-root
+     ))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
 
@@ -547,3 +554,9 @@
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
+
+(use-package org
+  :ensure t
+  :config
+  (advice-add 'org-clock-get-clock-string :filter-return (apply-partially 's-truncate 20))
+  (setq org-log-done t))
