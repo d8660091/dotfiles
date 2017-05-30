@@ -515,6 +515,8 @@
 (use-package paredit
   :ensure t
   :config
+  (define-key evil-normal-state-map "\C-c\C-h" 'paredit-splice-sexp-killing-backward)
+  (define-key evil-normal-state-map "\C-c\C-l" 'paredit-splice-sexp-killing-forward)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojurescript-mode-hook 'paredit-mode)
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
@@ -527,6 +529,10 @@
 (use-package cider
   :ensure t
   :config
+  (setq cider-cljs-lein-repl
+        "(do (require 'figwheel-sidecar.repl-api)
+           (figwheel-sidecar.repl-api/start-figwheel!)
+           (figwheel-sidecar.repl-api/cljs-repl))")
   (add-hook 'cider-repl-mode-hook (lambda () (linum-mode -1))))
 
 (use-package clojure-mode
