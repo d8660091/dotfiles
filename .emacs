@@ -140,16 +140,11 @@
                                         :underline nil
                                         :weight normal)
                         'linum))))
-  (defadvice linum-update (before advice-linum-update activate)
-    (setq cur-line-number (line-number-at-pos)
-          linum-width (length
-                       (number-to-string
-                        (count-lines (point-min) (point-max))))))
-  ;; (advice-add 'linum-update :before
-  ;;   (lambda () (setq cur-line-number (line-number-at-pos)
-  ;;                    linum-width (length
-  ;;                                 (number-to-string
-  ;;                                  (count-lines (point-min) (point-max)))))))
+  (advice-add 'linum-update :before
+    (lambda (b) (setq cur-line-number (line-number-at-pos)
+                     linum-width (length
+                                  (number-to-string
+                                   (count-lines (point-min) (point-max)))))))
   (global-linum-mode t))
 
 (use-package css-mode
