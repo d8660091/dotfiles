@@ -57,6 +57,7 @@
     (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
+ '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -153,7 +154,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.tsx\\'" . web-mode)))
 
 ;; (use-package auto-complete
 ;;   :ensure t
@@ -408,16 +409,21 @@
 (use-package tide
   :ensure t
   :config
-  (add-hook 'typescript-mode-hook
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (define-key evil-normal-state-map (kbd ", g d") 'tide-jump-to-definition)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1)
+    (editorconfig-apply))
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook 'web-mode-hook
             (lambda ()
-              (tide-setup)
-              (define-key evil-normal-state-map (kbd ", g d") 'tide-jump-to-definition)
-              (flycheck-mode +1)
-              (setq flycheck-check-syntax-automatically '(save mode-enabled))
-              (eldoc-mode +1)
-              (tide-hl-identifier-mode +1)
-              (company-mode +1)
-              (editorconfig-apply))))
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode)))))
 
 (use-package git-gutter-fringe
   :ensure t

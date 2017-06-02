@@ -155,6 +155,8 @@
    `(company-scrollbar-fg ((t (:background ,jellybeans-fg-2))))
    `(company-scrollbar-bg ((t (:background ,jellybeans-black+2))))
 
+   `(tide-hl-identifier-face ((t (:foreground ,jellybeans-magenta))))
+
   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 
 (provide-theme 'jellybeans)
