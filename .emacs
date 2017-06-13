@@ -556,6 +556,14 @@
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
+(use-package company-dabbrev
+  :config
+  (setq company-dabbrev-downcase nil))
+
+(use-package eshell
+  :config
+  (add-hook 'eshell-mode-hook (lambda () (linum-mode -1))))
+
 (use-package org
   :ensure t
   :config
