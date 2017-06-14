@@ -54,7 +54,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil-matchit evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -246,11 +246,6 @@
   :ensure t
   :config
   (add-hook 'scss-mode-hook 'rainbow-mode))
-
-(use-package evil-matchit
-  :ensure t
-  :config
-  (global-evil-matchit-mode t))
 
 (use-package evil-surround
   :ensure t
