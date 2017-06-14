@@ -190,6 +190,11 @@
   (add-to-list 'projectile-other-file-alist '("jsx" "css"))
   (add-to-list 'projectile-other-file-alist '("css" "jsx")))
 
+(use-package helm
+  :ensure t
+  :config
+  (add-hook 'helm-mode (lambda () (linum-mode -1))))
+
 (use-package helm-projectile
   :ensure t
   :config
