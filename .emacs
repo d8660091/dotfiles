@@ -63,7 +63,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (evil-matchit tide cider dired+ paredit company pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -163,6 +163,10 @@
 (use-package web-mode
   :ensure t
   :config
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (setq yank-excluded-properties
+                    (default-value 'yank-excluded-properties))))
   (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.tsx\\'" . web-mode)))
 
 ;; (use-package auto-complete
