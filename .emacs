@@ -2,13 +2,7 @@
 
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 
-(global-hl-line-mode t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(ido-mode t)
 (load-theme 'jellybeans t)
-
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -23,15 +17,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-view-program-selection
-   (quote
-    (((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Zathura")
-     (output-html "xdg-open"))))
  '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
  '(company-idle-delay 0.2)
@@ -47,13 +32,16 @@
  '(flycheck-disabled-checkers (quote (javascript-jshint)))
  '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
+ '(global-hl-line-mode t)
  '(helm-split-window-in-side-p t)
+ '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
+ '(menu-bar-mode nil)
  '(neo-window-position (quote right))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -75,9 +63,11 @@
             nil t)
            (rainbow-mode 1)))))
  '(save-place-mode t)
+ '(scroll-bar-mode nil)
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(tab-width 4)
+ '(tool-bar-mode nil)
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
  '(web-mode-attr-indent-offset 2)
@@ -104,7 +94,7 @@
 
 ;; Shortcuts
 (global-set-key (kbd "M-x") 'helm-M-x)
-                                        ; (global-set-key (kbd "C-s") 'swiper)
+;; (global-set-key (kbd "C-s") 'swiper)
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
