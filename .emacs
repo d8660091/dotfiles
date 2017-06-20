@@ -17,6 +17,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-view-program-selection
+   (quote
+    (((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Zathura")
+     (output-html "xdg-open"))))
  '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
  '(company-idle-delay 0.2)
@@ -32,16 +41,14 @@
  '(flycheck-disabled-checkers (quote (javascript-jshint)))
  '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
- '(global-hl-line-mode t)
+ '(global-evil-mc-mode t)
  '(helm-split-window-in-side-p t)
- '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
- '(menu-bar-mode nil)
  '(neo-window-position (quote right))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -51,7 +58,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (evil-matchit tide cider dired+ paredit company pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -63,11 +70,9 @@
             nil t)
            (rainbow-mode 1)))))
  '(save-place-mode t)
- '(scroll-bar-mode nil)
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(tab-width 4)
- '(tool-bar-mode nil)
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
  '(web-mode-attr-indent-offset 2)
@@ -338,8 +343,7 @@
 (use-package evil-mc
   :ensure t
   :config
-  (diminish 'evil-mc-mode)
-  (global-evil-mc-mode))
+  (diminish 'evil-mc-mode))
 
 (use-package markdown-mode
   :ensure t
@@ -380,6 +384,7 @@
   (spaceline-helm-mode t)
   (spaceline-install
    '((evil-state :face highlight-face)
+     projectile-root
      '(buffer-id buffer-modified remote-host)
      ;; point-position
      ;; column
@@ -404,7 +409,6 @@
      (global :when active)
      (version-control :when active)
      ;; buffer-size
-     ;; projectile-root
      ))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
