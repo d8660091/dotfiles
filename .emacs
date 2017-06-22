@@ -4,6 +4,9 @@
 
 (load-theme 'jellybeans t)
 
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;; Added by Package.el.  This must come before configurations of
@@ -158,10 +161,6 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (setq yank-excluded-properties
-                    (default-value 'yank-excluded-properties))))
   (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.tsx\\'" . web-mode)))
 
 ;; (use-package auto-complete
@@ -227,6 +226,7 @@
   (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
   (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag)
   (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
+  (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu)
   (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
   (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
   (define-key evil-normal-state-map (kbd "[ q") 'previous-error)

@@ -139,7 +139,7 @@
 
    `(eshell-prompt ((t (:foreground ,jellybeans-fg-1))))
 
-   `(tide-hl-identifier-face ((t (:foreground ,jellybeans-yellow))))
+   `(tide-hl-identifier-face ((t (:foreground ,jellybeans-magenta))))
 
    `(company-preview ((t (:foreground ,jellybeans-fg-2 :underline t))))
    `(company-preview-common ((t (:inherit company-preview))))
