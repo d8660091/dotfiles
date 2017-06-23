@@ -109,7 +109,7 @@
                       :weight bold))))
    `(helm-candidate-number ((t (:foreground ,jellybeans-blue :background ,jellybeans-black))))
    `(helm-match ((t (:foreground ,jellybeans-yellow))))
-   `(helm-selection ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
+   `(helm-selection ((t (:inverse-video t))))
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
