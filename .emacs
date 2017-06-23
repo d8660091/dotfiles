@@ -101,7 +101,6 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; Shortcuts
-(global-set-key (kbd "M-x") 'helm-M-x)
 ;; (global-set-key (kbd "C-s") 'swiper)
 (global-set-key [f10] 'describe-face)
 
@@ -200,6 +199,7 @@
 (use-package helm
   :ensure t
   :config
+  (global-set-key (kbd "M-x") 'helm-M-x)
   (add-hook 'helm-mode (lambda () (linum-mode -1))))
 
 (use-package helm-projectile
