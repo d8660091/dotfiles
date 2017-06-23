@@ -36,6 +36,7 @@
  '(compilation-message-face (quote default))
  '(cursor-in-non-selected-windows nil)
  '(diredp-hide-details-initially-flag nil)
+ '(eldoc-idle-delay 0.2)
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -124,17 +125,13 @@
   :ensure t
   :mode "\\.jsx?\\'")
 
-(use-package cus-edit
-  :config
-  (add-hook 'custom-mode-hook
-            (lambda ()
-              (linum-mode -1))))
-
 (use-package linum
   :ensure t
   :config
   (defvar cur-line-number 1)
   (defvar linum-width 1)
+  ;; highlight current line
+
   (setq linum-format
         (lambda (line-number)
           (propertize (format
@@ -149,11 +146,18 @@
                                         :weight normal)
                         'linum))))
   (advice-add 'linum-update :before
-    (lambda (b) (setq cur-line-number (line-number-at-pos)
-                     linum-width (length
-                                  (number-to-string
-                                   (count-lines (point-min) (point-max)))))))
-  (global-linum-mode t))
+              (lambda (b) (setq cur-line-number (line-number-at-pos)
+                                linum-width (length
+                                             (number-to-string
+                                              (count-lines (point-min) (point-max)))))))
+
+  ;; refresh linum after eldoc is refreshed
+  (advice-add 'eldoc-print-current-symbol-info :after 'linum-update-current)
+  ;; (global-linum-mode t)
+  (add-hook 'tide-mode-hook 'linum-mode)
+  (add-hook 'web-mode-hook 'linum-mode)
+  (add-hook 'fundamental-mode-hook 'linum-mode)
+  (add-hook 'emacs-lisp-mode-hook 'linum-mode))
 
 (use-package css-mode
   :mode ("\\.scss\\'" . scss-mode))
@@ -162,24 +166,6 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.tsx\\'" . web-mode)))
-
-;; (use-package auto-complete
-;;   :ensure t
-;;   :init
-;;   :config
-;;   (add-hook 'web-mode-hook
-;;             (lambda()
-;;               (add-to-list 'ac-sources 'ac-source-css-property)
-;;               (add-to-list 'ac-sources 'ac-source-yasnippet)))
-;;   (ac-config-default)
-;;   (defun ac-common-setup ()
-;;     (add-to-list 'ac-sources 'ac-source-filename))
-;;   (setq ac-use-menu-map t)
-;;   (setq ac-auto-show-menu 0.2)
-;;   (define-key ac-menu-map "\C-n" 'ac-next)
-;;   (define-key ac-menu-map "\C-p" 'ac-previous)
-;;   (ac-linum-workaround)
-;;   (global-auto-complete-mode))
 
 (use-package editorconfig
   :ensure t
@@ -198,9 +184,7 @@
   (add-to-list 'projectile-other-file-alist '("css" "jsx")))
 
 (use-package helm
-  :ensure t
-  :config
-  (add-hook 'helm-mode (lambda () (linum-mode -1))))
+  :ensure t)
 
 (use-package helm-projectile
   :ensure t
@@ -420,12 +404,14 @@
     (interactive)
     (tide-setup)
     (define-key evil-normal-state-map (kbd ", g d") 'tide-jump-to-definition)
+    (define-key evil-normal-state-map (kbd ", g r") 'tide-references)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
     (company-mode +1)
     (editorconfig-apply))
+  (advice-add 'tide-move-to-location :before (lambda (_) (evil--jumps-push)))
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'web-mode-hook
             (lambda ()
@@ -509,24 +495,6 @@
     (append project-close-files
             (projectile-difference files project-close-files))))
 
-;; (defun projectile-sort-files (files)
-;;   (let ((project-root
-;;          (projectile-project-root)))
-;;     (-sort
-;;      (lambda (it other)
-;;        (let* ((absolute-path-1
-;;                (concat project-root it))
-;;               (absolute-path-2
-;;                (concat project-root other))
-;;               (relative-path-1
-;;                (file-relative-name absolute-path-1 default-directory))
-;;               (relative-path-2
-;;                (file-relative-name absolute-path-2 default-directory))
-;;               (depth-1 (length (split-string relative-path-1 "/")))
-;;               (depth-2 (length (split-string relative-path-2 "/"))))
-;;          (< depth-1 depth-2)))
-;;      files)))
-
 (use-package paredit
   :ensure t
   :config
@@ -547,8 +515,7 @@
   (setq cider-cljs-lein-repl
         "(do (require 'figwheel-sidecar.repl-api)
            (figwheel-sidecar.repl-api/start-figwheel!)
-           (figwheel-sidecar.repl-api/cljs-repl))")
-  (add-hook 'cider-repl-mode-hook (lambda () (linum-mode -1))))
+           (figwheel-sidecar.repl-api/cljs-repl))"))
 
 (use-package clojure-mode
   :mode ("\\.cljs\\'" . clojurescript-mode)
@@ -568,8 +535,7 @@
   (setq company-dabbrev-downcase nil))
 
 (use-package eshell
-  :config
-  (add-hook 'eshell-mode-hook (lambda () (linum-mode -1))))
+  :config)
 
 (use-package org
   :ensure t
