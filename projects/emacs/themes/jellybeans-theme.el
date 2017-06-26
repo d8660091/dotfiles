@@ -157,6 +157,8 @@
 
    `(tide-hl-identifier-face ((t (:foreground ,jellybeans-magenta))))
 
+   `(speedbar-highlight-face ((t (:inverse-video t))))
+
   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 
 (provide-theme 'jellybeans)
