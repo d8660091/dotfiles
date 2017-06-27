@@ -201,6 +201,7 @@
   :ensure t
   :config
   (evil-mode t)
+  (add-to-list 'evil-emacs-state-modes 'process-menu-mode)
   (setq evil-normal-state-tag "NORMAL"
         evil-insert-state-tag "INSERT"
         evil-visual-state-tag "VISUAL")
@@ -299,11 +300,6 @@
   :ensure t
   :config
   (which-key-mode t))
-
-(use-package avy
-  :ensure t
-  :config
-  (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1))
 
 (use-package magit
   :ensure t
@@ -546,3 +542,8 @@
   :config
   (advice-add 'org-clock-get-clock-string :filter-return (apply-partially 's-truncate 20))
   (setq org-log-done t))
+
+(use-package avy
+  :ensure t
+  :config
+  (define-key evil-normal-state-map (kbd "s") 'avy-goto-word-or-subword-1))

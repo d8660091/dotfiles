@@ -23,6 +23,8 @@
       (jellybeans-yellow-1 "#de935f")
       (jellybeans-blue     "#81a2be")
       (jellybeans-blue-1   "#5f819d")
+      (jellybeans-blue-2   "#384d5d")
+      (jellybeans-blue-3   "#2f404d")
       (jellybeans-magenta  "#b294bb")
       (jellybeans-magenta-1"#85678f")
       (jellybeans-cyan     "#8abeb7")
@@ -74,7 +76,7 @@
                       :background ,jellybeans-bg
                       :box nil))))
    `(anzu-mode-line ((t (:foreground ,jellybeans-red))))
-   `(region ((t (:background ,jellybeans-blue-1))
+   `(region ((t (:background ,jellybeans-blue-3))
              (t :inverse-video t)))
    `(secondary-selection ((t (:background ,jellybeans-magenta-1))))
    `(trailing-whitespace ((t (:background ,jellybeans-red))))
@@ -110,6 +112,7 @@
    `(helm-candidate-number ((t (:foreground ,jellybeans-blue :background ,jellybeans-black))))
    `(helm-match ((t (:foreground ,jellybeans-yellow))))
    `(helm-selection ((t (:inverse-video t))))
+   `(helm-buffer-directory ((t (:foreground ,jellybeans-yellow))))
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
