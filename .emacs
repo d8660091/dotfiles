@@ -84,6 +84,7 @@
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-pairing t)
  '(web-mode-enable-auto-quoting nil)
+ '(web-mode-extra-keywords (quote (("javascript" "namespace" "type"))))
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
  '(web-mode-style-padding 0))

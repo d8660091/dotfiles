@@ -18,8 +18,8 @@ let s:yellow   = '#f0c674'
 let s:yellow_1 = '#de935f'
 let s:blue     = '#81a2be'
 let s:blue_1   = '#5f819d'
-let s:blue_2   = '#425a6d'
-let s:blue_3   = '#344857'
+let s:blue_2   = '#384d5d'
+let s:blue_3   = '#2f404d'
 let s:purple   = '#b294bb'
 let s:purple_1 = '#85678f'
 let s:cyan     = '#8abeb7'
@@ -55,7 +55,7 @@ exec 'hi '.'Operator'               .' guifg='.s:yellow   .' guibg='.s:NONE
 exec 'hi '.'Pmenu'                  .' guifg='.s:fg_1     .' guibg='.s:grey
 exec 'hi '.'PmenuSel'               .' guifg='.s:black    .' guibg='.s:blue    .' gui=bold'
 exec 'hi '.'PreProc'                .' guifg='.s:blue     .' guibg='.s:NONE
-exec 'hi '.'Search'                 .' guifg='.s:fg       .' guibg='.s:red_2
+exec 'hi '.'Search'                 .' guifg='.s:fg       .' guibg='.s:blue_2
 exec 'hi '.'Special'                .' guifg='.s:green    .' guibg='.s:NONE
 exec 'hi '.'SpecialKey'             .' guifg='.s:cyan_1   .' guibg='.s:NONE
 exec 'hi '.'StartifyPath'           .' guifg='.s:fg       .' guibg='.s:NONE
