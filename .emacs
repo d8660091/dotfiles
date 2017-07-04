@@ -107,9 +107,6 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
-(use-package all-the-icons
-  :ensure t)
-
 (use-package ace-link
   :ensure t
   :config
