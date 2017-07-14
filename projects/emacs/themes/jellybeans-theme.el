@@ -113,6 +113,7 @@
    `(helm-match ((t (:foreground ,jellybeans-yellow))))
    `(helm-selection ((t (:inverse-video t))))
    `(helm-buffer-directory ((t (:foreground ,jellybeans-yellow))))
+   `(helm-buffer-not-saved ((t (:foreground ,jellybeans-red))))
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))

@@ -1,5 +1,4 @@
 ;; -*- flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
-
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 
 (load-theme 'jellybeans t)
@@ -60,10 +59,9 @@
  '(ns-use-srgb-colorspace nil)
  '(org-agenda-files (quote ("~/org/home.org")))
  '(org-clock-persist t)
- '(org-todo-keywords (quote ((sequence "TODO" "DONE"))))
  '(package-selected-packages
    (quote
-    (company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers all-the-icons ace-link auctex rainbow-mode helm-ag spaceline-config anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (company-jedi elpy all-the-icons go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -142,12 +140,13 @@
                                         :underline nil
                                         :weight normal)
                         'linum))))
+  (defun my-set-current-line-number (b)
+    (setq cur-line-number (line-number-at-pos)
+          linum-width (length
+                       (number-to-string
+                        (count-lines (point-min) (point-max))))))
   (advice-add 'linum-update :before
-              (lambda (b) (setq cur-line-number (line-number-at-pos)
-                                linum-width (length
-                                             (number-to-string
-                                              (count-lines (point-min) (point-max)))))))
-
+              'my-set-current-line-number)
   ;; refresh linum after eldoc is refreshed
   (advice-add 'eldoc-print-current-symbol-info :after 'linum-update-current)
   ;; (global-linum-mode t)
@@ -155,6 +154,7 @@
   (add-hook 'web-mode-hook 'linum-mode)
   (add-hook 'haskell-mode-hook 'linum-mode)
   (add-hook 'php-mode-hook 'linum-mode)
+  (add-hook 'js-mode-hook 'linum-mode)
   (add-hook 'fundamental-mode-hook 'linum-mode)
   (add-hook 'emacs-lisp-mode-hook 'linum-mode))
 
@@ -361,46 +361,47 @@
   (setq anzu-cons-mode-line-p nil)
   (global-anzu-mode +1))
 
-(use-package spaceline
-  :ensure t
+(use-package spaceline-config
+  :ensure spaceline
   :config
+  (with-no-warnings
+    (spaceline-helm-mode t)
+    (spaceline-install
+      '((evil-state :face highlight-face)
+        projectile-root
+        '(buffer-id buffer-modified remote-host)
+        ;; point-position
+        ;; column
+        buffer-position
+        anzu
+        auto-compile
+        (process :when active)
+        ;; (minor-modes :when active)
+        (mu4e-alert-segment :when active)
+        (erc-track :when active)
+        (org-pomodoro :when active)
+        ;; (org-clock :when active)
+        ((flycheck-error flycheck-warning flycheck-info)
+         :when active))
+
+      '((org-clock :when active)
+        major-mode
+        (python-pyvenv :fallback python-pyenv)
+        purpose
+        (battery :when active)
+        selection-info
+        (global :when active)
+        (version-control :when active)
+        ;; buffer-size
+        )))
   (add-hook 'focus-in-hook
               'force-mode-line-update t)
-  (use-package spaceline-config)
-  (spaceline-helm-mode t)
-  (spaceline-install
-   '((evil-state :face highlight-face)
-     projectile-root
-     '(buffer-id buffer-modified remote-host)
-     ;; point-position
-     ;; column
-     buffer-position
-     anzu
-     auto-compile
-     (process :when active)
-     ;; (minor-modes :when active)
-     (mu4e-alert-segment :when active)
-     (erc-track :when active)
-     (org-pomodoro :when active)
-     ;; (org-clock :when active)
-     ((flycheck-error flycheck-warning flycheck-info)
-      :when active))
-
-   '((org-clock :when active)
-     major-mode
-     (python-pyvenv :fallback python-pyenv)
-     purpose
-     (battery :when active)
-     selection-info
-     (global :when active)
-     (version-control :when active)
-     ;; buffer-size
-     ))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
 
 (use-package tide
   :ensure t
+  :functions (setup-tide-mode evil--jumps-push)
   :config
   (defun setup-tide-mode ()
     (interactive)
@@ -461,6 +462,7 @@
 
 (use-package haskell-mode
   :ensure t
+  :functions evil-local-mode
   :config
   (add-hook 'haskell-interactive-mode-hook
             (lambda ()
@@ -484,19 +486,19 @@
                   (empty-line . empty-line)
                   (unknown . question-mark))))
 
-(defun projectile-sort-files (files)
-  (let* ((project-root
-          (projectile-project-root))
-         (project-close-files
-          (-intersection
-           files
-           (-map
-            (lambda (full-path)
-              (replace-regexp-in-string project-root "" full-path))
-            (directory-files default-directory t))
-           )))
-    (append project-close-files
-            (projectile-difference files project-close-files))))
+;; (defun projectile-sort-files (files)
+;;   (let* ((project-root
+;;           (projectile-project-root))
+;;          (project-close-files
+;;           (-intersection
+;;            files
+;;            (-map
+;;             (lambda (full-path)
+;;               (replace-regexp-in-string project-root "" full-path))
+;;             (directory-files default-directory t))
+;;            )))
+;;     (append project-close-files
+;;             (projectile-difference files project-close-files))))
 
 (use-package paredit
   :ensure t
@@ -562,3 +564,4 @@
   :ensure t
   :config
   (elpy-enable))
+
