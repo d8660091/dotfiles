@@ -149,14 +149,13 @@
               'my-set-current-line-number)
   ;; refresh linum after eldoc is refreshed
   (advice-add 'eldoc-print-current-symbol-info :after 'linum-update-current)
-  ;; (global-linum-mode t)
-  (add-hook 'tide-mode-hook 'linum-mode)
-  (add-hook 'web-mode-hook 'linum-mode)
-  (add-hook 'haskell-mode-hook 'linum-mode)
-  (add-hook 'php-mode-hook 'linum-mode)
-  (add-hook 'js-mode-hook 'linum-mode)
-  (add-hook 'fundamental-mode-hook 'linum-mode)
-  (add-hook 'emacs-lisp-mode-hook 'linum-mode))
+  (defun disable-linum-mode ()
+    (interactive)
+    (linum-mode -1) 
+  (global-linum-mode t)
+  (add-hook 'dired-mode-hook 'disable-linum-mode)
+  (add-hook 'custom-mode-hook 'disable-linum-mode)
+  (add-hook 'helm-major-mode-hook 'disable-linum-mode))
 
 (use-package css-mode
   :mode ("\\.scss\\'" . scss-mode))
@@ -182,6 +181,8 @@
 (use-package projectile
   :ensure t
   :config
+  (projectile-register-project-type 'php '("composer.json")
+                                    :test-suffix "Spec")
   (projectile-mode t)
   (add-to-list 'projectile-other-file-alist '("jsx" "css"))
   (add-to-list 'projectile-other-file-alist '("css" "jsx")))
