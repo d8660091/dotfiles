@@ -151,7 +151,7 @@
   (advice-add 'eldoc-print-current-symbol-info :after 'linum-update-current)
   (defun disable-linum-mode ()
     (interactive)
-    (linum-mode -1) 
+    (linum-mode -1)) 
   (global-linum-mode t)
   (add-hook 'dired-mode-hook 'disable-linum-mode)
   (add-hook 'custom-mode-hook 'disable-linum-mode)
@@ -167,7 +167,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.tsx\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.dtl\\|.tsx\\'" . web-mode)))
 
 (use-package editorconfig
   :ensure t
@@ -181,8 +181,9 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-register-project-type 'php '("composer.json")
-                                    :test-suffix "Spec")
+  (with-no-warnings
+    (projectile-register-project-type 'php '("composer.json")
+                                      :test-suffix "Spec"))
   (projectile-mode t)
   (add-to-list 'projectile-other-file-alist '("jsx" "css"))
   (add-to-list 'projectile-other-file-alist '("css" "jsx")))
@@ -346,6 +347,11 @@
   (defun my-go-mode-hook ()
     (add-hook 'before-save-hook 'gofmt-before-save))
   (add-hook 'go-mode-hook 'my-go-mode-hook))
+
+(use-package go-eldoc
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 
 (use-package flycheck
   :ensure t
@@ -564,5 +570,8 @@
 (use-package elpy
   :ensure t
   :config
+  (defun my-elpy-mode-hook ()
+    (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition))
+  (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
   (elpy-enable))
 
