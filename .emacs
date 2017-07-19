@@ -155,6 +155,7 @@
   (global-linum-mode t)
   (add-hook 'dired-mode-hook 'disable-linum-mode)
   (add-hook 'custom-mode-hook 'disable-linum-mode)
+  (add-hook 'special-mode-hook 'disable-linum-mode)
   (add-hook 'helm-major-mode-hook 'disable-linum-mode))
 
 (use-package css-mode
@@ -359,7 +360,13 @@
   (global-flycheck-mode))
 
 (use-package helm-ag
-  :ensure t)
+  :ensure t
+  :functions helm-add-action-to-source
+  :config
+  (defun my-insert-line (candidate)
+    (insert (car (last (split-string candidate ":")))))
+  ;; Add line completion to helm-projectile ag
+  (helm-add-action-to-source "Insert line" 'my-insert-line helm-source-do-ag))
 
 (use-package anzu
   :init
