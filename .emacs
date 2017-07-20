@@ -366,6 +366,9 @@
   (defun my-insert-line (candidate)
     (insert (car (last (split-string candidate ":")))))
   ;; Add line completion to helm-projectile ag
+  (setf (alist-get 'real-to-display helm-source-do-ag)
+        'helm-ag--candidate-transformer)
+  (assq-delete-all 'nohilight helm-source-do-ag)
   (helm-add-action-to-source "Insert line" 'my-insert-line helm-source-do-ag))
 
 (use-package anzu
