@@ -2,6 +2,8 @@
 My settings for Vim, Emacs etc.
 
 ## Overview
+I use these settings in Mac OS and Linux everyday, so it should have no problem with those two systems. 
+
 The main feature of the settings is the consistent user experience across Emacs and Vim. I used Vim for several years then changed to Emacs with a migration of my previous Vim configs. So the themes and shortcuts of Vim and Emacs are very similar, but I no longer actively configure my Vim settings.
 
 ## Emacs
