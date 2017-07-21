@@ -368,7 +368,9 @@
   ;; Add line completion to helm-projectile ag
   (setf (alist-get 'real-to-display helm-source-do-ag)
         'helm-ag--candidate-transformer)
-  (assq-delete-all 'nohilight helm-source-do-ag)
+  (assq-delete-all 'nohighlight helm-source-do-ag)
+  (setf (alist-get 'filtered-candidate-transformer helm-source-do-ag)
+        'helm-fuzzy-highlight-matches)
   (helm-add-action-to-source "Insert line" 'my-insert-line helm-source-do-ag))
 
 (use-package anzu
