@@ -60,53 +60,6 @@ My settings for Vim, Emacs etc.
 * which-key
 * yasnippet
 
-## Vim
-
-![vim screenshot][vim-image]
-
-### Vim packages
-* rizzatti/dash.vim
-* ap/vim-css-color
-* hail2u/vim-css3-syntax
-* airblade/vim-gitgutter
-* cakebaker/scss-syntax.vim
-* easymotion/vim-easymotion
-* editorconfig/editorconfig-vim
-* elmcast/elm-vim
-* godlygeek/tabular
-* itchyny/vim-haskell-indent
-* junegunn/fzf
-* junegunn/fzf.vim
-* junegunn/gv.vim
-* leafgarland/typescript-vim
-* mattn/emmet-vim
-* mbbill/undotree
-* othree/html5.vim
-* pangloss/vim-javascript
-* terryma/vim-multiple-cursors
-* tmhedberg/matchit
-* tpope/vim-fugitive
-* gregsexton/gitv
-* tpope/vim-repeat
-* tpope/vim-surround
-* tpope/vim-unimpaired
-* ~/projects/vim-color
-* ~/projects/vim-php
-* ~/projects/vim-twig
-* ~/projects/vim-vue
-* junegunn/vim-easy-align
-* SirVer/ultisnips
-* majutsushi/tagbar
-* scrooloose/nerdtree
-* plasticboy/vim-markdown
-* mileszs/ack.vim
-* mxw/vim-jsx
-* mhinz/vim-startify
-* scrooloose/nerdcommenter
-* coot/atp_vim
-* ervandew/supertab
-* neomake/neomake
-
 ### Keymaps
 ```elisp
 (define-key company-active-map      "<tab>"    'company-complete-selection)
@@ -160,8 +113,57 @@ My settings for Vim, Emacs etc.
   "cr" 'comment-or-uncomment-region
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-
 ```
+
+## Vim
+
+![vim screenshot][vim-image]
+
+### Vim packages
+* rizzatti/dash.vim
+* ap/vim-css-color
+* hail2u/vim-css3-syntax
+* airblade/vim-gitgutter
+* cakebaker/scss-syntax.vim
+* easymotion/vim-easymotion
+* editorconfig/editorconfig-vim
+* elmcast/elm-vim
+* godlygeek/tabular
+* itchyny/vim-haskell-indent
+* junegunn/fzf
+* junegunn/fzf.vim
+* junegunn/gv.vim
+* leafgarland/typescript-vim
+* mattn/emmet-vim
+* mbbill/undotree
+* othree/html5.vim
+* pangloss/vim-javascript
+* terryma/vim-multiple-cursors
+* tmhedberg/matchit
+* tpope/vim-fugitive
+* gregsexton/gitv
+* tpope/vim-repeat
+* tpope/vim-surround
+* tpope/vim-unimpaired
+* ~/projects/vim-color
+* ~/projects/vim-php
+* ~/projects/vim-twig
+* ~/projects/vim-vue
+* junegunn/vim-easy-align
+* SirVer/ultisnips
+* majutsushi/tagbar
+* scrooloose/nerdtree
+* plasticboy/vim-markdown
+* mileszs/ack.vim
+* mxw/vim-jsx
+* mhinz/vim-startify
+* scrooloose/nerdcommenter
+* coot/atp_vim
+* ervandew/supertab
+* neomake/neomake
+
+### Keymaps
+
 
 [emacs-image]: http://i.imgur.com/lb49eOW.png
 [vim-image]: http://imgur.com/VDJFKSr.png
