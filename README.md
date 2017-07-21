@@ -13,7 +13,7 @@ Emacs natively support many languages, but the following languages are supported
 * Elisp
 * PHP
 * Python
-* Web Languages(CSS, HTML, Jinja2...)
+* Web Languages(CSS/SCSS, HTML/Jinja2, ...)
 * Latex
 * Clojure
 * Haskell
