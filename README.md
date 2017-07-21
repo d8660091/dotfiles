@@ -26,7 +26,7 @@ Emacs natively support many languages, but the following languages are supported
 * Clojure
 * Haskell
 
-### Emacs packages
+### packages
 * ace-link
 * ag
 * anzu
@@ -140,7 +140,7 @@ Emacs natively support many languages, but the following languages are supported
 
 ![vim screenshot][vim-image]
 
-### Vim packages
+### packages
 * rizzatti/dash.vim
 * ap/vim-css-color
 * hail2u/vim-css3-syntax
