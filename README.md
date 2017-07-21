@@ -1,9 +1,22 @@
 # dotfiles
 My settings for Vim, Emacs etc.
 
+## Overview
+The main feature of the settings is the consistent user experience across Emacs and Vim. I used Vim for several years then changed to Emacs with a migration of my previous Vim configs. So the themes and shortcuts of Vim and Emacs are very similar.
+
 ## Emacs
 
 ![emacs screenshot][emacs-image]
+
+### Supported Languages:
+Emacs natively support many languages, but the following languages are supported with extra configurations.
+* Elisp
+* PHP
+* Python
+* Web Languages(CSS, HTML, Jinja2...)
+* Latex
+* Clojure
+* Haskell
 
 ### Emacs packages
 * ace-link
