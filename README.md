@@ -13,10 +13,12 @@ The main feature of the settings is the consistent user experience across Emacs 
 ### Supported Languages:
 Emacs natively support many languages, but the following languages are supported with extra configurations.
 * Elisp
+* JavaScript
+* TypeScript
 * PHP
 * Python
 * Go
-* Web Languages(CSS/SCSS, HTML/Jinja2, ...)
+* Miscellaneous Web Languages(CSS/SCSS, HTML/Jinja2, ...)
 * Latex
 * Clojure
 * Haskell
