@@ -176,7 +176,7 @@ Emacs natively support many languages, but the following languages are supported
 * neomake/neomake
 
 ### Keymaps
-
+Similar to the keymaps of Emacs.
 
 [emacs-image]: http://i.imgur.com/lb49eOW.png
 [vim-image]: http://imgur.com/VDJFKSr.png
