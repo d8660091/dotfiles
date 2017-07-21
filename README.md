@@ -95,7 +95,6 @@ Emacs natively support many languages, but the following languages are supported
 (define-key evil-normal-state-map   "\C-c\C-h" 'paredit-splice-sexp-killing-backward)
 (define-key evil-normal-state-map   "\C-c\C-l" 'paredit-splice-sexp-killing-forward)
 (define-key evil-normal-state-map   "\M-d"     'evil-scroll-up)
-(define-key evil-normal-state-map   "\M-d"     'evil-scroll-up)
 (define-key evil-normal-state-map   ", e"      'eval-last-sexp)
 (define-key evil-normal-state-map   ", g d"    'elpy-goto-definition))
 (define-key evil-normal-state-map   ", g d"    'tide-jump-to-definition)

@@ -216,7 +216,6 @@
         evil-insert-state-tag "INSERT"
         evil-visual-state-tag "VISUAL")
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
-  (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
   (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
