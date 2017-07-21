@@ -1,9 +1,11 @@
 # dotfiles
 My settings for Vim, Emacs etc.
 
-Emacs: 
+## Emacs
 
 ![emacs screenshot][emacs-image]
+
+### Emacs packages
 
 Vim: 
 
