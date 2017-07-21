@@ -10,6 +10,9 @@ The main feature of the settings is the consistent user experience across Emacs 
 
 ![emacs screenshot][emacs-image]
 
+### Usage
+To use the Emacs config, just backup your .emacs and .emacs.d files, then copy the .emacs file to your home directory and restart Emacs.
+
 ### Supported Languages:
 Emacs natively support many languages, but the following languages are supported with extra configurations.
 * Elisp
