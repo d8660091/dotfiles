@@ -374,7 +374,8 @@
   (assq-delete-all 'nohighlight helm-source-do-ag)
   (setf (alist-get 'filtered-candidate-transformer helm-source-do-ag)
         'helm-fuzzy-highlight-matches)
-  (helm-add-action-to-source "Insert line" 'my-insert-line helm-source-do-ag))
+  (helm-add-action-to-source "Insert line" 'my-insert-line helm-source-do-ag)
+  (add-hook 'helm-ag-mode-hook 'compilation-minor-mode))
 
 (use-package anzu
   :init

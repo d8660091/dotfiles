@@ -50,6 +50,7 @@
    `(lazy-highlight ((t (:background ,jellybeans-black+1))))
    `(success ((t (:foreground ,jellybeans-green :weight bold))))
    `(warning ((t (:foreground ,jellybeans-yellow :weight bold))))
+   `(error ((t (:foreground ,jellybeans-red :weight bold))))
    `(tooltip ((t (:foreground ,jellybeans-fg :background ,jellybeans-bg))))
 
    `(linum ((t (:foreground
@@ -95,7 +96,7 @@
    `(font-lock-regexp-grouping-backslash ((t (:foreground ,jellybeans-green :weight bold))))
    `(font-lock-string-face ((t (:foreground ,jellybeans-green))))
    `(font-lock-type-face ((t (:foreground ,jellybeans-blue-1))))
-   `(font-lock-variable-name-face ((t (:foreground ,jellybeans-red))))
+   `(font-lock-variable-name-face ((t (:foreground ,jellybeans-yellow-1))))
    `(font-lock-warning-face ((t (:foreground ,jellybeans-yellow-1 :weight bold))))
 
    ;; plugins
@@ -167,6 +168,8 @@
    `(tide-hl-identifier-face ((t (:foreground ,jellybeans-magenta))))
 
    `(speedbar-highlight-face ((t (:inverse-video t))))
+
+   `(compilation-error ((t (:foreground ,jellybeans-green))))
 
   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 
