@@ -6,11 +6,24 @@ I use these settings in Mac OS and Linux everyday, so it should have no problem 
 
 The main feature of the settings is the consistent user experience across Emacs and Vim. I used Vim for several years then changed to Emacs with a migration of my previous Vim configs. So the themes and shortcuts of Vim and Emacs are very similar, but I no longer actively configure my Vim settings.
 
+You should use those files as a reference or a start point for your own config files. It's not a good idea to sync those configs, you should modifiy and write your own configs as soon as possible. Because things are changing constantly, even if there exist the most efficient config now, it will not be the most efficient config forever, the most efficient config for you is the config you write yourself and the one you can modify quickly. 
+
 ## Emacs
 
 ![emacs screenshot][emacs-image]
 
 ### Usage
+
+The theme use a font which may not exist on your system, make sure you have [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) installed,
+
+``` shell
+mkdir -p ~/projects/emacs/themes
+cd ~/projects/emacs/themes
+curl -O https://raw.githubusercontent.com/d8660091/dotfiles/master/projects/emacs/themes/jellybeans-theme.el
+cd ~/
+curl -O https://raw.githubusercontent.com/d8660091/dotfiles/master/.emacs.el
+```
+
 To use the Emacs config, just backup your .emacs and .emacs.d files, then copy the .emacs file to your home directory and restart Emacs.
 
 ### Supported Languages:
