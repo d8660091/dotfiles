@@ -109,6 +109,27 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode t)
+  (add-to-list 'evil-emacs-state-modes 'process-menu-mode)
+  (setq evil-normal-state-tag "NORMAL"
+        evil-insert-state-tag "INSERT"
+        evil-visual-state-tag "VISUAL")
+  (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
+  (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
+  (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
+  (define-key evil-normal-state-map (kbd "[ q") 'previous-error)
+  (define-key evil-normal-state-map (kbd "] q") 'next-error)
+  (define-key evil-normal-state-map (kbd "] f") 'projectile-find-other-file)
+  (define-key evil-insert-state-map "\C-h" 'left-char)
+  (define-key evil-insert-state-map "\C-l" 'right-char)
+  (define-key evil-insert-state-map "\C-n" 'nil)
+  (define-key evil-insert-state-map "\C-y" 'nil)
+  (define-key evil-motion-state-map "\C-y" 'nil))
+
 (use-package ace-link
   :ensure t
   :config
@@ -197,45 +218,21 @@
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
-  :ensure t)
+  (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+  (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
+  (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu))
 
 (use-package helm-projectile
   :ensure t
   :config
-  (helm-projectile-on))
-
-(use-package diminish
-  :ensure t)
-
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode t)
-  (add-to-list 'evil-emacs-state-modes 'process-menu-mode)
-  (setq evil-normal-state-tag "NORMAL"
-        evil-insert-state-tag "INSERT"
-        evil-visual-state-tag "VISUAL")
-  (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
-  (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
-  (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+  (helm-projectile-on)
   (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
   (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile)
   (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
-  (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag)
-  (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
-  (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu)
-  (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
-  (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
-  (define-key evil-normal-state-map (kbd "[ q") 'previous-error)
-  (define-key evil-normal-state-map (kbd "] q") 'next-error)
-  (define-key evil-normal-state-map (kbd "[ b") 'magit-blob-previous)
-  (define-key evil-normal-state-map (kbd "] b") 'magit-blob-next)
-  (define-key evil-normal-state-map (kbd "] f") 'projectile-find-other-file)
-  (define-key evil-insert-state-map "\C-h" 'left-char)
-  (define-key evil-insert-state-map "\C-l" 'right-char)
-  (define-key evil-insert-state-map "\C-n" 'nil)
-  (define-key evil-insert-state-map "\C-y" 'nil)
-  (define-key evil-motion-state-map "\C-y" 'nil))
+  (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag))
+
+(use-package diminish
+  :ensure t)
 
 (use-package evil-numbers
   :ensure t
@@ -313,7 +310,9 @@
 (use-package magit
   :ensure t
   :config
-  (global-set-key (kbd "C-x g") 'magit-status))
+  (global-set-key (kbd "C-x g") 'magit-status)
+  (define-key evil-normal-state-map (kbd "[ b") 'magit-blob-previous)
+  (define-key evil-normal-state-map (kbd "] b") 'magit-blob-next))
 
 (use-package restclient
   :ensure t)
