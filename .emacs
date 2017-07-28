@@ -105,7 +105,6 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; Shortcuts
-;; (global-set-key (kbd "C-s") 'swiper)
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
@@ -507,20 +506,6 @@
                   (top-bottom left-bracket right-bracket top-right-angle top-left-angle)
                   (empty-line . empty-line)
                   (unknown . question-mark))))
-
-;; (defun projectile-sort-files (files)
-;;   (let* ((project-root
-;;           (projectile-project-root))
-;;          (project-close-files
-;;           (-intersection
-;;            files
-;;            (-map
-;;             (lambda (full-path)
-;;               (replace-regexp-in-string project-root "" full-path))
-;;             (directory-files default-directory t))
-;;            )))
-;;     (append project-close-files
-;;             (projectile-difference files project-close-files))))
 
 (use-package paredit
   :ensure t

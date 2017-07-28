@@ -12,9 +12,13 @@ You should use those files as a reference or a start point for your own config f
 
 ![emacs screenshot][emacs-image]
 
-### Usage
+### Prerequisite
+
+If you are not familiar with Vim's shortcuts, I recommend you taking vim's built-in tutorial or [Evil Adventures](https://vim-adventures.com/) to familiar those shortcuts. You should also have some basic Elisp knowledge and don't hesitate to check Elisp reference when you encounter any strange thing.
 
 The theme use a font which may not exist on your system, make sure you have [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) installed.
+
+### Usage
 
 ``` shell
 mkdir -p ~/projects/emacs/themes
