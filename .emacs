@@ -32,6 +32,7 @@
      (output-dvi "xdvi")
      (output-pdf "Zathura")
      (output-html "xdg-open"))))
+ '(auto-revert-check-vc-info t)
  '(browse-url-browser-function (quote browse-url-chromium))
  '(column-number-mode t)
  '(company-idle-delay 0.2)
@@ -178,7 +179,7 @@
     (linum-mode -1)) 
   (global-linum-mode t)
   (add-hook 'dired-mode-hook 'disable-linum-mode)
-  (add-hook 'custom-mode-hook 'disable-linum-mode)
+  (add-hook 'Custom-mode-hook 'disable-linum-mode)
   (add-hook 'special-mode-hook 'disable-linum-mode)
   (add-hook 'helm-major-mode-hook 'disable-linum-mode))
 
@@ -581,3 +582,22 @@
   :config
   (global-evil-matchit-mode 1))
 
+(defun xah-copy-file-path (&optional *dir-path-only-p)
+  "Copy the current buffer's file path or dired path to `kill-ring'.
+Result is full path.
+If `universal-argument' is called first, copy only the dir path."
+  (interactive "P")
+  (let (($fpath
+         (if (equal major-mode 'dired-mode)
+             (expand-file-name default-directory)
+           (if (buffer-file-name)
+               (buffer-file-name)
+             (user-error "Current buffer is not associated with a file.")))))
+    (kill-new
+     (if *dir-path-only-p
+         (progn
+           (message "Directory path copied: 「%s」" (file-name-directory $fpath))
+           (file-name-directory $fpath))
+       (progn
+         (message "File path copied: 「%s」" $fpath)
+         $fpath )))))
