@@ -65,7 +65,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (evil-mc helm php-mode js2-mode company-jedi elpy all-the-icons go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -219,6 +219,7 @@
   (global-set-key (kbd "M-x") 'helm-M-x)
   (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
+  (define-key evil-normal-state-map (kbd "SPC k") 'helm-show-kill-ring)
   (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu))
 
 (use-package helm-projectile
@@ -574,4 +575,9 @@
     (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition))
   (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
   (elpy-enable))
+
+(use-package evil-matchit
+  :ensure t
+  :config
+  (global-evil-matchit-mode 1))
 
