@@ -66,7 +66,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
@@ -181,6 +181,7 @@
   (add-hook 'dired-mode-hook 'disable-linum-mode)
   (add-hook 'Custom-mode-hook 'disable-linum-mode)
   (add-hook 'special-mode-hook 'disable-linum-mode)
+  (add-hook 'comint-mode-hook 'disable-linum-mode)
   (add-hook 'helm-major-mode-hook 'disable-linum-mode))
 
 (use-package css-mode
@@ -209,7 +210,11 @@
   :config
   (with-no-warnings
     (projectile-register-project-type 'php '("composer.json")
-                                      :test-suffix "Spec"))
+                                      :test-suffix "Spec")
+    (projectile-register-project-type 'minesweeper '("manage.py" "Makefile")
+                                      :compile "python manage.py runserver"
+                                      :test-prefix "test_"
+                                      :test "python manage.py test"))
   (projectile-mode t)
   (add-to-list 'projectile-other-file-alist '("jsx" "css"))
   (add-to-list 'projectile-other-file-alist '("css" "jsx")))
