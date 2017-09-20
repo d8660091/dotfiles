@@ -3,6 +3,7 @@
 
 (load-theme 'jellybeans t)
 
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
@@ -23,24 +24,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-view-program-selection
-   (quote
-    (((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Zathura")
-     (output-html "xdg-open"))))
- '(auto-revert-check-vc-info t)
- '(browse-url-browser-function (quote browse-url-chromium))
- '(column-number-mode t)
- '(company-idle-delay 0.2)
- '(company-tooltip-idle-delay 0.1)
- '(compilation-message-face (quote default))
- '(cursor-in-non-selected-windows nil)
- '(diredp-hide-details-initially-flag nil)
- '(eldoc-idle-delay 0.2)
+ '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
    (quote
@@ -57,6 +41,9 @@
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
+ '(mode-line-format
+   (quote
+    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name minor-mode-alist mode-line-misc-info mode-line-end-spaces vc-mode)))
  '(neo-window-position (quote right))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -66,13 +53,18 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
+ '(projectile-enable-caching t)
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
-    ((eval when
+    ((flymake-mode)
+     (flycheck-disabled-checkers quote
+                                 (python-flake8))
+     (flycheck-disabled-checkers . python-flake8)
+     (eval when
            (require
             (quote rainbow-mode)
             nil t)
@@ -199,6 +191,7 @@
 (use-package editorconfig
   :ensure t
   :config
+  (diminish 'editorconfig-mode)
   (add-hook 'editorconfig-custom-hooks
             (lambda (hash)
               (setq web-mode-script-padding 0)
@@ -207,6 +200,7 @@
 
 (use-package projectile
   :ensure t
+  :delight '(:eval (concat " " (projectile-project-name)))
   :config
   (with-no-warnings
     (projectile-register-project-type 'php '("composer.json")
@@ -238,7 +232,9 @@
   (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag))
 
 (use-package diminish
-  :ensure t)
+  :ensure t
+  :config
+  (diminish 'undo-tree-mode))
 
 (use-package evil-numbers
   :ensure t
@@ -295,6 +291,7 @@
 (use-package ivy
   :ensure t
   :config
+  (diminish 'ivy-mode)
   (ivy-mode t))
 
 (use-package yasnippet
@@ -311,6 +308,7 @@
 (use-package which-key
   :ensure t
   :config
+  (diminish 'which-key-mode)
   (which-key-mode t))
 
 (use-package magit
@@ -365,6 +363,7 @@
 (use-package flycheck
   :ensure t
   :config
+  (diminish 'flycheck-mode)
   (global-flycheck-mode))
 
 (use-package helm-ag
@@ -386,46 +385,46 @@
   :init
   :ensure t
   :config
+  (diminish 'anzu-mode)
   (setq anzu-cons-mode-line-p nil)
   (global-anzu-mode +1))
 
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (with-no-warnings
-    (spaceline-helm-mode t)
-    (spaceline-install
-      '((evil-state :face highlight-face)
-        projectile-root
-        '(buffer-id buffer-modified remote-host)
-        ;; point-position
-        ;; column
-        buffer-position
-        anzu
-        auto-compile
-        (process :when active)
-        ;; (minor-modes :when active)
-        (mu4e-alert-segment :when active)
-        (erc-track :when active)
-        (org-pomodoro :when active)
-        ;; (org-clock :when active)
-        ((flycheck-error flycheck-warning flycheck-info)
-         :when active))
-
-      '((org-clock :when active)
-        major-mode
-        (python-pyvenv :fallback python-pyenv)
-        purpose
-        (battery :when active)
-        selection-info
-        (global :when active)
-        (version-control :when active)
-        ;; buffer-size
-        )))
-  (add-hook 'focus-in-hook
-              'force-mode-line-update t)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
+;; (use-package spaceline-config
+;;   :ensure spaceline
+;;   :config
+;;   (with-no-warnings
+;;     (spaceline-helm-mode t)
+;;     (spaceline-install
+;;       '((evil-state :face highlight-face)
+;;         projectile-root
+;;         '(buffer-id buffer-modified remote-host)
+;;         ;; point-position
+;;         ;; column
+;;         buffer-position
+;;         anzu
+;;         auto-compile
+;;         (process :when active)
+;;         ;; (minor-modes :when active)
+;;         (mu4e-alert-segment :when active)
+;;         (erc-track :when active)
+;;         (org-pomodoro :when active)
+;;         ;; (org-clock :when active)
+;;         ((flycheck-error flycheck-warning flycheck-info)
+;;          :when active))
+;;       '((org-clock :when active)
+;;         major-mode
+;;         (python-pyvenv :fallback python-pyenv)
+;;         purpose
+;;         (battery :when active)
+;;         selection-info
+;;         (global :when active)
+;;         (version-control :when active)
+;;         ;; buffer-size
+;;         )))
+;;   (add-hook 'focus-in-hook
+;;               'force-mode-line-update t)
+;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+;;   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
 
 (use-package tide
   :ensure t
@@ -452,6 +451,7 @@
 (use-package git-gutter-fringe
   :ensure t
   :config
+  (diminish 'git-gutter-mode)
   (setq-default fringes-outside-margins t)
   (define-key evil-normal-state-map (kbd "] c") 'git-gutter:next-hunk)
   (define-key evil-normal-state-map (kbd "[ c") 'git-gutter:previous-hunk)
@@ -517,6 +517,7 @@
 (use-package paredit
   :ensure t
   :config
+  (diminish 'paredit-mode)
   (define-key evil-normal-state-map "\C-c\C-h" 'paredit-splice-sexp-killing-backward)
   (define-key evil-normal-state-map "\C-c\C-l" 'paredit-splice-sexp-killing-forward)
   (add-hook 'clojure-mode-hook 'paredit-mode)
@@ -576,8 +577,10 @@
 
 (use-package elpy
   :ensure t
+  :diminish elpy-mode
   :config
   (defun my-elpy-mode-hook ()
+    (flycheck-mode -1)
     (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition))
   (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
   (elpy-enable))
@@ -586,6 +589,15 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
+
+(use-package autorevert
+  :diminish auto-revert-mode)
+
+(use-package highlight-indentation
+  :diminish highlight-indentation-mode)
+
+(use-package delight
+  :ensure t)
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
   "Copy the current buffer's file path or dired path to `kill-ring'.
@@ -606,3 +618,13 @@ If `universal-argument' is called first, copy only the dir path."
        (progn
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
+
+(require 'mu4e)
+(setq mu4e-maildir "~/mail")
+(setq mu4e-get-mail-command "offlineimap")
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-update-interval 600)
+(setq shr-color-visible-luminance-min 80)
+
+(setq mu4e-maildir-shortcuts
+      '(("/INBOX"             . ?i)))

@@ -29,7 +29,7 @@
       (jellybeans-magenta-1"#85678f")
       (jellybeans-cyan     "#8abeb7")
       (jellybeans-cyan-1   "#5e8d87")
-      (jellybeans-font-height (if (eq system-type 'darwin) 140 120)))
+      (jellybeans-font-height (if (eq system-type 'darwin) 140 105)))
   (custom-theme-set-faces
    'jellybeans
    ;; basic coloring
@@ -170,6 +170,9 @@
    `(speedbar-highlight-face ((t (:inverse-video t))))
 
    `(compilation-error ((t (:foreground ,jellybeans-green))))
+
+   `(highlight-indentation-face ((t (:background ,jellybeans-green))))
+   `(highlight-indentation-current-column-face ((t (:background ,jellybeans-green))))
 
   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 

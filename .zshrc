@@ -54,7 +54,8 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export EDITOR='nvim'
+export EDITOR='vim'
+export DISABLE_AUTO_TITLE='true'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -91,3 +92,5 @@ alias v="gvim --remote"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$HOME/.local/bin:$HOME/scripts:$HOME/go/bin:$HOME/.yarn/bin:$HOME/.gem/ruby/2.4.0/bin:$PATH"
+
+source /usr/bin/virtualenvwrapper.sh
