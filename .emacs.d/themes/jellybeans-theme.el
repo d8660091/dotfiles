@@ -171,8 +171,8 @@
 
    `(compilation-error ((t (:foreground ,jellybeans-green))))
 
-   `(highlight-indentation-face ((t (:background ,jellybeans-green))))
-   `(highlight-indentation-current-column-face ((t (:background ,jellybeans-green))))
+   ;; `(highlight-indentation-face ((t (:background ,jellybeans-green))))
+   ;; `(highlight-indentation-current-column-face ((t (:background ,jellybeans-green))))
 
   `(c-annotation-face ((t (:inherit font-lock-constant-face))))))
 

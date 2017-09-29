@@ -3,7 +3,6 @@
 !.vimrc
 !.zshrc
 !.zshenv
-!.emacs
 !/scripts
 
 !/.config
@@ -20,3 +19,9 @@
 !/projects/vim-color
 !/projects/neovim-vifm
 !/projects/emacs
+
+!/.emacs.d
+/.emacs.d/*
+!/.emacs.d/init.el
+!/.emacs.d/themes
+!/.emacs.d/lisp

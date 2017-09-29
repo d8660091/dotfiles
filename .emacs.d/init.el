@@ -1,5 +1,7 @@
 ;; -*- flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
 (add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (load-theme 'jellybeans t)
 
@@ -24,6 +26,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(elpy-rpc-timeout 10)
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
@@ -43,7 +46,7 @@
  '(magit-diff-use-overlays nil)
  '(mode-line-format
    (quote
-    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name minor-mode-alist mode-line-misc-info mode-line-end-spaces vc-mode)))
+    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist mode-line-misc-info mode-line-end-spaces vc-mode)))
  '(neo-window-position (quote right))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -186,7 +189,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.dtl\\|.tsx\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
 
 (use-package editorconfig
   :ensure t
@@ -314,6 +317,9 @@
 (use-package magit
   :ensure t
   :config
+  (add-hook 'magit-blob-mode-hook
+            (lambda ()
+              (flymake-mode -1)))
   (global-set-key (kbd "C-x g") 'magit-status)
   (define-key evil-normal-state-map (kbd "[ b") 'magit-blob-previous)
   (define-key evil-normal-state-map (kbd "] b") 'magit-blob-next))
