@@ -104,6 +104,9 @@
 (global-set-key [f10] 'describe-face)
 
 ;;; Packges:
+(use-package delight
+  :ensure t)
+
 (use-package evil
   :ensure t
   :config
@@ -602,9 +605,6 @@
 (use-package highlight-indentation
   :diminish highlight-indentation-mode)
 
-(use-package delight
-  :ensure t)
-
 (defun xah-copy-file-path (&optional *dir-path-only-p)
   "Copy the current buffer's file path or dired path to `kill-ring'.
 Result is full path.
@@ -624,13 +624,3 @@ If `universal-argument' is called first, copy only the dir path."
        (progn
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
-
-(require 'mu4e)
-(setq mu4e-maildir "~/mail")
-(setq mu4e-get-mail-command "offlineimap")
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-update-interval 600)
-(setq shr-color-visible-luminance-min 80)
-
-(setq mu4e-maildir-shortcuts
-      '(("/INBOX"             . ?i)))
