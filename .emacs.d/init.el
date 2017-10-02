@@ -301,7 +301,7 @@
   :ensure t
   :config
   (setq yas-snippet-dirs
-        '("~/projects/emacs/snippets" ;; the yasmate collection
+        '("~/.emacs.d/snippets" ;; the yasmate collection
           "~/projects/emacs/yasnippet-snippets"))
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
@@ -624,13 +624,3 @@ If `universal-argument' is called first, copy only the dir path."
        (progn
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
-
-(require 'mu4e)
-(setq mu4e-maildir "~/mail")
-(setq mu4e-get-mail-command "offlineimap")
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-update-interval 600)
-(setq shr-color-visible-luminance-min 80)
-
-(setq mu4e-maildir-shortcuts
-      '(("/INBOX"             . ?i)))

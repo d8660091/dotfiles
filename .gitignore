@@ -25,3 +25,5 @@
 !/.emacs.d/init.el
 !/.emacs.d/themes
 !/.emacs.d/lisp
+/.emacs.d/lisp/default.el
+!/.emacs.d/snippets
