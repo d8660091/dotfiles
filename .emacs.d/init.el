@@ -304,7 +304,7 @@
   :ensure t
   :config
   (setq yas-snippet-dirs
-        '("~/projects/emacs/snippets" ;; the yasmate collection
+        '("~/.emacs.d/snippets" ;; the yasmate collection
           "~/projects/emacs/yasnippet-snippets"))
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
