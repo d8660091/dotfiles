@@ -56,7 +56,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(recentf-max-menu-items 2000)
@@ -192,7 +192,11 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.vue\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (if (equal web-mode-content-type "javascript")
+                  (web-mode-set-content-type "jsx"))))
+  (add-to-list 'auto-mode-alist '("\\.vue\\|.js\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
 
 (use-package editorconfig
   :ensure t
@@ -361,6 +365,7 @@
   :ensure t
   :config
   (defun my-go-mode-hook ()
+    (set (make-local-variable 'company-backends) '(company-go))
     (add-hook 'before-save-hook 'gofmt-before-save))
   (add-hook 'go-mode-hook 'my-go-mode-hook))
 
@@ -588,11 +593,16 @@
   :ensure t
   :diminish elpy-mode
   :config
-  (defun my-elpy-mode-hook ()
-    (flycheck-mode -1)
-    (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition))
+  (defun my-elpy-mode ()
+    (when (eq (string-match "\~.*\~$" (buffer-name)) nil)
+      (print (buffer-name))
+      (elpy-mode 1)
+      (flycheck-mode -1)
+      (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition)))
   (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
-  (elpy-enable))
+  (elpy-enable)
+  (remove-hook 'python-mode-hook 'elpy-mode)
+  (add-hook 'python-mode-hook 'my-elpy-mode))
 
 (use-package evil-matchit
   :ensure t
