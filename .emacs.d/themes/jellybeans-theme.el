@@ -110,7 +110,7 @@
                       :background ,jellybeans-bg
                       :underline nil
                       :weight bold))))
-   `(helm-candidate-number ((t (:foreground ,jellybeans-blue :background ,jellybeans-black))))
+   `(helm-candidate-number ((t (:foreground ,jellybeans-fg :background ,jellybeans-black))))
    `(helm-match ((t (:foreground ,jellybeans-yellow))))
    `(helm-M-x-key ((t (:foreground ,jellybeans-yellow-1))))
    `(helm-grep-lineno ((t (:foreground ,jellybeans-yellow-1))))
@@ -121,6 +121,12 @@
    `(helm-buffer-process ((t (:foreground ,jellybeans-yellow))))
    `(helm-buffer-size ((t (:foreground ,jellybeans-fg-1))))
    `(helm-selection-line ((t (:background ,jellybeans-fg :foreground ,jellybeans-bg))))
+
+   `(helm-ff-directory ((t (:background ,jellybeans-bg :foreground ,jellybeans-blue))))
+   `(helm-ff-prefix ((t (:background ,jellybeans-bg :foreground ,jellybeans-yellow))))
+   `(helm-ff-dotted-directory ((t (:background ,jellybeans-bg :foreground ,jellybeans-fg-1))))
+   `(helm-ff-executable ((t (:background ,jellybeans-bg :foreground ,jellybeans-green))))
+   `(helm-history-deleted ((t (:background ,jellybeans-bg :foreground ,jellybeans-red))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
    `(ivy-minibuffer-match-face-1 ((t (:foreground ,jellybeans-fg))))

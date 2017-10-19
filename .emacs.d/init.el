@@ -227,6 +227,7 @@
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
   (define-key evil-normal-state-map (kbd "SPC k") 'helm-show-kill-ring)
