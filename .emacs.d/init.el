@@ -595,11 +595,9 @@
   :config
   (defun my-elpy-mode ()
     (when (eq (string-match "\~.*\~$" (buffer-name)) nil)
-      (print (buffer-name))
       (elpy-mode 1)
       (flycheck-mode -1)
       (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition)))
-  (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
   (elpy-enable)
   (remove-hook 'python-mode-hook 'elpy-mode)
   (add-hook 'python-mode-hook 'my-elpy-mode))
