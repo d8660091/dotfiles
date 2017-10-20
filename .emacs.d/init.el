@@ -192,10 +192,11 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (if (equal web-mode-content-type "javascript")
-                  (web-mode-set-content-type "jsx"))))
+  (defun my-web-mode-hook ()
+    (when (equal web-mode-content-type "javascript")
+      (web-mode-set-content-type "jsx")
+      (tern-mode t)))
+  (add-hook 'web-mode-hook 'my-web-mode-hook)
   (add-to-list 'auto-mode-alist '("\\.vue\\|.js\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
 
 (use-package editorconfig
@@ -607,6 +608,13 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
+
+(use-package tern
+  :ensure t
+  :init
+  (defun my-tern-mode-hook ()
+    (define-key evil-normal-state-map (kbd "C-c C-j") 'tern-find-definition))
+  (add-hook 'tern-mode-hook 'my-tern-mode-hook))
 
 (use-package autorevert
   :diminish auto-revert-mode)
