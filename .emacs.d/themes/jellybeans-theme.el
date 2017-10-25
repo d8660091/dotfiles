@@ -177,6 +177,8 @@
 
    `(compilation-error ((t (:foreground ,jellybeans-green))))
 
+   `(rjsx-tag ((t (:foreground ,jellybeans-cyan-1))))
+
    ;; `(highlight-indentation-face ((t (:background ,jellybeans-green))))
    ;; `(highlight-indentation-current-column-face ((t (:background ,jellybeans-green))))
 

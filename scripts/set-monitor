@@ -17,3 +17,5 @@ then
 else
   echo "Unknown argument"
 fi
+
+feh --bg-scale ~/images/wallpaper.jpg

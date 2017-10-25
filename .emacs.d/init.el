@@ -56,7 +56,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil spaceline helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(recentf-max-menu-items 2000)
@@ -405,43 +405,6 @@
   (setq anzu-cons-mode-line-p nil)
   (global-anzu-mode +1))
 
-;; (use-package spaceline-config
-;;   :ensure spaceline
-;;   :config
-;;   (with-no-warnings
-;;     (spaceline-helm-mode t)
-;;     (spaceline-install
-;;       '((evil-state :face highlight-face)
-;;         projectile-root
-;;         '(buffer-id buffer-modified remote-host)
-;;         ;; point-position
-;;         ;; column
-;;         buffer-position
-;;         anzu
-;;         auto-compile
-;;         (process :when active)
-;;         ;; (minor-modes :when active)
-;;         (mu4e-alert-segment :when active)
-;;         (erc-track :when active)
-;;         (org-pomodoro :when active)
-;;         ;; (org-clock :when active)
-;;         ((flycheck-error flycheck-warning flycheck-info)
-;;          :when active))
-;;       '((org-clock :when active)
-;;         major-mode
-;;         (python-pyvenv :fallback python-pyenv)
-;;         purpose
-;;         (battery :when active)
-;;         selection-info
-;;         (global :when active)
-;;         (version-control :when active)
-;;         ;; buffer-size
-;;         )))
-;;   (add-hook 'focus-in-hook
-;;               'force-mode-line-update t)
-;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-;;   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
-
 (use-package tide
   :ensure t
   :functions (setup-tide-mode evil--jumps-push)
@@ -449,7 +412,7 @@
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
-    (define-key evil-normal-state-map (kbd ", g d") 'tide-jump-to-definition)
+    (define-key evil-normal-state-map (kbd "C-c C-j") 'tide-jump-to-definition)
     (define-key evil-normal-state-map (kbd ", g r") 'tide-references)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
@@ -599,7 +562,7 @@
     (when (eq (string-match "\~.*\~$" (buffer-name)) nil)
       (elpy-mode 1)
       (flycheck-mode -1)
-      (define-key evil-normal-state-map (kbd ", g d") 'elpy-goto-definition)))
+      (define-key evil-normal-state-map (kbd "C-c C-j") 'elpy-goto-definition)))
   (elpy-enable)
   (remove-hook 'python-mode-hook 'elpy-mode)
   (add-hook 'python-mode-hook 'my-elpy-mode))
