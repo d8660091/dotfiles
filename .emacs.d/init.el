@@ -37,8 +37,10 @@
  '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
  '(global-evil-mc-mode t)
+ '(helm-display-buffer-default-height 10)
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
+ '(ivy-truncate-lines nil)
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
  '(js2-strict-missing-semi-warning nil)
@@ -56,7 +58,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(recentf-max-menu-items 2000)
@@ -228,9 +230,7 @@
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
-  (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
   (define-key evil-normal-state-map (kbd "SPC k") 'helm-show-kill-ring)
   (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu))
 
@@ -238,10 +238,17 @@
   :ensure t
   :config
   (helm-projectile-on)
-  (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
+  ;; (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
   (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile)
   (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
   (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag))
+
+(use-package counsel
+  :ensure t
+  :config 
+  (define-key evil-normal-state-map (kbd "SPC r") 'counsel-recentf)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (define-key evil-normal-state-map (kbd "SPC f") 'counsel-projectile-find-file))
 
 (use-package diminish
   :ensure t
@@ -562,7 +569,7 @@
     (when (eq (string-match "\~.*\~$" (buffer-name)) nil)
       (elpy-mode 1)
       (flycheck-mode -1)
-      (define-key evil-normal-state-map (kbd "C-c C-j") 'elpy-goto-definition)))
+      (evil-local-set-key 'normal (kbd "C-c C-j") 'elpy-goto-definition)))
   (elpy-enable)
   (remove-hook 'python-mode-hook 'elpy-mode)
   (add-hook 'python-mode-hook 'my-elpy-mode))
@@ -576,7 +583,7 @@
   :ensure t
   :init
   (defun my-tern-mode-hook ()
-    (define-key evil-normal-state-map (kbd "C-c C-j") 'tern-find-definition))
+    (evil-local-set-key 'normal (kbd "C-c C-j") 'tern-find-definition))
   (add-hook 'tern-mode-hook 'my-tern-mode-hook))
 
 (use-package autorevert

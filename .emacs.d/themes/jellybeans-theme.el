@@ -129,6 +129,7 @@
    `(helm-history-deleted ((t (:background ,jellybeans-bg :foreground ,jellybeans-red))))
 
    `(ivy-current-match ((t (:foreground ,jellybeans-bg :background ,jellybeans-fg))))
+   `(ivy-virtual ((t (:weight normal))))
    `(ivy-minibuffer-match-face-1 ((t (:foreground ,jellybeans-fg))))
    `(ivy-minibuffer-match-face-2 ((t (:weight bold :foreground ,jellybeans-yellow))))
    `(ivy-minibuffer-match-face-3 ((t (:weight bold :foreground ,jellybeans-yellow))))
