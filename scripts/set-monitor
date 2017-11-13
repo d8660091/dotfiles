@@ -7,8 +7,8 @@ then
   xrandr --output HDMI-1 --scale 1.666x1.666 --pos 0x0 --output HDMI-2 --scale 1.666x1.666 --pos 3200x0 --fb 6400x1800 --output eDP-1 --off
 elif [ $1 = "1" ]
 then
-  xrandr --output DP-1 --auto --output eDP-1 --auto
-  xrandr --output DP-1 --scale 1.666x1.666 --same-as eDP-1 --output eDP-1 --auto
+  xrandr --output ${2:-HDMI-3} --auto --output eDP-1 --auto
+  xrandr --output ${2:-HDMI-3} --scale 1.666x1.666 --same-as eDP-1 --output eDP-1 --auto
 elif [ $1 = "0" ]
 then
   echo "Setting default monitor"

@@ -61,6 +61,31 @@
     (counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
+ '(projectile-other-file-alist
+   (quote
+    (("js" "css")
+     ("css" "jsx" "js")
+     ("jsx" "css")
+     ("cpp" "h" "hpp" "ipp")
+     ("ipp" "h" "hpp" "cpp")
+     ("hpp" "h" "ipp" "cpp" "cc")
+     ("cxx" "h" "hxx" "ixx")
+     ("ixx" "h" "hxx" "cxx")
+     ("hxx" "h" "ixx" "cxx")
+     ("c" "h")
+     ("m" "h")
+     ("mm" "h")
+     ("h" "c" "cc" "cpp" "ipp" "hpp" "cxx" "ixx" "hxx" "m" "mm")
+     ("cc" "h" "hh" "hpp")
+     ("hh" "cc")
+     ("vert" "frag")
+     ("frag" "vert")
+     (nil "lock" "gpg")
+     ("lock" "")
+     ("gpg" ""))))
+ '(recentf-exclude
+   (quote
+    ("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa")))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
@@ -222,9 +247,7 @@
                                       :compile "python manage.py runserver"
                                       :test-prefix "test_"
                                       :test "python manage.py test"))
-  (projectile-mode t)
-  (add-to-list 'projectile-other-file-alist '("jsx" "css"))
-  (add-to-list 'projectile-other-file-alist '("css" "jsx")))
+  (projectile-mode t))
 
 (use-package helm
   :ensure t
