@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: react
+# key: react
+# --
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import { withProps, withState, lifecycle, compose, withHandlers, setDisplayName, setPropTypes } from 'recompose'
+
+const enhance = compose()
+
+export default enhance(() => (
+  <div></div>
+))

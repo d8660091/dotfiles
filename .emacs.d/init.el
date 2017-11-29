@@ -141,8 +141,10 @@
   (add-to-list 'evil-emacs-state-modes 'process-menu-mode)
   (setq evil-normal-state-tag "NORMAL"
         evil-insert-state-tag "INSERT"
+        evil-emacs-state-tag "EMACS"
         evil-visual-state-tag "VISUAL")
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
+  (define-key evil-motion-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
   (define-key evil-normal-state-map (kbd ", e") 'eval-last-sexp)
   (define-key evil-normal-state-map (kbd ", w") 'save-buffer)
@@ -286,17 +288,13 @@
 
 (use-package emmet-mode
   :ensure t
-  :after web-mode
+  :hook (web-mode html-mode scss-mode)
   :config
-  (define-key emmet-mode-keymap (kbd "C-y n") 'emmet-next-edit-point)
-  (add-hook 'scss-mode-hook 'emmet-mode)
-  (add-hook 'html-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode))
+  (define-key emmet-mode-keymap (kbd "C-y n") 'emmet-next-edit-point))
 
 (use-package rainbow-mode
   :ensure t
-  :config
-  (add-hook 'scss-mode-hook 'rainbow-mode))
+  :hook (css-mode scss-mode-hook))
 
 (use-package evil-surround
   :ensure t
@@ -523,16 +521,6 @@
                   (empty-line . empty-line)
                   (unknown . question-mark))))
 
-(use-package paredit
-  :ensure t
-  :config
-  (diminish 'paredit-mode)
-  (define-key evil-normal-state-map "\C-c\C-h" 'paredit-splice-sexp-killing-backward)
-  (define-key evil-normal-state-map "\C-c\C-l" 'paredit-splice-sexp-killing-forward)
-  (add-hook 'clojure-mode-hook 'paredit-mode)
-  (add-hook 'clojurescript-mode-hook 'paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
-
 (use-package dired+
   :ensure t
   :config
@@ -549,6 +537,17 @@
 (use-package clojure-mode
   :mode ("\\.cljs\\'" . clojurescript-mode)
   :ensure t)
+
+(use-package paredit
+  :ensure t
+  :config
+  (diminish 'paredit-mode)
+  (define-key evil-normal-state-map "\C-c\C-h" 'paredit-splice-sexp-killing-backward)
+  (define-key evil-normal-state-map "\C-c\C-l" 'paredit-splice-sexp-killing-forward)
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojurescript-mode-hook 'paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
+
 
 (use-package company
   :ensure t
@@ -569,6 +568,8 @@
 (use-package org
   :ensure t
   :config
+  (setq org-todo-keywords
+        '((sequence "TODO" "WAIT(!)" "DONE(!)")))
   (advice-add 'org-clock-get-clock-string :filter-return (apply-partially 's-truncate 20))
   (setq org-log-done t))
 
