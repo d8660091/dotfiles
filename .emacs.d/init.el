@@ -143,6 +143,7 @@
         evil-insert-state-tag "INSERT"
         evil-emacs-state-tag "EMACS"
         evil-visual-state-tag "VISUAL")
+  (global-set-key (kbd "C-SPC") nil)
   (define-key evil-normal-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-motion-state-map "\M-d" 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "Q") 'kill-this-buffer)
