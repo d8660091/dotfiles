@@ -64,6 +64,7 @@ Plug 'gregsexton/gitv', { 'on': ['Gitv']}
 Plug 'tpope/vim-repeat',
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'alampros/vim-styled-jsx', { 'for': ['javascript.jsx'] }
 Plug '~/projects/vim-color'
 Plug '~/projects/vim-php'
 Plug '~/projects/vim-twig'

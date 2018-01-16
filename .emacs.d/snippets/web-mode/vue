@@ -2,17 +2,33 @@
 #group: template
 # --
 <template>
-  $1
+  <div class="$1">
+    <div class="widgets-container">
+      <div class="widget">
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import Bar from '@/components/charts/Bar'
+import Line from '@/components/charts/Line'
+import data from '@/utils/data'
+import { colors } from '@/components/charts/config.json'
+
 export default {
   data () {
     return {
+      data,
+      colors
     }
+  },
+  components: {
+    Bar,
+    LineChart: Line
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

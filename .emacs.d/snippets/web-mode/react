@@ -5,9 +5,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { withProps, withState, lifecycle, compose, withHandlers, setDisplayName, setPropTypes } from 'recompose'
+import * as rc from 'recompose'
 
-const enhance = compose()
+const enhance = rc.compose()
 
 export default enhance(() => (
   <div></div>
