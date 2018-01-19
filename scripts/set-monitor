@@ -8,7 +8,7 @@ then
 elif [ $1 = "1" ]
 then
   xrandr --output ${2:-HDMI-3} --auto --output eDP-1 --auto
-  xrandr --output ${2:-HDMI-3} --scale 1.666x1.666 --same-as eDP-1 --output eDP-1 --auto
+  xrandr --output ${2:-HDMI-3} --scale 1.666x1.666 --same-as eDP-1 --output eDP-1 --auto --panning 3200x1800
 elif [ $1 = "0" ]
 then
   echo "Setting default monitor"

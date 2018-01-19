@@ -94,3 +94,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$HOME/.local/bin:$HOME/scripts:$HOME/go/bin:$HOME/.yarn/bin:$HOME/.gem/ruby/2.4.0/bin:$PATH"
 
 source /usr/bin/virtualenvwrapper.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/xudeng/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/xudeng/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/xudeng/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/xudeng/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

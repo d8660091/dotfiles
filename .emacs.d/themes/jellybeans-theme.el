@@ -181,7 +181,7 @@
    `(js2-function-param ((t (:foreground ,jellybeans-yellow-1))))
    `(js2-object-property ((t (:foreground ,jellybeans-yellow-1))))
    `(rjsx-tag ((t (:foreground ,jellybeans-cyan))))
-   `(rjsx-attr ((t (:foreground ,jellybeans-cyan))))
+   `(rjsx-attr ((t (:foreground ,jellybeans-cyan-1))))
    `(Info-quoted ((t (:slant italic))))
 
    `(web-mode-html-attr-name-face ((t (:foreground ,jellybeans-yellow-1))))

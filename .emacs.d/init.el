@@ -58,7 +58,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (flycheck-flow counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -109,6 +109,7 @@
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-pairing t)
  '(web-mode-enable-auto-quoting nil)
+ '(web-mode-enable-css-colorization t)
  '(web-mode-extra-keywords (quote (("javascript" "namespace" "type"))))
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
@@ -229,8 +230,7 @@
   :config
   (defun my-web-mode-hook ()
     (when (equal web-mode-content-type "javascript")
-      (web-mode-set-content-type "jsx")
-      (tern-mode t)))
+      (web-mode-set-content-type "jsx")))
   (add-hook 'web-mode-hook 'my-web-mode-hook)
   (add-to-list 'auto-mode-alist '("\\.vue\\|.js\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
 
@@ -444,7 +444,7 @@
     (define-key evil-normal-state-map (kbd "C-c C-j") 'tide-jump-to-definition)
     (define-key evil-normal-state-map (kbd ", g r") 'tide-references)
     (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (setq flycheck-check-syntax-automatically '(save mode-enabled idle-change))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
     (company-mode +1)
@@ -453,7 +453,7 @@
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'web-mode-hook
             (lambda ()
-              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (when (member (file-name-extension buffer-file-name) '("js", "tsx"))
                 (setup-tide-mode)))))
 
 (use-package git-gutter-fringe
@@ -604,18 +604,14 @@
   :config
   (global-evil-matchit-mode 1))
 
-(use-package tern
-  :ensure t
-  :init
-  (defun my-tern-mode-hook ()
-    (evil-local-set-key 'normal (kbd "C-c C-j") 'tern-find-definition))
-  (add-hook 'tern-mode-hook 'my-tern-mode-hook))
-
 (use-package autorevert
   :diminish auto-revert-mode)
 
 (use-package highlight-indentation
   :diminish highlight-indentation-mode)
+
+(use-package counsel-projectile
+  :ensure t)
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
   "Copy the current buffer's file path or dired path to `kill-ring'.
