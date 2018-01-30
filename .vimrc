@@ -49,6 +49,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'javascript', 'javascript.jsx'] } "{{{
+let g:tsuquyomi_javascript_support = 1
+"}}}
 Plug 'mattn/emmet-vim' "{{{
 let g:user_emmet_expandabbr_key = '<C-j>'
 "}}}

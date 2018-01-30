@@ -48,7 +48,7 @@
  '(magit-diff-use-overlays nil)
  '(mode-line-format
    (quote
-    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist mode-line-misc-info mode-line-end-spaces vc-mode)))
+    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist " -" mode-line-misc-info mode-line-end-spaces vc-mode)))
  '(neo-window-position (quote right))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
@@ -58,7 +58,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -230,6 +230,7 @@
   :config
   (defun my-web-mode-hook ()
     (when (equal web-mode-content-type "javascript")
+      (prettier-js-mode)
       (web-mode-set-content-type "jsx")))
   (add-hook 'web-mode-hook 'my-web-mode-hook)
   (add-to-list 'auto-mode-alist '("\\.vue\\|.js\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
@@ -348,8 +349,8 @@
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
-  (diminish 'which-key-mode)
   (which-key-mode t))
 
 (use-package magit
@@ -436,6 +437,7 @@
 
 (use-package tide
   :ensure t
+  :diminish tide-mode
   :functions (setup-tide-mode evil--jumps-push)
   :config
   (defun setup-tide-mode ()
