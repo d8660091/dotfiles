@@ -524,8 +524,8 @@
                   (empty-line . empty-line)
                   (unknown . question-mark))))
 
+;; dired+ is currently not available in mepla
 (use-package dired+
-  :ensure t
   :config
   (diredp-toggle-find-file-reuse-dir 1))
 
@@ -613,6 +613,15 @@
   :diminish highlight-indentation-mode)
 
 (use-package counsel-projectile
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package dockerfile-mode
+  :ensure t)
+
+(use-package prettier-js
   :ensure t)
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
