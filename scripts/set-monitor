@@ -15,6 +15,10 @@ then
   echo "Setting default monitor"
   xrandr --output eDP-1 --auto
   xrandr --output HDMI-1 --off --output HDMI-2 --off --fb 2880x1800 --output eDP-1 --auto
+elif [ $1 = "curve" ]
+then
+  xrandr --output ${2:-DP-1} --auto --output eDP-1 --auto
+  xrandr --output ${2:-DP-1} --scale 1.5x1.5 --panning 5160x2160 --output eDP-1 --off
 else
   echo "Unknown argument"
 fi

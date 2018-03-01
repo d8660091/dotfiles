@@ -58,7 +58,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -90,15 +90,22 @@
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
-    ((flymake-mode)
-     (flycheck-disabled-checkers quote
-                                 (python-flake8))
-     (flycheck-disabled-checkers . python-flake8)
-     (eval when
-           (require
-            (quote rainbow-mode)
-            nil t)
-           (rainbow-mode 1)))))
+    ((eval defun projectile-find-implementation-or-test
+           (file-name)
+           (interactive)
+           (let
+               ((base-name
+                 (file-name-base file-name))
+                (directory-name
+                 (file-name-directory file-name)))
+             (if
+                 (string-match-p "\\.test\\." file-name)
+                 (concat
+                  (file-name-directory
+                   (directory-file-name directory-name))
+                  (file-name-sans-extension base-name)
+                  ".js")
+               (concat directory-name "/__tests__/" base-name ".test.js")))))))
  '(save-place-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
@@ -158,6 +165,7 @@
   (define-key evil-normal-state-map (kbd "[ q") 'previous-error)
   (define-key evil-normal-state-map (kbd "] q") 'next-error)
   (define-key evil-normal-state-map (kbd "] f") 'projectile-find-other-file)
+  (define-key evil-normal-state-map (kbd "] t") 'projectile-toggle-between-implementation-and-test)
   (define-key evil-insert-state-map "\C-h" 'left-char)
   (define-key evil-insert-state-map "\C-l" 'right-char)
   (define-key evil-insert-state-map "\C-n" 'nil)
@@ -249,13 +257,6 @@
   :ensure t
   :delight '(:eval (concat " " (projectile-project-name)))
   :config
-  (with-no-warnings
-    (projectile-register-project-type 'php '("composer.json")
-                                      :test-suffix "Spec")
-    (projectile-register-project-type 'minesweeper '("manage.py" "Makefile")
-                                      :compile "python manage.py runserver"
-                                      :test-prefix "test_"
-                                      :test "python manage.py test"))
   (projectile-mode t))
 
 (use-package helm
@@ -410,6 +411,7 @@
   :ensure t
   :config
   (diminish 'flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
   (global-flycheck-mode))
 
 (use-package helm-ag
@@ -443,10 +445,11 @@
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
-    (define-key evil-normal-state-map (kbd "C-c C-j") 'tide-jump-to-definition)
-    (define-key evil-normal-state-map (kbd ", g r") 'tide-references)
+    (define-key evil-normal-state-local-map (kbd "C-c C-j") 'tide-jump-to-definition)
+    (define-key evil-normal-state-local-map (kbd ", g r") 'tide-references)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled idle-change))
+    (flycheck-add-next-checker 'tsx-tide '(t . javascript-eslint))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
     (company-mode +1)
