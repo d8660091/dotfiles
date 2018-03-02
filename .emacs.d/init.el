@@ -37,6 +37,7 @@
  '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
  '(global-evil-mc-mode t)
+ '(haskell-process-type (quote stack-ghci))
  '(helm-display-buffer-default-height 10)
  '(helm-split-window-in-side-p t)
  '(indent-tabs-mode nil)
@@ -179,9 +180,10 @@
 
 (use-package info
   :config
-  (add-hook 'info-mode-hook
-            (lambda ()
-              (setq show-trailing-whitespace nil))))
+  (defun my-info-mode-hook ()
+    (linum-mode -1)
+    (setq show-trailing-whitespace nil))
+  (add-hook 'info-mode-hook 'my-info-mode-hook))
 
 (use-package js2-mode
   :ensure t
@@ -505,6 +507,9 @@
   :ensure t
   :functions evil-local-mode
   :config
+  (defun setup-haskell-mode ()
+    (define-key evil-normal-state-local-map (kbd "C-c C-j") 'haskell-mode-jump-to-def))
+  (add-hook 'haskell-mode-hook 'setup-haskell-mode)
   (add-hook 'haskell-interactive-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil)))
@@ -569,7 +574,11 @@
   (setq company-dabbrev-downcase nil))
 
 (use-package eshell
-  :config)
+  :config
+  (defun my-eshell-mode-hook ()
+    (evil-emacs-state)
+    (linum-mode -1))
+  (add-hook 'eshell-mode-hook 'my-eshell-mode-hook))
 
 (use-package org
   :ensure t
@@ -646,3 +655,4 @@ If `universal-argument' is called first, copy only the dir path."
        (progn
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
+(put 'upcase-region 'disabled nil)
