@@ -26,6 +26,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(dired-listing-switches "-aBl --group-directories-first")
  '(elpy-rpc-timeout 10)
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
@@ -55,11 +56,11 @@
  '(ns-command-modifier (quote meta))
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
- '(org-agenda-files (quote ("~/org/home.org")))
+ '(org-agenda-files nil)
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -583,6 +584,7 @@
 (use-package org
   :ensure t
   :config
+  (define-key evil-normal-state-map (kbd "SPC o") (lambda () (interactive) (find-file "~/notes.org")))
   (setq org-todo-keywords
         '((sequence "TODO" "WAIT(!)" "DONE(!)")))
   (advice-add 'org-clock-get-clock-string :filter-return (apply-partially 's-truncate 20))
@@ -655,4 +657,12 @@ If `universal-argument' is called first, copy only the dir path."
        (progn
          (message "File path copied: 「%s」" $fpath)
          $fpath )))))
-(put 'upcase-region 'disabled nil)
+
+(defun my-find-file-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 512 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)))
+
+(add-hook 'find-file-hook 'my-find-file-hook)
