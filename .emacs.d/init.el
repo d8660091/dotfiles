@@ -461,7 +461,7 @@
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'web-mode-hook
             (lambda ()
-              (when (member (file-name-extension buffer-file-name) '("js", "tsx"))
+              (when (member (file-name-extension buffer-file-name) '("js" "tsx"))
                 (setup-tide-mode)))))
 
 (use-package git-gutter-fringe
