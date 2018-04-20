@@ -60,7 +60,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi elpy go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (racer rust-mode org-jira gist elpy flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -238,13 +238,16 @@
 
 (use-package web-mode
   :ensure t
+  :mode ("\\.tsx?\\'"
+         "\\.vue\\'"
+         "\\.jsx?\\'"
+         "\\.html\\'"
+         "\\.dtl\\'")
   :config
   (defun my-web-mode-hook ()
     (when (equal web-mode-content-type "javascript")
-      (prettier-js-mode)
       (web-mode-set-content-type "jsx")))
-  (add-hook 'web-mode-hook 'my-web-mode-hook)
-  (add-to-list 'auto-mode-alist '("\\.vue\\|.js\\|.twig\\|.dtl\\|\\.html\\|.tsx\\'" . web-mode)))
+  (add-hook 'web-mode-hook 'my-web-mode-hook))
 
 (use-package editorconfig
   :ensure t
@@ -636,7 +639,8 @@
   :ensure t)
 
 (use-package prettier-js
-  :ensure t)
+  :ensure t
+  :hook (web-mode . prettier-js-mode))
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
   "Copy the current buffer's file path or dired path to `kill-ring'.
