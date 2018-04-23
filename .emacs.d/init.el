@@ -26,6 +26,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(create-lockfiles nil)
  '(dired-listing-switches "-aBl --group-directories-first")
  '(elpy-rpc-timeout 10)
  '(evil-mode-line-format (quote (after . mode-line-front-space)))
@@ -41,6 +42,7 @@
  '(haskell-process-type (quote stack-ghci))
  '(helm-display-buffer-default-height 10)
  '(helm-split-window-in-side-p t)
+ '(helm-split-window-inside-p t)
  '(indent-tabs-mode nil)
  '(ivy-truncate-lines nil)
  '(js-indent-level 2)
@@ -111,6 +113,7 @@
  '(save-place-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
+ '(split-width-threshold 220)
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (backquote ((".*" \, temporary-file-directory))))
  '(web-mode-attr-indent-offset 2)
@@ -445,7 +448,6 @@
 
 (use-package tide
   :ensure t
-  :diminish tide-mode
   :functions (setup-tide-mode evil--jumps-push)
   :config
   (defun setup-tide-mode ()
@@ -464,7 +466,7 @@
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'web-mode-hook
             (lambda ()
-              (when (member (file-name-extension buffer-file-name) '("js" "tsx"))
+              (when (member (file-name-extension buffer-file-name) '("js" "tsx" "ts"))
                 (setup-tide-mode)))))
 
 (use-package git-gutter-fringe
@@ -640,7 +642,7 @@
 
 (use-package prettier-js
   :ensure t
-  :hook (web-mode . prettier-js-mode))
+  :hook ((web-mode css-mode) . prettier-js-mode))
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
   "Copy the current buffer's file path or dired path to `kill-ring'.
@@ -670,3 +672,4 @@ If `universal-argument' is called first, copy only the dir path."
     (fundamental-mode)))
 
 (add-hook 'find-file-hook 'my-find-file-hook)
+(put 'upcase-region 'disabled nil)
