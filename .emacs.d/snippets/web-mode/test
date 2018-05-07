@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# --
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import $0;
+
+test('$1', () => {
+  $2
+});
