@@ -3,7 +3,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-(load-theme 'jellybeans t)
+(load-theme 'sexy t)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
