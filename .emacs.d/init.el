@@ -95,7 +95,8 @@
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
-    ((eval defun projectile-find-implementation-or-test
+    ((emmet-expand-jsx-className\? . t)
+     (eval defun projectile-find-implementation-or-test
            (file-name)
            (interactive)
            (let
