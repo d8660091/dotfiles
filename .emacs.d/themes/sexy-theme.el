@@ -60,6 +60,13 @@
                 :underline nil))))
    `(linum-highlight ((t (:foreground ,sexy-fg-2 :weight normal :background ,sexy-bg :inherit nil))))
 
+   `(line-number ((t (:foreground
+                ,sexy-fg-2
+                :weight normal
+                :background ,sexy-bg
+                :underline nil))))
+   `(line-number-current-line ((t (:foreground ,sexy-fg :weight bold :background ,sexy-bg :inherit nil))))
+
    `(minibuffer-prompt ((t (:foreground ,sexy-fg-1))))
    `(mode-line ((t (:background ,sexy-black
                                 :foreground ,sexy-fg
