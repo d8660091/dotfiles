@@ -29,6 +29,7 @@
  ;; If there is more than one, they won't work right.
  '(create-lockfiles nil)
  '(dired-listing-switches "-aBl --group-directories-first")
+ '(display-line-numbers-widen t)
  '(elpy-rpc-timeout 10)
  '(evil-mode-line-format '(after . mode-line-front-space))
  '(evil-want-C-u-scroll nil)
@@ -86,7 +87,7 @@
      ("lock" "")
      ("gpg" "")))
  '(recentf-exclude
-   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa") t)
+   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa"))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
@@ -121,8 +122,8 @@
  '(web-mode-enable-css-colorization t)
  '(web-mode-extra-keywords '(("javascript" "namespace" "type")))
  '(web-mode-markup-indent-offset 2)
- '(web-mode-script-padding 0 t)
- '(web-mode-style-padding 0 t))
+ '(web-mode-script-padding 0)
+ '(web-mode-style-padding 0))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -674,3 +675,5 @@ If `universal-argument' is called first, copy only the dir path."
 
 (add-hook 'find-file-hook 'my-find-file-hook)
 (put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
