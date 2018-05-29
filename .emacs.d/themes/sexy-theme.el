@@ -192,6 +192,8 @@
    `(Info-quoted ((t (:slant italic))))
 
    `(web-mode-html-attr-name-face ((t (:foreground ,sexy-yellow-1))))
+   `(sh-heredoc ((t (:foreground ,sexy-yellow))))
+
 
    ;; `(highlight-indentation-face ((t (:background ,sexy-green))))
    ;; `(highlight-indentation-current-column-face ((t (:background ,sexy-green))))
