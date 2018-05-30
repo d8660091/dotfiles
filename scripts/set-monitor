@@ -1,24 +1,31 @@
 #!/bin/bash
 readonly SCALE=1.66666x1.66666
 
-if [ $1 = "2" ]
+mapfile -t outputs < <(xrandr -q | grep '\<connected' | awk -F ' ' '{print $1}' | grep -v eDP-1)
+num_outputs=${1:-${#outputs[*]}}
+echo $num_outputs
+
+if [[ "$1" == "curve" ]]
+then
+  xrandr --output "${outputs[0]}" --auto --output eDP-1 --auto
+  xrandr --output "${outputs[0]}" --scale 1.4x1.4 --panning 4816x2016 --output eDP-1 --off
+  exit 0
+fi
+
+if [[ "$num_outputs" == 2 ]]
 then
   echo "Setting two monitors"
-  xrandr --output HDMI-1 --auto --output HDMI-2 --auto
+  xrandr --output "${outputs[0]}" --auto --output "${outputs[1]}" --auto
   xrandr --output HDMI-1 --scale $SCALE --pos 0x0 --output HDMI-2 --scale $SCALE --pos 3200x0 --fb 6400x1800 --output eDP-1 --off
-elif [ $1 = "1" ]
+elif [ "$num_outputs" == 1 ]
 then
-  xrandr --output ${2:-HDMI-3} --auto --output eDP-1 --auto
-  xrandr --output ${2:-HDMI-3} --scale $SCALE --same-as eDP-1 --output eDP-1 --auto --panning 3200x1800
-elif [ $1 = "0" ]
+  xrandr --output "${outputs[0]}" --auto --output eDP-1 --auto
+  xrandr --output "${outputs[0]}" --scale $SCALE --same-as eDP-1 --output eDP-1 --auto --panning 3200x1800
+elif [ "$num_outputs" == 0 ]
 then
   echo "Setting default monitor"
   xrandr --output eDP-1 --auto
   xrandr --output HDMI-1 --off --output HDMI-2 --off --fb 2880x1800 --output eDP-1 --auto
-elif [ $1 = "curve" ]
-then
-  xrandr --output ${2:-DP-1} --auto --output eDP-1 --auto
-  xrandr --output ${2:-DP-1} --scale 1.4x1.4 --panning 4816x2016 --output eDP-1 --off
 else
   echo "Unknown argument"
 fi
