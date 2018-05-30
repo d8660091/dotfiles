@@ -3,7 +3,6 @@ readonly SCALE=1.66666x1.66666
 
 mapfile -t outputs < <(xrandr -q | grep '\<connected' | awk -F ' ' '{print $1}' | grep -v eDP-1)
 num_outputs=${1:-${#outputs[*]}}
-echo $num_outputs
 
 if [[ "$1" == "curve" ]]
 then
