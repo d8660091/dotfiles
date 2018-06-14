@@ -1,5 +1,4 @@
 ;; -*- flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
-(add-to-list 'custom-theme-load-path "~/projects/emacs/themes")
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
