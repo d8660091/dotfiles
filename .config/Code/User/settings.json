@@ -1,0 +1,127 @@
+{
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 15,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "k",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "<C-h>"
+            ],
+            "after": [
+                "<Left>"
+            ]
+        },
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "after": [
+                "<Right>"
+            ]
+        },
+        {
+            "before": [
+                "<C-j>"
+            ],
+            "after": [
+            ],
+            "commands": [
+                {
+                    "command": "toggleSuggestionDetails",
+                    "args": []
+                },
+                {
+                    "command": "editor.action.triggerSuggest",
+                    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.otherModesKeyBindings": [
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "s",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "after": [
+            ],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save"
+                }
+            ]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "Q"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "1"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-f>": false,
+        "<C-k>": false,
+        "<C-w>": false,
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "vim.useSystemClipboard": true,
+    "vim.sneak": true,
+    "vim.disableExtension": false,
+    "vim.easymotion": true,
+    "vim.leader": ",",
+    "workbench.sideBar.location": "right",
+    "window.zoomLevel": 0,
+    "window.menuBarVisibility": "hidden",
+    "window.enableMenuBarMnemonics": false,
+    "vim.easymotionMarkerFontFamily": "Source Code Pro",
+    "vim.easymotionMarkerYOffset": 0
+}
