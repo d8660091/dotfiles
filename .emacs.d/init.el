@@ -671,8 +671,13 @@ If `universal-argument' is called first, copy only the dir path."
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
-
 (add-hook 'find-file-hook 'my-find-file-hook)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'narrow-to-page 'disabled nil)
+
+(defun my-filter-dired-buffers (buffer-list)
+  (delq nil (mapcar
+             (lambda (buffer)
+               (if (eq (with-current-buffer buffer major-mode)  'dired-mode)
+                   nil
+                 buffer))
+             buffer-list)))
+(advice-add 'helm-skip-boring-buffers :filter-return 'my-filter-dired-buffers)
