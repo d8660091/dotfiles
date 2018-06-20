@@ -60,7 +60,7 @@
  '(org-agenda-files nil)
  '(org-clock-persist t)
  '(package-selected-packages
-   '(tide elm-mode racer rust-mode org-jira gist elpy flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package))
+   '(lsp-mode csv-mode elm-mode racer rust-mode org-jira gist elpy flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package))
  '(powerline-default-separator 'arrow)
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -86,11 +86,14 @@
      ("lock" "")
      ("gpg" "")))
  '(recentf-exclude
-   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa") t)
+   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa"))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
-   '((emmet-expand-jsx-className\? . t)
+   '((flycheck-disabled-checkers 'jsx-tide 'tsx-tide)
+     (flycheck-disabled-checkers
+      '(jsx-tide tsx-tide))
+     (emmet-expand-jsx-className\? . t)
      (eval defun projectile-find-implementation-or-test
            (file-name)
            (interactive)
@@ -121,8 +124,8 @@
  '(web-mode-enable-css-colorization t)
  '(web-mode-extra-keywords '(("javascript" "namespace" "type")))
  '(web-mode-markup-indent-offset 2)
- '(web-mode-script-padding 0 t)
- '(web-mode-style-padding 0 t))
+ '(web-mode-script-padding 0)
+ '(web-mode-style-padding 0))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -245,6 +248,7 @@
   :ensure t
   :mode ("\\.vue\\'"
          "\\.jsx?\\'"
+         "[^\\.][^\\d)]\\.tsx?\\'"
          "\\.dtl\\'")
   :config
   (defun my-web-mode-hook ()
@@ -453,7 +457,7 @@
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
-    (define-key evil-normal-state-local-map (kbd "C-c C-j") 'tide-jump-to-definition)
+    (define-key evil-normal-state-local-map (kbd "g d") 'tide-jump-to-definition)
     (define-key evil-normal-state-local-map (kbd ", g r") 'tide-references)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled idle-change))
