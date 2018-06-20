@@ -164,6 +164,8 @@
    `(eshell-prompt ((t (:foreground ,sexy-fg-1))))
 
    `(tide-hl-identifier-face ((t (:foreground ,sexy-magenta))))
+   `(lsp-face-highlight-textual ((t (:foreground ,sexy-magenta))))
+   `(lsp-face-highlight-write ((t (:foreground ,sexy-magenta))))
 
    `(company-preview ((t (:foreground ,sexy-fg-2 :underline t))))
    `(company-preview-common ((t (:inherit company-preview))))
