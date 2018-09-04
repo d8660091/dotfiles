@@ -18,6 +18,7 @@
 !/projects/vim-vue
 !/projects/vim-color
 !/projects/neovim-vifm
+!/projects/st
 
 !/.emacs.d
 /.emacs.d/*

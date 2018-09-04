@@ -31,16 +31,17 @@
  '(display-line-numbers-widen t)
  '(elpy-rpc-timeout 10)
  '(enable-local-variables :all)
- '(evil-mode-line-format '(after . mode-line-front-space))
+ '(evil-mode-line-format (quote (after . mode-line-front-space)))
  '(evil-want-C-u-scroll nil)
  '(exec-path
-   '("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin"))
+   (quote
+    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(exec-path-from-shell-check-startup-files nil)
- '(flycheck-disabled-checkers '(javascript-jshint))
- '(font-lock-maximum-decoration '((dired-mode . 1) (t . t)))
+ '(flycheck-disabled-checkers (quote (javascript-jshint)))
+ '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
  '(fringe-mode nil nil (fringe))
  '(global-evil-mc-mode t)
- '(haskell-process-type 'stack-ghci)
+ '(haskell-process-type (quote stack-ghci))
  '(helm-display-buffer-default-height 10)
  '(helm-split-window-in-side-p t)
  '(helm-split-window-inside-p t)
@@ -52,20 +53,23 @@
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
  '(mode-line-format
-   '("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist " -" mode-line-misc-info mode-line-end-spaces vc-mode))
- '(neo-window-position 'right)
- '(ns-alternate-modifier 'super)
- '(ns-command-modifier 'meta)
+   (quote
+    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist " -" mode-line-misc-info mode-line-end-spaces vc-mode)))
+ '(neo-window-position (quote right))
+ '(ns-alternate-modifier (quote super))
+ '(ns-command-modifier (quote meta))
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
  '(org-agenda-files nil)
  '(org-clock-persist t)
  '(package-selected-packages
-   '(elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package))
- '(powerline-default-separator 'arrow)
+   (quote
+    (elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+ '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
-   '(("tsx" "css")
+   (quote
+    (("tsx" "css")
      ("js" "css")
      ("css" "jsx" "js" "tsx")
      ("jsx" "css")
@@ -85,15 +89,20 @@
      ("frag" "vert")
      (nil "lock" "gpg")
      ("lock" "")
-     ("gpg" "")))
+     ("gpg" ""))))
  '(recentf-exclude
-   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa") t)
+   (quote
+    ("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa")))
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
-   '((flycheck-disabled-checkers 'jsx-tide 'tsx-tide)
+   (quote
+    ((flycheck-disabled-checkers
+      (quote jsx-tide)
+      (quote tsx-tide))
      (flycheck-disabled-checkers
-      '(jsx-tide tsx-tide))
+      (quote
+       (jsx-tide tsx-tide)))
      (emmet-expand-jsx-className\? . t)
      (eval defun projectile-find-implementation-or-test
            (file-name)
@@ -110,7 +119,7 @@
                    (directory-file-name directory-name))
                   (file-name-sans-extension base-name)
                   ".js")
-               (concat directory-name "/__tests__/" base-name ".test.js"))))))
+               (concat directory-name "/__tests__/" base-name ".test.js")))))))
  '(save-place-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
@@ -123,7 +132,7 @@
  '(web-mode-enable-auto-pairing t)
  '(web-mode-enable-auto-quoting nil)
  '(web-mode-enable-css-colorization t)
- '(web-mode-extra-keywords '(("javascript" "namespace" "type")))
+ '(web-mode-extra-keywords (quote (("javascript" "namespace" "type"))))
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0 t)
  '(web-mode-style-padding 0 t))
