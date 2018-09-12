@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tee >(xmobar -x 0) >(xmobar -x 1)

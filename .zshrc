@@ -100,3 +100,10 @@ if [ -f '/home/xudeng/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/xudeng/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/xudeng/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/sls.zsh ]] && . /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/sls.zsh

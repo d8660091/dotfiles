@@ -1,5 +1,5 @@
 #!/bin/bash
-readonly SCALE=1.66666x1.66666
+readonly SCALE=1x1
 
 mapfile -t outputs < <(xrandr -q | grep '\<connected' | awk -F ' ' '{print $1}' | grep -v eDP-1)
 num_outputs=${1:-${#outputs[*]}}
@@ -15,7 +15,7 @@ if [[ "$num_outputs" == 2 ]]
 then
   echo "Setting two monitors"
   xrandr --output "${outputs[0]}" --auto --output "${outputs[1]}" --auto
-  xrandr --output "${outputs[0]}" --scale $SCALE --pos 0x0 --output "${outputs[1]}" --scale $SCALE --pos 3200x0 --fb 6400x1800 --output eDP-1 --off
+  xrandr --output "${outputs[1]}" --scale $SCALE --pos 0x0 --output "${outputs[0]}" --scale $SCALE --pos 1920x0 --fb 3840x1200 --output eDP-1 --off
 elif [ "$num_outputs" == 1 ]
 then
   xrandr --output "${outputs[0]}" --auto --output eDP-1 --auto
@@ -24,7 +24,7 @@ elif [ "$num_outputs" == 0 ]
 then
   echo "Setting default monitor"
   xrandr --output eDP-1 --auto
-  xrandr --output "${outputs[0]}" --off --output "${outputs[1]}" --off --fb 2880x1800 --output eDP-1 --auto
+  xrandr --output "${outputs[0]}" --off --output "${outputs[1]}" --off --fb 1920x1080 --output eDP-1 --auto
 else
   echo "Unknown argument"
 fi

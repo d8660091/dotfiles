@@ -4,6 +4,8 @@
 !.zshrc
 !.zshenv
 !/scripts
+!wallpaper.png
+!.tmux.conf
 
 !/.config
 /.config/*
@@ -19,6 +21,10 @@
 !/projects/vim-color
 !/projects/neovim-vifm
 !/projects/st
+
+!/.xmonad
+/.xmonad/*
+!/.xmonad/xmonad.hs
 
 !/.emacs.d
 /.emacs.d/*

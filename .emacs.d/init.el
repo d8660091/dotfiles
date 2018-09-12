@@ -64,7 +64,7 @@
  '(org-clock-persist t)
  '(package-selected-packages
    (quote
-    (elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
+    (groovy-mode jdee lsp-vue elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
  '(powerline-default-separator (quote arrow))
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
@@ -297,7 +297,7 @@
   ;; (define-key evil-normal-state-map (kbd "SPC d") 'helm-projectile-find-dir)
   (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile)
   (define-key evil-normal-state-map (kbd "SPC p") 'helm-projectile-switch-project)
-  (define-key evil-normal-state-map (kbd "SPC a g") 'helm-projectile-ag))
+  (define-key evil-normal-state-map (kbd "C-c p s s") 'helm-projectile-ag))
 
 (use-package counsel
   :ensure t
