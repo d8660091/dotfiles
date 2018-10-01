@@ -4,8 +4,9 @@
 !.zshrc
 !.zshenv
 !/scripts
-!wallpaper.png
+!wallpaper.jpg
 !.tmux.conf
+!.Xresources
 
 !/.config
 /.config/*

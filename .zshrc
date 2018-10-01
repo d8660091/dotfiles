@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -71,8 +71,7 @@ export DISABLE_AUTO_TITLE='true'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias m='matlab -nodesktop -nosplash -nosoftwareopengl -r "cd ~/workspace/matlab/circuit;addpath(genpath(pwd))"'
-#alias m='matlab -nodesktop -nosplash -softwareopengl -r "cd ~/workspace/matlab/circuit;addpath(genpath(pwd))"'
+alias git=hub
 
 
 unalias d
@@ -107,3 +106,7 @@ if [ -f '/home/xudeng/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then sou
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/sls.zsh ]] && . /home/xudeng/projects/turbonote/backend/node_modules/tabtab/.completions/sls.zsh
+
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi

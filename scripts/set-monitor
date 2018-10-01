@@ -19,7 +19,7 @@ then
 elif [ "$num_outputs" == 1 ]
 then
   xrandr --output "${outputs[0]}" --auto --output eDP-1 --auto
-  xrandr --output "${outputs[0]}" --scale $SCALE --same-as eDP-1 --output eDP-1 --auto --panning 3200x1800
+  xrandr --output "${outputs[0]}" --scale $SCALE --fb 3440x1440 --output eDP-1 --off
 elif [ "$num_outputs" == 0 ]
 then
   echo "Setting default monitor"
@@ -29,4 +29,4 @@ else
   echo "Unknown argument"
 fi
 
-feh --bg-scale ~/images/wallpaper.jpg
+feh --bg-scale ~/wallpaper.png

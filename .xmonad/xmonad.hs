@@ -8,6 +8,8 @@ import XMonad.Hooks.InsertPosition
 
 -- import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.PhysicalScreens
+import XMonad.Config.Gnome
+import XMonad.Hooks.SetWMName
 
 import qualified XMonad.StackSet as W
 
@@ -29,15 +31,17 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask' } = (modMask', xK_b)
 -- Main configuration, override the defaults to your liking.
 myConfig = defaultConfig { terminal = "st"
                          , focusedBorderColor = "#ecf0f1"
+                         , startupHook = setWMName "LG3D" -- for intelliJ
                          , normalBorderColor = "#3772ab"
                          , borderWidth = 2
                          , workspaces = ["1", "2", "3"]
                          , focusFollowsMouse = False
-                         , layoutHook = ResizableTall 1 (3/100) (8/16) [] ||| Full }
+                         , layoutHook = ResizableTall 1 (3/100) (1/2) [0, 3/2] ||| Full }
                          `additionalKeys`
                          (
-                           [ ((mod1Mask, xK_p), spawn "dmenu_run -fn '-*-*-*-*-*-*-18-*-*-*-*-*-*-*'")
+                           [ ((mod1Mask, xK_p), spawn "dmenu_run -fn '-*-*-*-*-*-*-12-*-*-*-*-*-*-*'")
                            , ((mod1Mask .|. shiftMask, xK_l), spawn "slock")
+                           , ((mod1Mask .|. shiftMask, xK_0), spawn "~/scripts/set-monitor 0")
                            , ((mod1Mask, xK_a), sendMessage MirrorShrink)
                            , ((mod1Mask, xK_z), sendMessage MirrorExpand)] ++
                            [ ((mod1Mask .|. mask, key), f sc)
@@ -49,3 +53,4 @@ myConfig = defaultConfig { terminal = "st"
 main :: IO ()
 main = do
     xmonad =<< statusBar "~/scripts/statusbar" myPP toggleStrutsKey myConfig
+-- main = xmonad gnomeConfig

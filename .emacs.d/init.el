@@ -31,45 +31,42 @@
  '(display-line-numbers-widen t)
  '(elpy-rpc-timeout 10)
  '(enable-local-variables :all)
- '(evil-mode-line-format (quote (after . mode-line-front-space)))
+ '(evil-mode-line-format '(after . mode-line-front-space))
  '(evil-want-C-u-scroll nil)
  '(exec-path
-   (quote
-    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+   '("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin"))
  '(exec-path-from-shell-check-startup-files nil)
- '(flycheck-disabled-checkers (quote (javascript-jshint)))
- '(font-lock-maximum-decoration (quote ((dired-mode . 1) (t . t))))
+ '(flycheck-disabled-checkers '(javascript-jshint))
+ '(font-lock-maximum-decoration '((dired-mode . 1) (t . t)))
  '(fringe-mode nil nil (fringe))
  '(global-evil-mc-mode t)
- '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-type 'stack-ghci)
  '(helm-display-buffer-default-height 10)
  '(helm-split-window-in-side-p t)
  '(helm-split-window-inside-p t)
  '(indent-tabs-mode nil)
  '(ivy-truncate-lines nil)
+ '(jdee-server-dir "~/jars")
  '(js-indent-level 2)
  '(js2-include-jslint-globals nil)
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-use-overlays nil)
  '(mode-line-format
-   (quote
-    ("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist " -" mode-line-misc-info mode-line-end-spaces vc-mode)))
- '(neo-window-position (quote right))
- '(ns-alternate-modifier (quote super))
- '(ns-command-modifier (quote meta))
+   '("%e" mode-line-front-space evil-mode-line-tag "  " mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name " -" minor-mode-alist " -" mode-line-misc-info mode-line-end-spaces vc-mode))
+ '(neo-window-position 'right)
+ '(ns-alternate-modifier 'super)
+ '(ns-command-modifier 'meta)
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
  '(org-agenda-files nil)
  '(org-clock-persist t)
  '(package-selected-packages
-   (quote
-    (groovy-mode jdee lsp-vue elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
- '(powerline-default-separator (quote arrow))
+   '(smartparens meghanada elixir-mode jinja2-mode terraform-mode groovy-mode lsp-vue elpy lsp-mode csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package))
+ '(powerline-default-separator 'arrow)
  '(projectile-enable-caching t)
  '(projectile-other-file-alist
-   (quote
-    (("tsx" "css")
+   '(("tsx" "css")
      ("js" "css")
      ("css" "jsx" "js" "tsx")
      ("jsx" "css")
@@ -89,20 +86,15 @@
      ("frag" "vert")
      (nil "lock" "gpg")
      ("lock" "")
-     ("gpg" ""))))
+     ("gpg" "")))
  '(recentf-exclude
-   (quote
-    ("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa")))
+   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|\\(BRANCH\\|EDIT\\)_DESCRIPTION\\)\\'" "/.emacs.d/elpa") t)
  '(recentf-max-menu-items 2000)
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
-   (quote
-    ((flycheck-disabled-checkers
-      (quote jsx-tide)
-      (quote tsx-tide))
+   '((flycheck-disabled-checkers 'jsx-tide 'tsx-tide)
      (flycheck-disabled-checkers
-      (quote
-       (jsx-tide tsx-tide)))
+      '(jsx-tide tsx-tide))
      (emmet-expand-jsx-className\? . t)
      (eval defun projectile-find-implementation-or-test
            (file-name)
@@ -119,7 +111,7 @@
                    (directory-file-name directory-name))
                   (file-name-sans-extension base-name)
                   ".js")
-               (concat directory-name "/__tests__/" base-name ".test.js")))))))
+               (concat directory-name "/__tests__/" base-name ".test.js"))))))
  '(save-place-mode t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
@@ -132,7 +124,7 @@
  '(web-mode-enable-auto-pairing t)
  '(web-mode-enable-auto-quoting nil)
  '(web-mode-enable-css-colorization t)
- '(web-mode-extra-keywords (quote (("javascript" "namespace" "type"))))
+ '(web-mode-extra-keywords '(("javascript" "namespace" "type")))
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0 t)
  '(web-mode-style-padding 0 t))
@@ -167,6 +159,7 @@
   :config
   (evil-mode t)
   (add-to-list 'evil-emacs-state-modes 'process-menu-mode)
+  (add-to-list 'evil-emacs-state-modes 'eshell-mode)
   (setq evil-normal-state-tag "NORMAL"
         evil-insert-state-tag "INSERT"
         evil-emacs-state-tag "EMACS"
@@ -286,7 +279,7 @@
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
-  (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "SPC k") 'helm-show-kill-ring)
   (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu))
 
@@ -658,7 +651,25 @@
   :ensure t
   :hook ((web-mode css-mode) . prettier-js-mode))
 
-(use-package lsp-vue)
+(use-package lsp-vue
+  :ensure t)
+
+(use-package elixir-mode
+  :ensure t)
+
+(use-package meghanada
+  :ensure t
+  :config
+  (add-hook 'java-mode-hook
+            (lambda ()
+              ;; meghanada-mode on
+              (meghanada-mode t)
+              (flycheck-mode +1)
+              (setq c-basic-offset 2)
+              ;; use code format
+              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
+
+
 
 
 (defun xah-copy-file-path (&optional *dir-path-only-p)
