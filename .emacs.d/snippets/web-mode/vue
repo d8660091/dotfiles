@@ -2,32 +2,14 @@
 #group: template
 # --
 <template>
-  <div class="$1">
-    <div class="widgets-container">
-      <div class="widget">
-      </div>
-    </div>
-  </div>
+  $1
 </template>
 
-<script>
-import Bar from '@/components/charts/Bar'
-import Line from '@/components/charts/Line'
-import data from '@/utils/data'
-import { colors } from '@/components/charts/config.json'
+<script lang="ts">
+import Vue from "vue";
 
-export default {
-  data () {
-    return {
-      data,
-      colors
-    }
-  },
-  components: {
-    Bar,
-    LineChart: Line
-  }
-}
+export default Vue.extend({
+});
 </script>
 
 <style lang="scss" scoped>

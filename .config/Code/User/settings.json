@@ -1,127 +1,99 @@
 {
-    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.fontSize": 15,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "k"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        },
-        {
-            "before": [
-                "k",
-                "j"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        },
-        {
-            "before": [
-                "<C-h>"
-            ],
-            "after": [
-                "<Left>"
-            ]
-        },
-        {
-            "before": [
-                "<C-l>"
-            ],
-            "after": [
-                "<Right>"
-            ]
-        },
-        {
-            "before": [
-                "<C-j>"
-            ],
-            "after": [
-            ],
-            "commands": [
-                {
-                    "command": "toggleSuggestionDetails",
-                    "args": []
-                },
-                {
-                    "command": "editor.action.triggerSuggest",
-                    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly",
-                    "args": []
-                }
-            ]
-        }
-    ],
-    "vim.otherModesKeyBindings": [
-        {
-            "before": [
-                "s"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "s",
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "w"
-            ],
-            "after": [
-            ],
-            "commands": [
-                {
-                    "command": "workbench.action.files.save"
-                }
-            ]
-        }
-    ],
-    "vim.otherModesKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "Q"
-            ],
-            "after": [],
-            "commands": [
-                {
-                    "command": "workbench.action.closeActiveEditor",
-                    "args": []
-                }
-            ]
-        },
-        {
-            "before": [
-                "<C-x>",
-                "1"
-            ],
-            "after": [],
-            "commands": [
-                {
-                    "command": "workbench.action.",
-                    "args": []
-                }
-            ]
-        }
-    ],
-    "vim.handleKeys": {
-        "<C-f>": false,
-        "<C-k>": false,
-        "<C-w>": false,
+  "editor.fontFamily": "'Source Code Pro', 'monospace', monospace, 'Droid Sans Fallback'",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     },
-    "editor.multiCursorModifier": "ctrlCmd",
-    "vim.useSystemClipboard": true,
-    "vim.sneak": true,
-    "vim.disableExtension": false,
-    "vim.easymotion": true,
-    "vim.leader": ",",
-    "workbench.sideBar.location": "right",
-    "window.zoomLevel": 0,
-    "window.menuBarVisibility": "hidden",
-    "window.enableMenuBarMnemonics": false,
-    "vim.easymotionMarkerFontFamily": "Source Code Pro",
-    "vim.easymotionMarkerYOffset": 0
+    {
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-h>"],
+      "after": ["<Left>"]
+    },
+    {
+      "before": ["<C-l>"],
+      "after": ["<Right>"]
+    },
+    {
+      "before": ["<C-j>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "toggleSuggestionDetails",
+          "args": []
+        },
+        {
+          "command": "editor.action.triggerSuggest",
+          "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "s"]
+    },
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["Q"],
+      "after": [],
+      "commands": ["workbench.action.closeActiveEditor"]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-f>": false,
+    "<C-k>": false,
+    "<C-w>": false
+  },
+  "editor.multiCursorModifier": "ctrlCmd",
+  "vim.useSystemClipboard": true,
+  "vim.sneak": true,
+  "vim.disableExtension": false,
+  "vim.easymotion": true,
+  "vim.leader": ",",
+  "window.zoomLevel": 0,
+  "window.menuBarVisibility": "hidden",
+  "window.enableMenuBarMnemonics": false,
+  "vim.easymotionMarkerFontFamily": "Source Code Pro",
+  "vim.easymotionMarkerHeight": 19,
+  "vim.easymotionMarkerBackgroundColor": "#a54242",
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/home/xudeng/.vscode/extensions/gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\" -Xbootclasspath/a:\"/home/xudeng/.vscode/extensions/gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\"",
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#353535",
+    "terminal.ansiBlack": "#282a2e",
+    "terminal.ansiBrightBlack": "#c5c8c6",
+    "terminal.ansiRed": "#a54242",
+    "terminal.ansiBrightRed": "#cc6666",
+    "terminal.ansiGreen": "#8c9440",
+    "terminal.ansiBrightGreen": "#b5bd68",
+    "terminal.ansiYellow": "#de935f",
+    "terminal.ansiBrightYellow": "#f0c674",
+    "terminal.ansiBlue": "#5f819d",
+    "terminal.ansiBrightBlue": "#81a2be",
+    "terminal.ansiMagenta": "#85678f",
+    "terminal.ansiBrightMagenta": "#b294bb",
+    "terminal.ansiCyan": "#5e8d87",
+    "terminal.ansiBrightCyan": "#8abeb7",
+    "terminal.ansiWhite": "#707880",
+    "terminal.ansiBrightWhite": "#c5c8c6"
+  },
+  "vetur.format.defaultFormatter.html": "prettyhtml",
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+  "go.lintOnSave": "off",
+  "workbench.sideBar.location": "right",
+  "terminal.integrated.fontFamily": "Source Code Pro",
+  "java.format.enabled": false,
+  "window.titleBarStyle": "native",
+  "workbench.activityBar.visible": false,
+  "[helm]": {}
 }
