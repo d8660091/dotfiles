@@ -34,7 +34,7 @@ myConfig = defaultConfig { terminal = "st"
                          , startupHook = setWMName "LG3D" -- for intelliJ
                          , normalBorderColor = "#3772ab"
                          , borderWidth = 2
-                         , workspaces = ["1", "2", "3"]
+                         , workspaces = ["1", "2", "3", "garbage"]
                          , focusFollowsMouse = False
                          , layoutHook = ResizableTall 1 (3/100) (1/2) [0, 3/2] ||| Full }
                          `additionalKeys`

@@ -34,3 +34,7 @@
 !/.emacs.d/lisp
 /.emacs.d/lisp/default.el
 !/.emacs.d/snippets
+
+!/.IntelliJIdea2018.3
+/.IntelliJIdea2018.3/*
+!/.IntelliJIdea2018.3/config
