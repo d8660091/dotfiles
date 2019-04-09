@@ -35,6 +35,6 @@
 *.color7:       #707880
 *.color15:      #c5c8c6
 
-URxvt.font: xft:Source Code Pro:size=11
+URxvt.font: xft:Source Code Pro:size=12
 URxvt.letterSpace: -1
 URxvt.scrollBar: false

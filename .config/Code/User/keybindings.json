@@ -6,41 +6,6 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+k",
-    "command": "-emacs.C-k",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+t",
-    "command": "-extension.vim_ctrl+t",
-    "when": "editorTextFocus && vim.active && vim.use<C-t> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "-extension.vim_ctrl+k",
-    "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+w",
-    "command": "-emacs.C-w",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+w",
-    "command": "-extension.vim_ctrl+w",
-    "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "-emacs.C-j",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "-extension.vim_ctrl+j",
-    "when": "editorTextFocus && vim.active && vim.use<C-j> && !inDebugRepl"
-  },
-  {
     "key": "ctrl+alt+space",
     "command": "editor.action.triggerParameterHints",
     "when": "editorHasSignatureHelpProvider && editorTextFocus"
@@ -132,5 +97,14 @@
   {
     "key": "ctrl+r",
     "command": "workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeWindow",
+    "when": "!editorIsOpen && !multipleEditorGroups"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
   }
 ]

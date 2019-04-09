@@ -43,6 +43,34 @@
       "commands": ["workbench.action.files.save"]
     },
     {
+      "before": ["<leader>", "1"],
+      "commands": ["workbench.action.openEditorAtIndex1"]
+    },
+    {
+      "before": ["<leader>", "2"],
+      "commands": ["workbench.action.openEditorAtIndex2"]
+    },
+    {
+      "before": ["<leader>", "3"],
+      "commands": ["workbench.action.openEditorAtIndex3"]
+    },
+    {
+      "before": ["<leader>", "4"],
+      "commands": ["workbench.action.openEditorAtIndex4"]
+    },
+    {
+      "before": ["<leader>", "5"],
+      "commands": ["workbench.action.openEditorAtIndex5"]
+    },
+    {
+      "before": ["<leader>", "6"],
+      "commands": ["workbench.action.openEditorAtIndex6"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["projectManager.listProjects"]
+    },
+    {
       "before": ["Q"],
       "after": [],
       "commands": ["workbench.action.closeActiveEditor"]
@@ -65,7 +93,8 @@
   "vim.easymotionMarkerFontFamily": "Source Code Pro",
   "vim.easymotionMarkerHeight": 19,
   "vim.easymotionMarkerBackgroundColor": "#a54242",
-  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/home/xudeng/.vscode/extensions/gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\" -Xbootclasspath/a:\"/home/xudeng/.vscode/extensions/gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\"",
+  // "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:/home/xudeng/Downloads/lombok.jar -Xbootclasspath/a:/home/xudeng/Downloads/lombok.jar",
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:/home/xudeng/Downloads/lombok.jar",
   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
   "workbench.colorCustomizations": {
     "statusBar.background": "#353535",
@@ -92,8 +121,16 @@
   "go.lintOnSave": "off",
   "workbench.sideBar.location": "right",
   "terminal.integrated.fontFamily": "Source Code Pro",
-  "java.format.enabled": false,
+  "java.format.enabled": true,
   "window.titleBarStyle": "native",
-  "workbench.activityBar.visible": false,
-  "[helm]": {}
+  "workbench.activityBar.visible": true,
+  "[helm]": {},
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "[java]": {},
+  "files.exclude": {
+    "**/target/generated-sources/**": true,
+  },
+  "workbench.editor.showTabs": true,
+  "git.confirmSync": false
 }
