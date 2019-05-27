@@ -27,6 +27,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(create-lockfiles nil)
+ '(custom-safe-themes
+   (quote
+    ("dc1ac1c77a9e1017988a8224732c9ed58d6f49ac57a7a9363139c38d093018eb" default)))
  '(dired-listing-switches "-aBl --group-directories-first")
  '(display-line-numbers-widen t)
  '(elpy-rpc-timeout 10)
@@ -43,6 +46,7 @@
  '(global-evil-mc-mode t)
  '(haskell-process-type (quote stack-ghci))
  '(helm-display-buffer-default-height 10)
+ '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(helm-split-window-in-side-p t)
  '(helm-split-window-inside-p t)
  '(indent-tabs-mode nil)
@@ -61,8 +65,9 @@
  '(ns-command-modifier (quote meta))
  '(ns-pop-up-frames nil)
  '(ns-use-srgb-colorspace nil)
- '(org-agenda-files nil)
+ '(org-agenda-files (quote ("~/todo.org")))
  '(org-clock-persist t)
+ '(org-todo-keywords (quote ((sequence "TODO" "IN-PROGRESS(!/!)" "DONE"))))
  '(package-selected-packages
    (quote
     (protobuf-mode add-node-modules-path lsp-java lsp-mode ensime scala-mode csharp-mode kubernetes smartparens elixir-mode jinja2-mode terraform-mode groovy-mode elpy csv-mode elm-mode racer rust-mode org-jira gist flow-minor-mode rg prettier-js dockerfile-mode diminish counsel-projectile fzf rjsx-mode go-rename company-go delight sass-mode mustache-mode yaml-mode evil-matchit evil-mc helm php-mode js2-mode company-jedi go-eldoc counsel sr-speedbar cider dired+ paredit company tide pug-mode fuzzy swiper-helm haskell-mode clojure-mode tern evil-numbers ace-link auctex rainbow-mode helm-ag anzu flycheck go-mode transpose-frame markdown-mode wgrep exec-path-from-shell ag helm-dash avy restclient magit emmet-mode which-key yasnippet ivy key-chord evil-leader evil-nerd-commenter evil-surround evil helm-projectile projectile editorconfig git-gutter-fringe web-mode use-package)))
@@ -292,6 +297,8 @@
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+  (define-key evil-normal-state-map (kbd "SPC r") 'helm-recentf)
+  (define-key evil-normal-state-map (kbd "SPC f") 'helm-projectile-find-file)
   (define-key evil-normal-state-map (kbd "SPC k") 'helm-show-kill-ring)
   (define-key evil-normal-state-map (kbd "SPC i") 'helm-imenu))
 
@@ -306,10 +313,8 @@
 
 (use-package counsel
   :ensure t
-  :config 
-  (define-key evil-normal-state-map (kbd "SPC r") 'counsel-recentf)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (define-key evil-normal-state-map (kbd "SPC f") 'counsel-projectile-find-file))
+  :config
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file))
 
 (use-package evil-numbers
   :ensure t
@@ -604,6 +609,7 @@
   :config
   (defun my-eshell-mode-hook ()
     (evil-emacs-state)
+    (setq show-trailing-whitespace nil)
     (linum-mode -1))
   (add-hook 'eshell-mode-hook 'my-eshell-mode-hook))
 
@@ -612,8 +618,9 @@
   :config
   (define-key evil-normal-state-map (kbd "SPC o") (lambda () (interactive) (find-file "~/notes.org")))
   (setq org-todo-keywords
-        '((sequence "TODO" "WAIT(!)" "DONE(!)")))
+        '((sequence "TODO" "IN-PROGRESS" "DONE")))
   (advice-add 'org-clock-get-clock-string :filter-return (apply-partially 's-truncate 20))
+  (define-key evil-normal-state-map (kbd "C-c a") 'org-agenda)
   (setq org-log-done t))
 
 (use-package avy

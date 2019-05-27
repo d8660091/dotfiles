@@ -132,5 +132,9 @@
     "**/target/generated-sources/**": true,
   },
   "workbench.editor.showTabs": true,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "files.associations": {
+    "*.sql": "postgres"
+  },
+  "editor.fontSize": 15
 }
